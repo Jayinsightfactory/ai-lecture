@@ -346,6 +346,18 @@
   .lab{position:absolute;top:24%;font-size:12px;font-weight:800;left:50%;transform:translateX(-50%)}
   .lab.req{color:var(--accent);animation:labReq 3.4s linear infinite}
   .lab.res{color:var(--good);bottom:24%;top:auto;animation:labRes 3.4s linear infinite}
+  /* infra journey */
+  .journey{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-top:22px;padding-top:4px}
+  .jrail{position:absolute;left:10%;right:10%;top:28px;height:3px;background:var(--line);z-index:1}
+  .jpkt{position:absolute;top:28px;width:14px;height:14px;border-radius:50%;background:var(--accent);transform:translate(-50%,-46%);box-shadow:0 0 10px var(--accent);animation:journeyPkt 5s linear infinite;z-index:3}
+  @keyframes journeyPkt{0%{left:10%;background:var(--accent)}42%{left:90%;background:var(--accent)}48%{left:90%;background:var(--good);transform:translate(-50%,-46%) scale(1.6)}53%{left:90%;background:var(--good);transform:translate(-50%,-46%) scale(1)}92%{left:10%;background:var(--good)}100%{left:10%;opacity:.45}}
+  .jnode{flex:1;text-align:center;position:relative;z-index:2;min-width:64px}
+  .jnode .jic{font-size:28px;display:block;background:var(--bg);border-radius:50%;width:56px;height:56px;line-height:56px;margin:0 auto;border:1px solid var(--line)}
+  .jnode .jt{font-size:12px;font-weight:700;color:var(--txt);margin-top:7px;line-height:1.3}
+  .jnode .js{font-size:10.5px;color:var(--dim);line-height:1.4;margin-top:2px}
+  .jbig{font-size:10.5px;color:var(--accent);font-weight:800;margin-top:3px}
+  .jlab{display:flex;justify-content:center;gap:26px;margin-top:10px;font-size:12px;flex-wrap:wrap}
+  .jlab .rq{color:var(--accent);font-weight:800}.jlab .rs{color:var(--good);font-weight:800}
 
   /* terminal */
   .term{background:#06080d;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:20px}
@@ -894,6 +906,27 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;font-size:13.5px;color:var(--sub)"><div>1️⃣ 내 툴이 엑셀에서 데이터를 읽음</div><div>2️⃣ <b style="color:var(--accent)">API로 AI에 요청</b> "이 메모 요약해줘"</div><div>3️⃣ <b style="color:var(--good)">AI가 답을 돌려줌</b></div><div>4️⃣ 그 답을 다시 엑셀 셀에 자동 입력</div><div>5️⃣ 1,000행 반복 → <b style="color:var(--txt)">사람 없이 자동</b></div></div>
         <p class="note">버튼 한 번으로 "읽기 → AI 처리 → 저장"이 도는 게 자동화 툴의 정체.</p></div>
     </div>
+
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">🌐 질문 하나가 거치는 '실제 경로' — 위치·규모·에너지·비용</h3>
+    <p class="lead reveal" style="font-size:15px">웹사이트에서 질문을 누르면 내 기기는 거의 일하지 않습니다. 진짜 계산은 <b style="color:var(--txt)">멀리 있는 거대한 데이터센터</b>의 GPU가 하고, 답이 같은 길로 돌아옵니다.</p>
+    <div class="journey reveal">
+      <div class="jrail"></div>
+      <div class="jpkt"></div>
+      <div class="jnode"><span class="jic">🧑‍💻</span><div class="jt">내 화면</div><div class="js">폰·PC에서 질문 입력</div></div>
+      <div class="jnode"><span class="jic">🌐</span><div class="jt">인터넷</div><div class="js">질문이 전송됨</div></div>
+      <div class="jnode"><span class="jic">🏢</span><div class="jt">LLM 서버<br>(데이터센터)</div><div class="js">GPU 수천~수만 개</div><div class="jbig">규모 ↑↑</div></div>
+      <div class="jnode"><span class="jic">⚡</span><div class="jt">GPU 연산</div><div class="js">전기 소모 + 발열→냉각</div></div>
+      <div class="jnode"><span class="jic">💬</span><div class="jt">답변 귀환</div><div class="js">같은 길로 내 화면에</div></div>
+    </div>
+    <div class="jlab reveal"><span class="rq">━ 요청(파랑) 갈 때 ▶</span><span class="rs">◀ 답변(초록) 올 때 ━</span></div>
+
+    <div class="grid3">
+      <div class="def reveal d1"><span class="em">🏢</span><h3 style="font-size:15px">규모</h3><p style="font-size:12.5px">데이터센터에 GPU 수천~수만 개. GPU 1개가 전력 <b style="color:var(--txt)">약 700~1,000W</b>(H100·B200) — 거대한 건물·전력 설비가 필요</p></div>
+      <div class="def reveal d2"><span class="em">⚡</span><h3 style="font-size:15px">전산 에너지</h3><p style="font-size:12.5px">짧은 질문 1건 ≈ <b style="color:var(--txt)">약 0.3~1 Wh</b> 전기 (이미지·추론은 2~5 Wh). 발열 식히는 데 물도 소량 *추정치</p></div>
+      <div class="def reveal d3"><span class="em">💰</span><h3 style="font-size:15px">비용</h3><p style="font-size:12.5px">그래서 '<b style="color:var(--txt)">토큰</b>' 단위로 과금. 하루 <b style="color:var(--txt)">25억+ 질문</b>이 쌓이면 전기·하드웨어 비용이 막대</p></div>
+    </div>
+    <p class="note reveal">핵심: AI 답변은 '마법'이 아니라 <b style="color:var(--txt)">멀리 있는 거대한 컴퓨터(데이터센터)가 전기를 써서 계산</b>한 결과입니다. 그래서 ① 인터넷이 필요하고 ② 응답에 약간 시간이 걸리며 ③ 사용량만큼 비용·에너지가 듭니다. <span style="color:var(--dim)">*수치는 공개 추정치(2026 기준)</span></p>
+
     <h3 class="egtitle reveal">💡 실무 예시 3가지</h3>
     <div class="egs">
       <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 "내 연차 며칠 남았어?"</div><div class="ec ai">🤖 (사내 시스템 조회) 7일 남았습니다</div></div><h4>💬 사내 챗봇</h4><p>직원 질문 → AI가 매뉴얼 보고 답변</p></div>
