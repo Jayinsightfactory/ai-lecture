@@ -392,6 +392,12 @@
   .result{font-size:14px;font-weight:800;margin-top:6px}
   .punch{margin-top:40px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px 24px}
   .punch h3{font-size:clamp(20px,3vw,30px);color:var(--txt);line-height:1.4}
+  .knowwrap{display:flex;justify-content:center;margin:22px 0 6px}
+  .know{position:relative;width:230px;height:176px}
+  .know .ring2{position:absolute;left:50%;top:46%;width:176px;height:176px;border-radius:50%;border:2px dashed var(--accent);transform:translate(-50%,-50%);animation:breathe 3.2s ease-in-out infinite}
+  .know .ring1{position:absolute;left:50%;top:46%;width:86px;height:86px;border-radius:50%;border:2px solid var(--sub);background:var(--card);transform:translate(-50%,-50%);display:grid;place-items:center;font-size:12px;color:var(--txt);text-align:center}
+  .know .lbl2{position:absolute;left:50%;bottom:0;transform:translateX(-50%);font-size:11.5px;color:var(--accent);white-space:nowrap;font-weight:700}
+  @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.55}50%{transform:translate(-50%,-50%) scale(1.05);opacity:1}}
   .note{margin-top:18px;font-size:13.5px;color:var(--dim);border-left:3px solid var(--line);padding-left:14px}
   footer{padding:60px 0;text-align:center;color:var(--dim);font-size:13px}
   .draft{position:fixed;left:18px;bottom:18px;z-index:160;background:var(--warn);color:#1a1300;font-size:12px;font-weight:800;padding:7px 13px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.4)}
@@ -1075,6 +1081,47 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       <h3>"많이 다뤄볼수록,<br><span class="hl">내가 원하는 걸 직접 만들어내는 힘</span>이 커진다"</h3>
       <p style="margin-top:14px;max-width:640px;margin-left:auto;margin-right:auto">언어능력이 중요한 이유 — 내가 원하는 것을 <b style="color:var(--txt)">명확하게 지시</b>해야 하기 때문입니다. 두루뭉술하게 말할수록 과정만 반복되고, 원하는 결과에서 멀어집니다.</p>
     </div>
+    <h3 class="reveal" style="margin-top:56px;font-size:24px">🧭 그래서 — AI를 어떻게 봐야 하나</h3>
+
+    <div class="ba">
+      <div class="col bad reveal d1"><h3>❌ 흔한 오해</h3><p style="font-size:14px;color:var(--sub)">"AI = 정보를 <b style="color:var(--txt)">검색</b>해 주는 도구"</p><p style="font-size:13px;margin-top:8px;color:var(--bad)">검색기로만 보면 활용이 좁아집니다</p></div>
+      <div class="col good reveal d2"><h3>✅ 진짜 특기</h3><p style="font-size:14px;color:var(--sub)">다량의 정보를 <b style="color:var(--txt)">분류·관리·기획</b>하는 데 특화</p><p style="font-size:13px;margin-top:8px;color:var(--good)">'찾기'보다 '정리하고 설계하기'에 강하다</p></div>
+    </div>
+    <div class="grid3">
+      <div class="def reveal d1"><span class="em">🗂️</span><h3 style="font-size:15px">분류</h3><p style="font-size:12.5px">흩어진 자료를 기준대로 묶고 나눔</p></div>
+      <div class="def reveal d2"><span class="em">📊</span><h3 style="font-size:15px">관리</h3><p style="font-size:12.5px">표·요약·업데이트로 계속 다룸</p></div>
+      <div class="def reveal d3"><span class="em">🧭</span><h3 style="font-size:15px">기획</h3><p style="font-size:12.5px">구조를 짜고 다음 단계를 설계</p></div>
+    </div>
+
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">🔁 활용 극대화의 목적 = 반복작업 최소화</h3>
+    <div class="grid2">
+      <div class="card reveal d1"><h3>🙍 반복에 시간을 쓰면</h3><p style="font-size:14px">같은 일을 매번 손으로 → 에너지 소모, 정작 중요한 판단·기획엔 시간 부족</p></div>
+      <div class="card reveal d2"><h3>🤖 반복을 AI에 맡기면</h3><p style="font-size:14px">한 번 잘 설계해두면 AI가 반복 수행 → 내 시간은 <b style="color:var(--txt)">기획·판단</b>에 집중</p></div>
+    </div>
+    <p class="note reveal">"AI를 잘 쓴다" = <b style="color:var(--txt)">반복을 얼마나 줄였는가</b>로 가늠됩니다.</p>
+
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">🔄 역질문 + 역제안 → 내 지식의 한계를 넘는다</h3>
+    <div class="grid2">
+      <div class="card reveal d1"><h3>❓ 역질문</h3><p style="font-size:14px">AI가 나에게 되묻는다 — "어떤 형식? 어디까지?" → 내가 놓친 부분을 짚어줌</p></div>
+      <div class="card reveal d2"><h3>💡 역제안</h3><p style="font-size:14px">AI가 더 나은 방법을 제시 — 내가 몰랐던 선택지·도구를 열어줌</p></div>
+    </div>
+    <div class="knowwrap reveal"><div class="know"><div class="ring2"></div><div class="ring1">내 지식</div><div class="lbl2">＋ AI 협업 = 더 넓은 결과</div></div></div>
+    <p class="note reveal">그래서 <b style="color:var(--txt)">내 지식 이상의 결과</b>로 작업을 끌고 갈 수 있습니다.</p>
+
+    <h3 class="reveal" style="margin-top:54px;font-size:24px">🔧 결국 — "AI를 다루는 능력 = 역설계(逆設計) 능력"</h3>
+    <p class="lead reveal" style="font-size:15px">역설계란? 원하는 <b style="color:var(--txt)">결과를 먼저 정하고</b>, 거기서 <b style="color:var(--txt)">거꾸로</b> 필요한 단계·도구·지시를 설계해 내려오는 것. AI와 일하다 보면 이 사고가 자연히 확립됩니다.</p>
+    <div class="pipe">
+      <div class="step reveal d1" style="animation-delay:0s"><div class="ic">🎯</div><div class="t">원하는 결과</div><div class="s">"이 모습이 목표"</div></div>
+      <div class="flow"><i>◀</i><i>◀</i><i>◀</i></div>
+      <div class="step reveal d2" style="animation-delay:1.2s"><div class="ic">🧩</div><div class="t">필요한 단계</div><div class="s">무엇이 있어야 하나</div></div>
+      <div class="flow"><i>◀</i><i>◀</i><i>◀</i></div>
+      <div class="step reveal d3" style="animation-delay:2.4s"><div class="ic">🧰</div><div class="t">도구·데이터</div><div class="s">어떤 자원이 필요한가</div></div>
+      <div class="flow"><i>◀</i><i>◀</i><i>◀</i></div>
+      <div class="step reveal d4" style="animation-delay:3.6s"><div class="ic">🗣️</div><div class="t">지시로 구현</div><div class="s">AI에 명확히 전달</div></div>
+    </div>
+    <div class="loopback reveal"><span>◀ 결과에서 거꾸로 분해해 필요한 것을 설계 — 이게 '역설계'</span></div>
+    <p class="note reveal"><b style="color:var(--txt)">정리: AI를 다루는 능력 = 원하는 결과를 정의하고, 거기서 거꾸로 길을 설계하는 역설계 능력.</b> 많이 다뤄볼수록 이 감각이 단단해집니다.</p>
+
     <h3 class="egtitle reveal">💡 명확한 지시 예시 3가지 (모호 → 명확)</h3>
     <div class="egs">
       <div class="eg reveal d1"><div class="egviz" style="gap:12px"><span class="m-spin" title="모호">🌀</span><span class="ar">▶</span><span class="m-check">📊</span></div><h4>📊 엑셀 정리</h4><p><span style="color:var(--bad)">"정리해줘"</span> → <span style="color:var(--good)">"날짜순 정렬 후 합계"</span></p></div>
