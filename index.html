@@ -300,6 +300,34 @@
   .vrules div{font-size:13px;margin:9px 0;color:var(--sub);animation:checkpop 6s infinite}
   .vrules div:nth-child(2){animation-delay:1.2s}.vrules div:nth-child(3){animation-delay:2.4s}
 
+  /* LLM deep dive */
+  .stage{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:16px}
+  .stage .lbl{display:inline-block;font-size:11.5px;font-weight:800;color:var(--accent);letter-spacing:.12em;margin-bottom:5px}
+  .stage h3{font-size:18px}
+  .tokchiprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+  .tokchip{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:7px 11px;text-align:center;font-size:13px;color:var(--txt);animation:popLoop2 .5s both}
+  .tokchip .id{display:block;font-size:10px;color:var(--accent);font-family:"Consolas",monospace;margin-top:3px}
+  .arrow2{color:var(--accent);font-weight:900;animation:march 1.2s infinite}
+  .vecwrap{display:flex;align-items:center;gap:12px;margin:10px 0;flex-wrap:wrap}
+  .vectag{font-size:13px;color:var(--txt);background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+  .vec{display:flex;gap:3px}
+  .vec b{width:13px;height:24px;border-radius:3px;display:block;animation:vecpulse 3s ease-in-out infinite}
+  @keyframes vecpulse{0%,100%{opacity:.4}50%{opacity:1}}
+  .vmap{position:relative;height:140px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;margin-top:10px;overflow:hidden}
+  .vmap .pt2{position:absolute;font-size:11px;color:var(--sub);transform:translate(-50%,-50%);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:3px 8px;animation:logoPulse 3.2s infinite}
+  .attngrid{display:grid;grid-template-columns:auto repeat(4,36px);gap:4px;align-items:center;font-size:10.5px;margin-top:12px;width:max-content}
+  .attngrid .h{text-align:center;color:var(--dim)}
+  .attngrid .rh{text-align:right;padding-right:5px;color:var(--sub)}
+  .attngrid .ac{height:26px;border-radius:4px;background:var(--accent);animation:vecpulse 3.4s ease-in-out infinite}
+  .layers{display:flex;flex-direction:column-reverse;gap:5px;margin-top:10px}
+  .layers .ly{height:15px;border-radius:4px;background:var(--card2);border:1px solid var(--line);animation:flowGlow 5s linear infinite}
+  .simbar{display:flex;gap:8px;align-items:stretch;margin-top:14px;flex-wrap:wrap}
+  .simstage{flex:1;min-width:84px;text-align:center;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:11px 6px;font-size:12px;color:var(--sub);transition:.3s}
+  .simstage.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 10px 26px rgba(91,140,255,.22);color:var(--txt);transform:translateY(-3px)}
+  .simstage .se{font-size:20px;display:block;margin-bottom:3px}
+  .simpanel{margin-top:14px;background:#0a0c12;border:1px solid var(--line);border-radius:10px;padding:16px;min-height:96px;font-size:13.5px;color:var(--sub)}
+  .simpanel .out{color:var(--txt);white-space:pre-wrap;line-height:1.6}
+
   /* api */
   .api{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;margin-top:40px}
   @media(max-width:760px){.api{grid-template-columns:1fr}}
@@ -446,6 +474,109 @@
           <div>🛡️ <b style="color:var(--txt)">성격/안전장치</b> — 신중함·형식</div>
         </div>
       </div>
+    </div>
+
+    <h3 class="reveal" style="margin-top:54px;font-size:24px">🔬 심화 — LLM 내부를 한 단계씩 (전문 과정 시각화)</h3>
+    <p class="lead reveal" style="font-size:15px">위 5단계를 더 깊이 열어보면 이렇게 동작합니다. 조금 전문적이지만 그림으로 보면 쉬워요.</p>
+
+    <div class="stage reveal">
+      <span class="lbl">STEP 1 · TOKENIZATION</span>
+      <h3>① 토큰화 — 문장을 "조각(토큰)"으로 + 번호 매기기</h3>
+      <p style="font-size:13.5px">AI는 글자를 그대로 못 읽습니다. 자주 쓰는 덩어리(서브워드)로 쪼개고, 각 조각에 사전 번호(ID)를 붙입니다.</p>
+      <div class="tokchiprow">
+        <span class="tokchip">인공<span class="id">#8123</span></span>
+        <span class="tokchip">지능<span class="id">#4502</span></span>
+        <span class="tokchip">은<span class="id">#11</span></span>
+        <span class="tokchip">똑똑<span class="id">#9981</span></span>
+        <span class="tokchip">하다<span class="id">#205</span></span>
+      </div>
+      <p class="note">"인공지능은 똑똑하다" → 5개 토큰 → 숫자 ID 배열 [8123, 4502, 11, 9981, 205]</p>
+    </div>
+
+    <div class="stage reveal">
+      <span class="lbl">STEP 2 · EMBEDDING</span>
+      <h3>② 임베딩 — 각 토큰을 "의미 벡터(숫자 목록)"로</h3>
+      <p style="font-size:13.5px">번호만으로는 의미가 없죠. 각 토큰을 수백 개 숫자(벡터)로 바꿉니다. 이 숫자들이 "의미 좌표"예요. 비슷한 뜻은 가까운 좌표에 모입니다.</p>
+      <div class="vecwrap"><span class="vectag">지능 #4502</span><span class="arrow2">▶</span><div class="vec">
+        <b style="background:#5b8cff"></b><b style="background:#7c5cff;animation-delay:.2s"></b><b style="background:#2dd4a7;animation-delay:.4s"></b><b style="background:#ff6b3b;animation-delay:.6s"></b><b style="background:#ffc93c;animation-delay:.8s"></b><b style="background:#4185f4;animation-delay:1s"></b><b style="background:#d97757;animation-delay:1.2s"></b><b style="background:#b96fff;animation-delay:1.4s"></b><b style="background:#2dd4a7;animation-delay:1.6s"></b><b style="background:#5b8cff;animation-delay:1.8s"></b><b style="background:#ffc93c;animation-delay:2s"></b><b style="background:#ff6b3b;animation-delay:2.2s"></b>
+      </div><span style="font-size:12px;color:var(--dim)">…실제론 768~수천 개 숫자</span></div>
+      <p style="font-size:13px;margin-top:6px">의미 공간에서는 비슷한 단어끼리 모입니다:</p>
+      <div class="vmap">
+        <span class="pt2" style="left:24%;top:32%">👑 왕</span>
+        <span class="pt2" style="left:39%;top:26%">👑 여왕</span>
+        <span class="pt2" style="left:72%;top:62%">🍎 사과</span>
+        <span class="pt2" style="left:84%;top:72%;animation-delay:1s">🍌 바나나</span>
+        <span class="pt2" style="left:28%;top:72%;animation-delay:.5s">🐱 고양이</span>
+        <span class="pt2" style="left:44%;top:78%;animation-delay:1.5s">🐶 강아지</span>
+      </div>
+      <p class="note">'왕·여왕'은 가깝고 '사과·바나나'는 따로 모입니다. 그래서 AI가 "비슷한 의미"를 이해합니다. (왕−남자+여자 ≈ 여왕 같은 계산도 가능)</p>
+    </div>
+
+    <div class="stage reveal">
+      <span class="lbl">STEP 3 · POSITIONAL ENCODING</span>
+      <h3>③ 위치 정보 더하기 — 순서를 기억</h3>
+      <p style="font-size:13.5px">"개가 사람을 물다"와 "사람이 개를 물다"는 단어가 같아도 뜻이 정반대죠. 그래서 각 토큰에 "몇 번째인지" 위치 정보를 더합니다.</p>
+      <div class="tokchiprow">
+        <span class="tokchip">개가<span class="id">pos 1</span></span><span class="arrow2">→</span>
+        <span class="tokchip">사람을<span class="id">pos 2</span></span><span class="arrow2">→</span>
+        <span class="tokchip">물다<span class="id">pos 3</span></span>
+      </div>
+      <p class="note">위치가 바뀌면 의미가 바뀜 → 순서 정보는 필수입니다.</p>
+    </div>
+
+    <div class="stage reveal">
+      <span class="lbl">STEP 4 · SELF-ATTENTION (핵심)</span>
+      <h3>④ 어텐션 — 각 단어가 "어디에 주목할지" 계산</h3>
+      <p style="font-size:13.5px">트랜스포머의 핵심. 각 단어가 문장 속 다른 단어 중 무엇이 중요한지 가중치를 매깁니다. 아래는 '주목도' 표 — 밝을수록 더 주목합니다.</p>
+      <div class="attngrid">
+        <span></span><span class="h">나는</span><span class="h">은행</span><span class="h">돈을</span><span class="h">찾았다</span>
+        <span class="rh">나는</span><span class="ac" style="opacity:.85"></span><span class="ac" style="opacity:.2"></span><span class="ac" style="opacity:.2"></span><span class="ac" style="opacity:.2"></span>
+        <span class="rh">은행</span><span class="ac" style="opacity:.2"></span><span class="ac" style="opacity:.75"></span><span class="ac" style="opacity:.5"></span><span class="ac" style="opacity:.3"></span>
+        <span class="rh">돈을</span><span class="ac" style="opacity:.2"></span><span class="ac" style="opacity:.45"></span><span class="ac" style="opacity:.8"></span><span class="ac" style="opacity:.35"></span>
+        <span class="rh">찾았다</span><span class="ac" style="opacity:.2"></span><span class="ac" style="opacity:.5"></span><span class="ac" style="opacity:.9"></span><span class="ac" style="opacity:.3"></span>
+      </div>
+      <p class="note">'찾았다'는 '돈을·은행'을 강하게 봅니다 → 문맥(돈을 인출)을 이해. 이렇게 단어 사이 관계를 파악합니다.</p>
+    </div>
+
+    <div class="stage reveal">
+      <span class="lbl">STEP 5 · TRANSFORMER LAYERS</span>
+      <h3>⑤ 층층이 반복 — 의미를 점점 정교하게</h3>
+      <p style="font-size:13.5px">②~④ 과정을 수십~수백 층 쌓아 반복합니다. 아래에서 위로 갈수록 더 추상적이고 정교한 의미를 잡아냅니다.</p>
+      <div class="layers">
+        <div class="ly" style="animation-delay:0s"></div>
+        <div class="ly" style="animation-delay:.4s"></div>
+        <div class="ly" style="animation-delay:.8s"></div>
+        <div class="ly" style="animation-delay:1.2s"></div>
+        <div class="ly" style="animation-delay:1.6s"></div>
+        <div class="ly" style="animation-delay:2s"></div>
+      </div>
+      <p class="note">신호가 아래(입력)에서 위(출력)로 흐르며 층마다 의미가 다듬어집니다.</p>
+    </div>
+
+    <div class="stage reveal">
+      <span class="lbl">STEP 6 · OUTPUT (SOFTMAX)</span>
+      <h3>⑥ 다음 토큰 확률 만들기 → 하나 고르기</h3>
+      <p style="font-size:13.5px">마지막 층의 결과를 전체 사전 단어에 대한 "확률"로 바꿉니다(softmax). 그중 하나를 골라 출력하고, 다시 ①로 돌아가 반복(자기회귀).</p>
+      <div class="prob" style="margin-top:8px">
+        <div class="row"><span class="word" style="width:64px">똑똑하다</span><span class="barwrap"><span class="bar" style="width:64%"></span></span><span class="pct">64%</span></div>
+        <div class="row"><span class="word" style="width:64px">유용하다</span><span class="barwrap"><span class="bar" style="width:24%;animation-delay:.3s"></span></span><span class="pct">21%</span></div>
+        <div class="row"><span class="word" style="width:64px">빠르다</span><span class="barwrap"><span class="bar" style="width:13%;animation-delay:.6s"></span></span><span class="pct">11%</span></div>
+      </div>
+      <p class="note">'temperature(온도)'를 높이면 과감하게, 낮추면 안정적으로 단어를 고릅니다.</p>
+    </div>
+
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">🧪 기본 업무 시뮬레이션 — LLM의 이해로 따라가기</h3>
+    <p class="reveal" style="font-size:14px">실제 업무 하나가 위 단계를 어떻게 통과하는지 보여드립니다.</p>
+    <div class="stage reveal">
+      <p style="font-size:13.5px;color:var(--txt)">📋 업무 지시: <b>"다음 주 화요일 팀 회의 일정을 정중한 공지 메일로 써줘"</b></p>
+      <div class="simbar" id="simBar">
+        <div class="simstage"><span class="se">✂️</span>토큰화</div>
+        <div class="simstage"><span class="se">🔢</span>임베딩</div>
+        <div class="simstage"><span class="se">🎯</span>어텐션</div>
+        <div class="simstage"><span class="se">💬</span>생성</div>
+        <div class="simstage"><span class="se">✅</span>결과</div>
+      </div>
+      <div class="simpanel" id="simPanel"></div>
     </div>
 
     <h3 class="reveal" style="margin-top:48px;font-size:22px">🎬 실시간 생성, 더 자세히 — "자기회귀(한 단어씩)" 방식</h3>
@@ -1069,6 +1200,30 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     ]
   };
   Object.keys(convos).forEach(id=>{const el=document.getElementById(id);if(el)playConvo(el,convos[id]);});
+
+  // basic work simulation (LLM stages)
+  const simSteps=[
+    {i:0,d:'문장을 토큰으로 분해 → [다음],[ 주],[ 화요일],[ 팀],[ 회의],[ 일정],[ 정중],[ 메일]… 각 토큰에 ID 부여'},
+    {i:1,d:'각 토큰을 의미 벡터로 변환. "정중·공지·메일"이 비즈니스 격식 의미 공간에 배치됨'},
+    {i:2,d:'중요 단어에 주목(어텐션): 다음 주 화요일 · 팀 회의 · 일정 · 정중히 → 핵심 의도 파악'},
+    {i:3,d:'다음 단어를 하나씩 예측하며 메일을 작성하는 중… (자기회귀)'},
+    {i:4,out:'제목: [공지] 다음 주 화요일 팀 회의 안내\n\n안녕하세요, 팀원 여러분.\n다음 주 화요일(오후 2시) 팀 회의를 진행하고자 합니다.\n참석 가능 여부를 회신 부탁드립니다.\n감사합니다.'}
+  ];
+  const simBar=document.getElementById('simBar');
+  const simPanel=document.getElementById('simPanel');
+  async function runSim(){
+    const kids=[...simBar.children];
+    while(true){
+      for(const s of simSteps){
+        kids.forEach((k,idx)=>k.classList.toggle('active',idx===s.i));
+        if(s.out){simPanel.innerHTML='<div class="out"></div>';simPanel.firstChild.textContent=s.out;}
+        else{simPanel.textContent=s.d;}
+        await sleep(s.out?3400:1800);
+      }
+      await sleep(800);
+    }
+  }
+  if(simBar) runSim();
 </script>
 </body>
 </html>
