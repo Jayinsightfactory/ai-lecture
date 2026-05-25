@@ -72,6 +72,9 @@
   .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:float 9s ease-in-out infinite}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:13px;color:var(--sub);margin-bottom:26px}
   .dot-live{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(45,212,167,.18);animation:logoPulse 2s infinite}
+  .opening{margin-top:28px;max-width:640px;font-size:clamp(15px,2vw,18px);line-height:1.75;color:var(--sub);border-left:3px solid var(--accent);padding:8px 0 8px 18px}
+  .opening b{color:var(--txt);font-weight:700}
+  .opening .em2{color:var(--accent);font-weight:800}
   .hero-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
   @media(max-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:520px){.hero-grid{grid-template-columns:1fr}}
@@ -445,6 +448,7 @@
     <div class="hero-badge reveal"><span class="dot-live"></span> 사내 실무 강의 · AI 활용</div>
     <h1 class="reveal d1">AI는 어떻게<br>일을 대신해 주는가</h1>
     <p class="lead reveal d2" style="margin-top:22px">LLM 작동 원리·성능 차이부터, 화면 캡쳐로 대화하는 법, 엑셀 자동화·OCR·API·터미널, 막혔을 때 뚫는 법까지.<br>비개발자도 이해할 수 있게, <b style="color:var(--txt)">움직이는 그림</b>으로 풀어봅니다.</p>
+    <p class="opening reveal d3">이 강의는 <b>필요한 누군가</b>에겐 도움이 될 거고,<br>필요 없는 사람에겐 영원히 필요 없을지도 모릅니다.<br>그래도 — <span class="em2">단 한 명에게라도 도움이 된다면,</span> 그걸로 충분합니다.</p>
     <div class="hero-grid">
       <a class="tile reveal d1" href="#s1"><div class="n">01</div><h3>LLM 구조 & 성능차</h3><p>다음 단어 예측 + 모델별 성능이 다른 이유</p></a>
       <a class="tile reveal d2" href="#s2"><div class="n">02</div><h3>프롬프트 엔지니어링</h3><p>지시를 잘 한 답변 vs 못 한 답변</p></a>
