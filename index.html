@@ -485,6 +485,40 @@
       <div class="step reveal d4" style="animation-delay:4.8s"><div class="ic">💬</div><div class="t">⑤ 답변 생성</div><div class="s">이어 붙여 완성</div></div>
     </div>
 
+    <h3 class="reveal" style="margin-top:50px;font-size:22px">🎯 그래서 — '다음 단어 맞히는 기계'라서, 입력이 정확해야 출력이 정확하다</h3>
+    <p class="reveal" style="font-size:14px">예측 확률은 <b style="color:var(--txt)">내가 준 맥락</b>에 전적으로 달려 있습니다. 입력이 흐릿하면 확률도 흐릿 → 엉뚱하거나 지어낸 답(환각). 입력이 정확하면 확률이 한 곳에 모여 → 정확한 답.</p>
+    <div class="grid2">
+      <div class="card reveal d1" style="border-color:rgba(255,93,108,.35)">
+        <h3 style="color:var(--bad)">❌ 흐릿한 입력</h3>
+        <p style="font-size:13px;color:var(--txt)">"그거 좀 정리해줘"</p>
+        <p style="font-size:12.5px;margin-top:6px">→ 후보가 비슷비슷, 무엇을 원하는지 불확실:</p>
+        <div class="prob" style="margin-top:6px">
+          <div class="row"><span class="word" style="width:54px">정렬?</span><span class="barwrap"><span class="bar" style="width:38%;background:linear-gradient(90deg,var(--bad),#ff9a3b)"></span></span><span class="pct">38%</span></div>
+          <div class="row"><span class="word" style="width:54px">요약?</span><span class="barwrap"><span class="bar" style="width:33%;animation-delay:.3s;background:linear-gradient(90deg,var(--bad),#ff9a3b)"></span></span><span class="pct">33%</span></div>
+          <div class="row"><span class="word" style="width:54px">삭제?</span><span class="barwrap"><span class="bar" style="width:29%;animation-delay:.6s;background:linear-gradient(90deg,var(--bad),#ff9a3b)"></span></span><span class="pct">29%</span></div>
+        </div>
+        <p style="font-size:12.5px;margin-top:8px;color:var(--bad)">→ 아무거나 골라 틀릴 위험·환각</p>
+      </div>
+      <div class="card reveal d2" style="border-color:rgba(45,212,167,.35)">
+        <h3 style="color:var(--good)">✅ 정확한 입력</h3>
+        <p style="font-size:13px;color:var(--txt)">"매출.xlsx <b>B열 날짜를 오름차순 정렬</b>"</p>
+        <p style="font-size:12.5px;margin-top:6px">→ 한 곳에 확률이 모임(확신):</p>
+        <div class="prob" style="margin-top:6px">
+          <div class="row"><span class="word" style="width:54px">정렬</span><span class="barwrap"><span class="bar" style="width:92%"></span></span><span class="pct">92%</span></div>
+          <div class="row"><span class="word" style="width:54px">요약</span><span class="barwrap"><span class="bar" style="width:6%;animation-delay:.3s"></span></span><span class="pct">5%</span></div>
+          <div class="row"><span class="word" style="width:54px">삭제</span><span class="barwrap"><span class="bar" style="width:4%;animation-delay:.6s"></span></span><span class="pct">3%</span></div>
+        </div>
+        <p style="font-size:12.5px;margin-top:8px;color:var(--good)">→ 정확히 의도대로</p>
+      </div>
+    </div>
+    <h3 class="reveal" style="margin-top:34px;font-size:18px">정확히 줘야 할 3가지</h3>
+    <div class="grid3">
+      <div class="def reveal d1"><span class="em">📍</span><h3 style="font-size:15px">데이터 위치</h3><p style="font-size:12.5px"><span style="color:var(--bad)">"그 파일"</span> → <span style="color:var(--good)">"3분기 매출.xlsx의 B열"</span></p></div>
+      <div class="def reveal d2"><span class="em">🔗</span><h3 style="font-size:15px">소스·출처</h3><p style="font-size:12.5px"><span style="color:var(--bad)">막연히</span> → <span style="color:var(--good)">"첨부한 규정집 기준으로만"</span></p></div>
+      <div class="def reveal d3"><span class="em">🧭</span><h3 style="font-size:15px">방향값</h3><p style="font-size:12.5px"><span style="color:var(--bad)">"정리"</span> → <span style="color:var(--good)">"날짜 오름차순, 합계는 맨 아래"</span></p></div>
+    </div>
+    <p class="note reveal">핵심: AI는 <b style="color:var(--txt)">다음 단어를 '맞히는' 기계</b>라서, 맞힐 근거(위치·출처·방향)가 정확할수록 정답에 가까워집니다. <b style="color:var(--txt)">흐릿한 입력 = 흐릿한 출력.</b></p>
+
     <div class="grid2">
       <div class="card reveal d1">
         <h3>실시간으로 벌어지는 일</h3>
