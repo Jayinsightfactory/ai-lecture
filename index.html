@@ -1000,7 +1000,7 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     </div>
     <p class="note reveal">핵심: <b style="color:var(--txt)">API = 정해진 창구로 요청하면, 대량 데이터를 '구조화된 형태(엑셀·표)'로 한 번에 돌려준다.</b> 그래서 "하나하나 클릭·검색"이 "문장·호출 한 번"으로 바뀝니다. 콘텐츠 입력·번역·메일 발송·재고 동기화도 모두 같은 원리예요.</p>
 
-    <h3 class="reveal" style="margin-top:48px;font-size:22px">🌐 질문 하나가 거치는 '실제 경로' — 위치·규모·에너지·비용</h3>
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">🌐 질문 하나가 거치는 '실제 경로' — 위치·비용·규모·에너지</h3>
     <p class="lead reveal" style="font-size:15px">웹사이트에서 질문을 누르면 내 기기는 거의 일하지 않습니다. 진짜 계산은 <b style="color:var(--txt)">멀리 있는 거대한 데이터센터</b>의 GPU가 하고, 답이 같은 길로 돌아옵니다.</p>
     <div class="journey reveal">
       <div class="jrail"></div>
@@ -1014,9 +1014,9 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     <div class="jlab reveal"><span class="rq">━ 요청(파랑) 갈 때 ▶</span><span class="rs">◀ 답변(초록) 올 때 ━</span></div>
 
     <div class="grid3">
-      <div class="def reveal d1"><span class="em">🏢</span><h3 style="font-size:15px">규모</h3><p style="font-size:12.5px">데이터센터에 GPU 수천~수만 개. GPU 1개가 전력 <b style="color:var(--txt)">약 700~1,000W</b>(H100·B200) — 거대한 건물·전력 설비가 필요</p></div>
-      <div class="def reveal d2"><span class="em">⚡</span><h3 style="font-size:15px">전산 에너지</h3><p style="font-size:12.5px">짧은 질문 1건 ≈ <b style="color:var(--txt)">약 0.3~1 Wh</b> 전기 (이미지·추론은 2~5 Wh). 발열 식히는 데 물도 소량 *추정치</p></div>
-      <div class="def reveal d3"><span class="em">💰</span><h3 style="font-size:15px">비용</h3><p style="font-size:12.5px">그래서 '<b style="color:var(--txt)">토큰</b>' 단위로 과금. 하루 <b style="color:var(--txt)">25억+ 질문</b>이 쌓이면 전기·하드웨어 비용이 막대</p></div>
+      <div class="def reveal d1"><span class="em">💰</span><h3 style="font-size:15px">비용</h3><p style="font-size:12.5px">이렇게 오가며 계산하니 '<b style="color:var(--txt)">토큰</b>' 단위로 과금됩니다. 하루 <b style="color:var(--txt)">25억+ 질문</b>이 쌓이면 전기·하드웨어 비용이 막대</p></div>
+      <div class="def reveal d2"><span class="em">🏢</span><h3 style="font-size:15px">규모</h3><p style="font-size:12.5px">데이터센터에 GPU 수천~수만 개. GPU 1개가 전력 <b style="color:var(--txt)">약 700~1,000W</b>(H100·B200) — 거대한 건물·전력 설비가 필요</p></div>
+      <div class="def reveal d3"><span class="em">⚡</span><h3 style="font-size:15px">전산 에너지</h3><p style="font-size:12.5px">짧은 질문 1건 ≈ <b style="color:var(--txt)">약 0.3~1 Wh</b> 전기 (이미지·추론은 2~5 Wh). 발열 식히는 데 물도 소량 *추정치</p></div>
     </div>
     <p class="note reveal">핵심: AI 답변은 '마법'이 아니라 <b style="color:var(--txt)">멀리 있는 거대한 컴퓨터(데이터센터)가 전기를 써서 계산</b>한 결과입니다. 그래서 ① 인터넷이 필요하고 ② 응답에 약간 시간이 걸리며 ③ 사용량만큼 비용·에너지가 듭니다. <span style="color:var(--dim)">*수치는 공개 추정치(2026 기준)</span></p>
 
