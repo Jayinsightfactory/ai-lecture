@@ -72,6 +72,16 @@
   .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:float 9s ease-in-out infinite}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:13px;color:var(--sub);margin-bottom:26px}
   .dot-live{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(45,212,167,.18);animation:logoPulse 2s infinite}
+  /* AI evolution timeline */
+  .timeline{position:relative;margin-top:22px;padding:8px 0 8px 30px;border-left:2px solid var(--line)}
+  .tl-item{position:relative;margin:16px 0;padding:14px 18px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+  .tl-item::before{content:'';position:absolute;left:-39px;top:20px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+  .tl-item.hot::before{background:var(--good);box-shadow:0 0 0 4px rgba(45,212,167,.22);animation:logoPulse 2.4s infinite}
+  .tl-year{font-size:11.5px;color:var(--accent);font-weight:800;letter-spacing:.1em;margin-bottom:3px}
+  .tl-item.hot .tl-year{color:var(--good)}
+  .tl-title{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:5px}
+  .tl-body{font-size:12.5px;color:var(--sub);line-height:1.55}
+  .tl-tag{display:inline-block;font-size:10.5px;font-weight:700;background:rgba(45,212,167,.15);border:1px solid rgba(45,212,167,.4);color:var(--good);padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:1px}
   .daycompare{margin-top:18px;display:flex;flex-direction:column;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
   .dayrow{display:flex;align-items:center;gap:12px}
   .dayhd{flex:none;width:96px;font-size:13.5px;color:var(--txt);font-weight:700}
@@ -458,6 +468,7 @@
 <nav class="dots">
   <a href="#hero"><span>표지</span></a>
   <a href="#sWhy"><span>★ 왜 배우나</span></a>
+  <a href="#sFlow"><span>★ AI 시대 흐름</span></a>
   <a href="#s1"><span>1. LLM 구조 & 성능차</span></a>
   <a href="#s2"><span>2. 프롬프트</span></a>
   <a href="#s3"><span>3. 화면 캡쳐+주석</span></a>
@@ -528,6 +539,80 @@
       <div class="def reveal d3"><span class="em">🔎</span><h3 style="font-size:15px">기획·리서치 담당</h3><p style="font-size:12.5px">역제안·다관점 분석 → <b style="color:var(--txt)">더 넓은 시야</b></p></div>
     </div>
     <p class="note reveal">결국 한 가지로 수렴합니다 — <b style="color:var(--txt)">내 시간을 '대체 가능한 일'에서 '나만 할 수 있는 일'로 옮기는 것.</b> 그게 이 강의 전체의 목적입니다.</p>
+  </div>
+</section>
+
+<!-- AI evolution flow -->
+<section id="sFlow">
+  <div class="wrap">
+    <span class="kicker reveal">🕰️ AI EVOLUTION</span>
+    <h2 class="reveal d1">AI 시대 흐름 — '빠른 답변'에서 '검증·재시도·에이전트'까지</h2>
+    <p class="lead reveal d2">한때 AI는 "물으면 빠르게 답한다"가 전부였습니다. 지금은 <b style="color:var(--txt)">검증·실패시 다른 방법 모색·재작업·외부 지식 활용·자율 작업</b>까지 진화했죠. 강의에서 다루는 모든 개념(🔥)이 이 흐름 위에 있습니다.</p>
+
+    <div class="timeline">
+      <div class="tl-item reveal d1">
+        <div class="tl-year">~2019</div>
+        <div class="tl-title">🤖 룰 기반 챗봇 시대</div>
+        <div class="tl-body">사전에 정의된 규칙·키워드로만 응답. 융통성 X. 정해진 답을 빠르게 돌려주는 게 전부.</div>
+      </div>
+      <div class="tl-item reveal d2">
+        <div class="tl-year">2020</div>
+        <div class="tl-title">🧠 GPT-3 등장 — 대형 LLM의 시작</div>
+        <div class="tl-body">175B 파라미터. "다음 단어 예측" 만으로 폭넓은 답변. 이때까지는 <b style="color:var(--txt)">'한 번에 빠르게 답한다'</b>가 초점.</div>
+      </div>
+      <div class="tl-item reveal d3">
+        <div class="tl-year">2022. 11</div>
+        <div class="tl-title">💬 ChatGPT — 대화형 AI 대중화</div>
+        <div class="tl-body">2개월 만에 사용자 1억 명. 누구나 대화로 AI를 쓰는 시대 개막.</div>
+      </div>
+      <div class="tl-item hot reveal d1">
+        <div class="tl-year">2023 초</div>
+        <div class="tl-title">🎯 프롬프트 엔지니어링 확산 <span class="tl-tag">🔥 강의 다룸</span></div>
+        <div class="tl-body">같은 AI도 <b style="color:var(--txt)">지시 품질</b>이 결과를 가른다는 인식 확산. Chain-of-thought·few-shot·역할 부여 등 기법 정착.</div>
+      </div>
+      <div class="tl-item reveal d2">
+        <div class="tl-year">2023</div>
+        <div class="tl-title">🖼️ GPT-4 + 멀티모달</div>
+        <div class="tl-body">이미지·차트 이해, 추론 능력 큰 향상. 텍스트 외 입출력 시대.</div>
+      </div>
+      <div class="tl-item hot reveal d3">
+        <div class="tl-year">2023</div>
+        <div class="tl-title">📚 RAG 본격화 — 외부 지식 활용 <span class="tl-tag">🔥 강의 다룸</span></div>
+        <div class="tl-body">학습 데이터 밖의 자료(사내 문서·웹·DB)를 <b style="color:var(--txt)">검색해 근거로 답변</b>. 환각↓·최신성↑·출처 표시.</div>
+      </div>
+      <div class="tl-item reveal d1">
+        <div class="tl-year">2023~2024</div>
+        <div class="tl-title">🧰 도구 사용·에이전트 1세대</div>
+        <div class="tl-body">Function calling, AutoGPT, BabyAGI 등 — AI가 <b style="color:var(--txt)">외부 도구·API를 호출</b>하며 일하기 시작.</div>
+      </div>
+      <div class="tl-item hot reveal d2">
+        <div class="tl-year">2024</div>
+        <div class="tl-title">🔄 자기 검증 · 실패 시 재시도(Reflection) <span class="tl-tag">🔥 강의 다룸</span></div>
+        <div class="tl-body">답을 즉시 내지 않고 <b style="color:var(--txt)">스스로 검증 → 틀리면 다른 방법으로 재작업</b>. "빠른 답" → "맞는 답"으로 무게 중심 이동.</div>
+      </div>
+      <div class="tl-item reveal d3">
+        <div class="tl-year">2024</div>
+        <div class="tl-title">📖 긴 맥락 + 추론 모델(o1)</div>
+        <div class="tl-body">Gemini 1.5 (100만 토큰), Claude 3 — 긴 문서 통째로. o1: 답하기 전 단계적으로 <b style="color:var(--txt)">'생각'</b>하는 모델.</div>
+      </div>
+      <div class="tl-item reveal d1">
+        <div class="tl-year">2024~2025</div>
+        <div class="tl-title">🔌 MCP 표준 — AI에 도구를 표준으로 연결</div>
+        <div class="tl-body">Anthropic이 제안한 Model Context Protocol. AI가 <b style="color:var(--txt)">파일·DB·API·서비스를 표준 창구로</b> 연결해 쓰는 시대.</div>
+      </div>
+      <div class="tl-item hot reveal d2">
+        <div class="tl-year">2025</div>
+        <div class="tl-title">🛠️ 하네스(Harness) + 코딩 에이전트 <span class="tl-tag">🔥 강의 다룸</span></div>
+        <div class="tl-body">Claude Code·Cursor — LLM 주위에 <b style="color:var(--txt)">계획·도구·검증·반복</b>을 묶은 '하네스'. 다단계 자율 작업이 실용화.</div>
+      </div>
+      <div class="tl-item reveal d3">
+        <div class="tl-year">2025~2026</div>
+        <div class="tl-title">🤖 추론 + 멀티에이전트 — 자율 작업 시대</div>
+        <div class="tl-body">Opus 4.5·GPT-5·o3. 한 번에 <b style="color:var(--txt)">30분 이상 자율 작업</b>, 여러 에이전트가 협업. 단순 대화 시대 종료, <b style="color:var(--txt)">'맡기는' 시대</b> 개막.</div>
+      </div>
+    </div>
+
+    <p class="note reveal">한 줄로: <b style="color:var(--txt)">"빠르게 답한다" → "지시를 잘 받는다(프롬프트) → 외부 지식을 본다(RAG) → 도구를 쓴다(에이전트) → 검증·재시도한다(Reflection) → 다단계 자율(하네스)" → 협업(멀티에이전트).</b> 강의의 모든 섹션이 이 흐름의 어디쯤에서 일하는 법을 알려줍니다.</p>
   </div>
 </section>
 
