@@ -72,6 +72,14 @@
   .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:float 9s ease-in-out infinite}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:13px;color:var(--sub);margin-bottom:26px}
   .dot-live{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(45,212,167,.18);animation:logoPulse 2s infinite}
+  .daycompare{margin-top:18px;display:flex;flex-direction:column;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .dayrow{display:flex;align-items:center;gap:12px}
+  .dayhd{flex:none;width:96px;font-size:13.5px;color:var(--txt);font-weight:700}
+  .daybar{flex:1;height:30px;background:var(--bg2);border:1px solid var(--line);border-radius:8px;display:flex;overflow:hidden}
+  .daybar .seg{display:flex;align-items:center;padding:0 10px;font-size:11.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:dayPulse 3s ease-in-out infinite}
+  .daybar .rep{background:linear-gradient(90deg,var(--bad),#ff9a3b);font-weight:700}
+  .daybar .val{background:linear-gradient(90deg,var(--accent),var(--good));font-weight:700}
+  @keyframes dayPulse{0%,100%{opacity:.85}50%{opacity:1}}
   .opening{margin-top:28px;max-width:640px;font-size:clamp(15px,2vw,18px);line-height:1.75;color:var(--sub);border-left:3px solid var(--accent);padding:8px 0 8px 18px}
   .opening b{color:var(--txt);font-weight:700}
   .opening .em2{color:var(--accent);font-weight:800}
@@ -449,6 +457,7 @@
 
 <nav class="dots">
   <a href="#hero"><span>표지</span></a>
+  <a href="#sWhy"><span>★ 왜 배우나</span></a>
   <a href="#s1"><span>1. LLM 구조 & 성능차</span></a>
   <a href="#s2"><span>2. 프롬프트</span></a>
   <a href="#s3"><span>3. 화면 캡쳐+주석</span></a>
@@ -487,6 +496,38 @@
       <a class="tile reveal d3" href="#s11"><div class="n">11</div><h3>사내 활용 심화</h3><p>RAG·나만의 AI·멀티모달</p></a>
       <a class="tile reveal d4" href="#s12"><div class="n">12</div><h3>생태계 & 비용</h3><p>도구 지도·구독vsAPI·하드웨어 단가</p></a>
     </div>
+  </div>
+</section>
+
+<!-- WHY hook -->
+<section id="sWhy">
+  <div class="wrap">
+    <span class="kicker reveal">🌟 WHY THIS MATTERS</span>
+    <h2 class="reveal d1">왜 이걸 배워야 하나? — 무슨 도움이 되나?</h2>
+    <p class="lead reveal d2">한 줄 답: 같은 8시간 근무라도, AI를 다룰 줄 알면 <b style="color:var(--txt)">"반복" 시간을 줄여 "기획·판단" 시간을 늘릴 수 있습니다.</b></p>
+
+    <h3 class="reveal" style="margin-top:36px;font-size:20px">📅 하루 8시간, 이렇게 달라집니다</h3>
+    <div class="daycompare reveal">
+      <div class="dayrow"><div class="dayhd">🙍 AI 없이</div><div class="daybar"><span class="seg rep" style="width:62.5%">반복 업무 5h (회의록·문서·데이터·메일)</span><span class="seg val" style="width:37.5%">기획·판단 3h</span></div></div>
+      <div class="dayrow"><div class="dayhd">🤖 AI 활용</div><div class="daybar"><span class="seg rep" style="width:12.5%">반복 1h</span><span class="seg val" style="width:87.5%">기획·판단·고부가가치 7h</span></div></div>
+    </div>
+    <p class="reveal" style="font-size:13px;color:var(--dim);margin-top:6px">*예시 — 실제 절감 폭은 업무에 따라 다름</p>
+
+    <h3 class="reveal" style="margin-top:40px;font-size:20px">이런 4가지가 달라집니다</h3>
+    <div class="grid4">
+      <div class="def reveal d1"><span class="em">⏱️</span><h3 style="font-size:15px">시간 단축</h3><p style="font-size:12.5px">반복 업무를 자동화해 <b style="color:var(--txt)">시간을 되찾음</b></p></div>
+      <div class="def reveal d2"><span class="em">🧠</span><h3 style="font-size:15px">지식 확장</h3><p style="font-size:12.5px">역질문·역제안으로 <b style="color:var(--txt)">내 한계 너머</b>까지</p></div>
+      <div class="def reveal d3"><span class="em">🎯</span><h3 style="font-size:15px">품질 향상</h3><p style="font-size:12.5px">명확한 지시 → <b style="color:var(--txt)">정확한 결과</b>를 한 번에</p></div>
+      <div class="def reveal d4"><span class="em">🛡️</span><h3 style="font-size:15px">사고 예방</h3><p style="font-size:12.5px">환각·기밀·저작권 — <b style="color:var(--txt)">안전한 사용</b> 기본기</p></div>
+    </div>
+
+    <h3 class="reveal" style="margin-top:40px;font-size:20px">👥 이런 분들에게 특히 도움됩니다</h3>
+    <div class="grid3">
+      <div class="def reveal d1"><span class="em">📊</span><h3 style="font-size:15px">반복 데이터 정리 직원</h3><p style="font-size:12.5px">엑셀·OCR·자동화로 <b style="color:var(--txt)">하루치 일이 30분</b></p></div>
+      <div class="def reveal d2"><span class="em">📝</span><h3 style="font-size:15px">보고서·메일이 많은 매니저</h3><p style="font-size:12.5px">초안·요약·번역 자동화 → <b style="color:var(--txt)">검토에 집중</b></p></div>
+      <div class="def reveal d3"><span class="em">🔎</span><h3 style="font-size:15px">기획·리서치 담당</h3><p style="font-size:12.5px">역제안·다관점 분석 → <b style="color:var(--txt)">더 넓은 시야</b></p></div>
+    </div>
+    <p class="note reveal">결국 한 가지로 수렴합니다 — <b style="color:var(--txt)">내 시간을 '대체 가능한 일'에서 '나만 할 수 있는 일'로 옮기는 것.</b> 그게 이 강의 전체의 목적입니다.</p>
   </div>
 </section>
 
