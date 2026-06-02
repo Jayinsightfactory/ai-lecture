@@ -543,29 +543,18 @@
     </div>
     <p class="note reveal">핵심: AI는 <b style="color:var(--txt)">다음 단어를 '맞히는' 기계</b>라서, 맞힐 근거(위치·출처·방향)가 정확할수록 정답에 가까워집니다. <b style="color:var(--txt)">흐릿한 입력 = 흐릿한 출력.</b></p>
 
-    <div class="grid2">
-      <div class="card reveal d1">
-        <h3>실시간으로 벌어지는 일</h3>
-        <p style="font-size:14px">질문: <b style="color:var(--txt)">"이 엑셀 매출 데이터를 한 줄로 요약해줘"</b></p>
-        <div class="tokens" id="tokbox"></div>
-        <p style="font-size:13px;margin-top:6px">다음 단어 확률 계산 (막대가 살아 움직임) →</p>
-        <div class="prob">
-          <div class="row"><span class="word">"3분기"</span><span class="barwrap"><span class="bar" style="animation-delay:0s"></span></span><span class="pct">62%</span></div>
-          <div class="row"><span class="word">"이번"</span><span class="barwrap"><span class="bar" style="animation-delay:.4s;width:40%"></span></span><span class="pct">22%</span></div>
-          <div class="row"><span class="word">"전체"</span><span class="barwrap"><span class="bar" style="animation-delay:.8s;width:22%"></span></span><span class="pct">11%</span></div>
-        </div>
-        <p style="font-size:13px;margin-top:10px">→ 골라낸 단어를 이어 붙여 생성:</p>
-        <div class="gen"><span id="llmGen"></span><span class="cur"></span></div>
+    <div class="card reveal d1" style="margin-top:40px">
+      <h3>실시간으로 벌어지는 일</h3>
+      <p style="font-size:14px">질문: <b style="color:var(--txt)">"이 엑셀 매출 데이터를 한 줄로 요약해줘"</b></p>
+      <div class="tokens" id="tokbox"></div>
+      <p style="font-size:13px;margin-top:6px">다음 단어 확률 계산 (막대가 살아 움직임) →</p>
+      <div class="prob">
+        <div class="row"><span class="word">"3분기"</span><span class="barwrap"><span class="bar" style="animation-delay:0s"></span></span><span class="pct">62%</span></div>
+        <div class="row"><span class="word">"이번"</span><span class="barwrap"><span class="bar" style="animation-delay:.4s;width:40%"></span></span><span class="pct">22%</span></div>
+        <div class="row"><span class="word">"전체"</span><span class="barwrap"><span class="bar" style="animation-delay:.8s;width:22%"></span></span><span class="pct">11%</span></div>
       </div>
-      <div class="card reveal d2">
-        <h3>구조는 같은데, 답은 왜 다를까?</h3>
-        <p style="font-size:14px">네 AI 모두 "다음 단어 예측" 구조는 <b style="color:var(--txt)">똑같습니다.</b> 차이는 학습·특화·성격에서 나옵니다.</p>
-        <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:var(--sub)">
-          <div>📚 <b style="color:var(--txt)">학습 데이터</b> — 아는 것·말투가 달라짐</div>
-          <div>🎯 <b style="color:var(--txt)">특화 분야</b> — 코드 vs 검색 vs 문서</div>
-          <div>🛡️ <b style="color:var(--txt)">성격/안전장치</b> — 신중함·형식</div>
-        </div>
-      </div>
+      <p style="font-size:13px;margin-top:10px">→ 골라낸 단어를 이어 붙여 생성:</p>
+      <div class="gen"><span id="llmGen"></span><span class="cur"></span></div>
     </div>
 
     <h3 class="reveal" style="margin-top:54px;font-size:24px">🔬 심화 — LLM 내부를 한 단계씩 (전문 과정 시각화)</h3>
@@ -841,7 +830,7 @@
     <p class="note reveal">핵심: <b style="color:var(--txt)">보여주기 &gt; 설명하기.</b> 이미지+주석은 가장 강력한 맥락입니다. 에러 화면, 엑셀 표, 디자인 시안 — 무엇이든 캡쳐해 "여기"를 짚어주면 AI의 이해도가 급상승합니다.</p>
     <h3 class="egtitle reveal">💡 실무 예시 3가지</h3>
     <div class="egs">
-      <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 📷 "①저장 누르니 ②오류가 떠요"</div><div class="ec ai">🤖 ②는 날짜칸 형식 문제예요 → 이렇게 고치세요</div></div><h4>🐞 에러 화면</h4><p>오류 부분에 박스 → AI가 원인·해결 제시</p></div>
+      <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 📷 "이 매출 그래프 핵심 추세 알려줘"</div><div class="ec ai">🤖 3분기 우상향(+12%), 4분기 둔화. 상위 품목 A·B가 견인</div></div><h4>📊 차트·대시보드 분석</h4><p>그래프 캡쳐 → AI가 추세·핵심 지표 해석</p></div>
       <div class="eg reveal d2"><div class="egchat"><div class="ec me">🙋 📷 "이 열들 다 더해줘"</div><div class="ec ai">🤖 =SUM(C2:C20) 넣으면 됩니다</div></div><h4>📊 엑셀 표</h4><p>"이 열" 짚으면 → 정확한 수식 제안</p></div>
       <div class="eg reveal d3"><div class="egchat"><div class="ec me">🙋 📷 "이 버튼만 파란색으로"</div><div class="ec ai">🤖 해당 버튼 색을 #5b8cff로 변경</div></div><h4>🎨 디자인 시안</h4><p>"이 버튼 색만" → 원하는 부분만 수정</p></div>
     </div>
@@ -875,7 +864,7 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       <p class="note">엑셀 파일은 "표 데이터 + 서식"입니다. 파이썬은 그 표를 직접 읽고 고쳐 저장할 뿐 — <b style="color:var(--txt)">"빠르고 지치지 않는 손"</b>입니다.</p></div>
     <h3 class="egtitle reveal">💡 실무 예시 3가지</h3>
     <div class="egs">
-      <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 "폴더의 엑셀 50개 하나로 합쳐줘"</div><div class="ec ai">🤖 pandas 3줄로 통합.xlsx 생성 ✔</div></div><h4>📁 여러 파일 합치기</h4><p>엑셀 50개 → 1개로 자동 통합</p></div>
+      <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 "이 매출 표를 막대 차트로 그려줘"</div><div class="ec ai">🤖 matplotlib 3줄로 PNG 저장 ✔ (보고서 첨부 가능)</div></div><h4>📈 자동 차트 생성</h4><p>표 → 차트 이미지 한 번에</p></div>
       <div class="eg reveal d2"><div class="egchat"><div class="ec me">🙋 "월별 매출 합계 내줘"</div><div class="ec ai">🤖 피벗으로 월별 합계 표 작성 완료</div></div><h4>🔢 자동 집계·피벗</h4><p>원본 표 → 월별 합계 차트로</p></div>
       <div class="eg reveal d3"><div class="egchat"><div class="ec me">🙋 "중복·공백 정리해줘"</div><div class="ec ai">🤖 중복 12행 제거, 공백 정리 완료</div></div><h4>🧹 데이터 청소</h4><p>중복·공백 자동 제거</p></div>
     </div>
@@ -951,7 +940,7 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     <p class="note reveal">정리: <b style="color:var(--txt)">① 중요 영역만 → ② 확대 → ③ 여러 OCR 투표 → ④ 내 규칙으로 검증 → ⑤ 애매한 것만 사람이 확인.</b> 100%를 자동화하려 욕심내지 말고, <b style="color:var(--txt)">"자동 확정 + 예외만 사람"</b> 구조로 짜는 게 현실적이고 가장 정확합니다.</p>
     <h3 class="egtitle reveal">💡 실무 예시 3가지</h3>
     <div class="egs">
-      <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 📷 "이 영수증 정산표에 넣어줘"</div><div class="ec ai">🤖 날짜·품목·금액 추출 → 엑셀 행 추가 ✔</div></div><h4>🧾 영수증 정산</h4><p>영수증 사진 → 경비 정산표로</p></div>
+      <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 📷 "이 책 페이지 텍스트로 옮겨줘"</div><div class="ec ai">🤖 본문 단락 보존하며 텍스트 추출 → 검색·요약 가능</div></div><h4>📚 책·자료 사진 → 텍스트</h4><p>인쇄물 사진 → 편집 가능한 문서</p></div>
       <div class="eg reveal d2"><div class="egchat"><div class="ec me">🙋 📑 "스캔한 거래명세서 장부로"</div><div class="ec ai">🤖 품목·수량·단가 표로 입력 완료</div></div><h4>📑 거래명세서</h4><p>스캔 PDF → 장부에 행 자동 입력</p></div>
       <div class="eg reveal d3"><div class="egchat"><div class="ec me">🙋 📷 "이 명함 연락처에 저장"</div><div class="ec ai">🤖 이름·전화·이메일 추출 → 주소록 저장</div></div><h4>🪪 명함 정리</h4><p>명함 사진 → 연락처 DB로</p></div>
     </div>
@@ -1040,7 +1029,7 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     <h3 class="egtitle reveal">💡 실무 예시 3가지</h3>
     <div class="egs">
       <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 "내 연차 며칠 남았어?"</div><div class="ec ai">🤖 (사내 시스템 조회) 7일 남았습니다</div></div><h4>💬 사내 챗봇</h4><p>직원 질문 → AI가 매뉴얼 보고 답변</p></div>
-      <div class="eg reveal d2"><div class="egchat"><div class="ec me">🙋 "오늘 달러 환율 알려줘"</div><div class="ec ai">🤖 (API) 1 USD = 1,384.5원 (실시간)</div></div><h4>🌦️ 외부 데이터 조회</h4><p>환율·날씨·주가를 실시간 자동 갱신</p></div>
+      <div class="eg reveal d2"><div class="egchat"><div class="ec me">🙋 "이 게시글 영어로 번역해 등록"</div><div class="ec ai">🤖 번역 API 호출 → 번역본 자동 등록 ✔</div></div><h4>🌐 자동 번역 연동</h4><p>API로 번역 → 그대로 시스템에 입력</p></div>
       <div class="eg reveal d3"><div class="egchat"><div class="ec me">🙋 "고객 100명에게 안내 메일 보내줘"</div><div class="ec ai">🤖 명단 읽어 맞춤 메일 100건 발송 ✔</div></div><h4>📨 자동 메일 발송</h4><p>명단에 맞춤 메일 일괄 전송</p></div>
     </div>
     <h3 class="reveal" style="margin-top:50px;font-size:22px;text-align:center">💬 실제 대화 예시</h3>
@@ -1083,7 +1072,7 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     <p class="note reveal">정리하면 — 터미널은 <b style="color:var(--txt)">"컴퓨터에게 직접, 정확히, 반복 가능하게, 연결해서"</b> 일을 시키는 도구입니다. 그래서 파이썬·AI 툴·자동화가 모두 터미널 위에서 돌아갑니다. <b style="color:var(--txt)">자동화의 출발점</b>이죠.</p>
     <h3 class="egtitle reveal">💡 실무 예시 3가지</h3>
     <div class="egs">
-      <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 "사진 100개 '행사_001' 식으로 바꿔"</div><div class="ec ai">🤖 한 줄 명령으로 100개 즉시 변경 ✔</div></div><h4>📂 파일 일괄 이름변경</h4><p>사진 100개 → 한 명령으로 전부 변경</p></div>
+      <div class="eg reveal d1"><div class="egchat"><div class="ec me">🙋 "이 폴더들 각각 zip으로 압축해줘"</div><div class="ec ai">🤖 한 줄 명령으로 폴더 20개 일괄 압축 ✔</div></div><h4>🗜️ 압축·해제 자동화</h4><p>여러 폴더 → 일괄 압축·해제</p></div>
       <div class="eg reveal d2"><div class="egchat"><div class="ec me">🙋 "매일 밤 자동 백업되게 해줘"</div><div class="ec ai">🤖 스케줄 등록 → 매일 02:00 자동 실행</div></div><h4>⏰ 매일 자동 백업</h4><p>정해진 시각에 알아서 백업 실행</p></div>
       <div class="eg reveal d3"><div class="egchat"><div class="ec me">🙋 "폴더에서 '매출' 든 파일 찾아줘"</div><div class="ec ai">🤖 3개 발견: 매출보고서.xlsx 외 2건</div></div><h4>🔍 폴더 전체 검색</h4><p>모든 파일에서 "매출" 한 번에 찾기</p></div>
     </div>
@@ -1112,10 +1101,6 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       <div class="pt" style="animation-delay:3.6s;left:80px;top:247px"><span class="e">🛠️</span>④ 적용</div>
       <div class="pt" style="animation-delay:4.8s;left:36px;top:113px"><span class="e">✅</span>⑤ 검증</div></div></div>
     <div class="loopback reveal"><span>↺ 막히면 다시 ①번으로 — 한 번에 풀려 하지 말고 빠르게 루프를 돌린다</span></div>
-    <div class="ba">
-      <div class="col bad reveal d1"><h3>❌ 막연한 도움 요청</h3><div class="chat me">"이거 안 돼. 고쳐줘."</div><div class="qmark">🌀</div><div class="chat ai">정보가 없어 추측만 반복 → 같은 자리 맴돌기</div><p style="font-size:13px;margin-top:12px;color:var(--bad)">내가 아는 선택지 안에서만 헤맴</p></div>
-      <div class="col good reveal d2"><h3>✅ 역제안을 끌어내는 요청</h3><div class="chat me">"<b>OCR로 PDF→엑셀</b> 하려는데 표가 깨져. 잘 푸는 <b>GitHub 인기 라이브러리나 MCP</b>가 있으면 추천하고, <b>더 나은 접근이 있으면 거꾸로 제안</b>해줘."</div><div class="chat ai">"스타 많은 'X 라이브러리'를 추천합니다. 또는 OCR 대신 멀티모달 AI로 바로 표를 읽는 게 더 정확합니다 — 이렇게…"</div><p style="font-size:13px;margin-top:12px;color:var(--good)">몰랐던 더 나은 선택지가 열림</p></div>
-    </div>
     <h3 class="reveal" style="margin-top:50px;font-size:22px;text-align:center">🤝 실제 "역제안" 대화 — 이렇게 흘러갑니다</h3>
     <div class="convo reveal" id="convo"></div>
     <p class="note reveal" style="max-width:580px;margin-left:auto;margin-right:auto">"고치지 말고 <b style="color:var(--txt)">더 나은 방법을 거꾸로 제안해줘</b>" 한마디가, 내가 몰랐던 라이브러리·접근법을 끌어냅니다.</p>
@@ -1444,6 +1429,15 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     </div>
     <div class="loopback reveal"><span>◀ 결과에서 거꾸로 분해해 필요한 것을 설계 — 이게 '역설계'</span></div>
     <p class="note reveal"><b style="color:var(--txt)">정리: AI를 다루는 능력 = 원하는 결과를 정의하고, 거기서 거꾸로 길을 설계하는 역설계 능력.</b> 많이 다뤄볼수록 이 감각이 단단해집니다.</p>
+
+    <h3 class="reveal" style="margin-top:54px;font-size:22px">🎯 강의 후 — 오늘 단 한 가지만 해보세요</h3>
+    <p class="reveal" style="font-size:14px">머리로 아는 것과 손으로 해본 것의 차이가 큽니다. 오늘 중 <b style="color:var(--txt)">하나만</b> 실제로 해보세요.</p>
+    <div class="grid3">
+      <div class="def reveal d1"><span class="em">📝</span><h3 style="font-size:15px">① 명확한 지시로 한 번</h3><p style="font-size:12.5px">평소 모호하게 시키던 것을 <b style="color:var(--txt)">"역할·맥락·작업·형식·제약"</b> 갖춰 다시 시켜보기</p></div>
+      <div class="def reveal d2"><span class="em">📷</span><h3 style="font-size:15px">② 화면 캡쳐 + 주석</h3><p style="font-size:12.5px">막힌 에러·표·시안을 <b style="color:var(--txt)">캡쳐해 "여기"</b> 짚고 AI에게 묻기</p></div>
+      <div class="def reveal d3"><span class="em">🤝</span><h3 style="font-size:15px">③ 역제안 한 번</h3><p style="font-size:12.5px">"고치지 말고 <b style="color:var(--txt)">더 나은 방법 있으면 제안</b>해줘"라고 한 번 던져보기</p></div>
+    </div>
+    <p class="note reveal" style="text-align:center;border-left:none;border:1px dashed var(--accent);border-radius:10px;padding:14px;background:var(--card2)">💡 한 번이면 충분합니다. 손이 기억하면, 다음엔 그게 일상이 됩니다.</p>
   </div>
 </section>
 
