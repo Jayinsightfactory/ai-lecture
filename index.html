@@ -1254,6 +1254,18 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     </div>
     <p class="note reveal">그래서 역질문·역제안은 <b style="color:var(--txt)">내 가정·지식의 한계를 넘어 더 넓은 선택지로</b> 일하게 해줍니다 = 지식 확장.</p>
 
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">♻️ AI가 '같은 실수'를 반복할 때 — 대응법 6가지</h3>
+    <p class="reveal" style="font-size:14px">"이거 하지 말랬잖아"가 반복되는 건 흔합니다. AI 기억은 휘발성이라 매번 새로 시작하니까요. 해법은 단순합니다 — <b style="color:var(--txt)">규칙을 영구화·구조화·자동 검증</b>으로 옮기는 것.</p>
+    <div class="grid3">
+      <div class="def reveal d1"><span class="em">📝</span><h3 style="font-size:15px">① MD 규칙 파일</h3><p style="font-size:12.5px"><b style="color:var(--txt)">CLAUDE.md / AGENTS.md / Rules.md</b> — 매 세션 시작 시 자동 로딩. 실수 발견할 때마다 한 줄씩 추가. 작게(10~20줄) 시작해 키우기</p></div>
+      <div class="def reveal d2"><span class="em">🏗️</span><h3 style="font-size:15px">② 스키마·구조 재설계</h3><p style="font-size:12.5px">헷갈리는 이름·구조를 명확히 바꿔 <b style="color:var(--txt)">실수 가능성을 데이터 구조에서 제거</b>. 예: 변수명 명확화·폴더 분리·필수 필드 표시</p></div>
+      <div class="def reveal d3"><span class="em">📐</span><h3 style="font-size:15px">③ 출력 형식 강제</h3><p style="font-size:12.5px">JSON·표 스키마를 정해 "이 형식으로만 답해". <b style="color:var(--txt)">어긋나면 자동 거부·재시도</b> → 잘못된 형식이 통과 못 함</p></div>
+      <div class="def reveal d1"><span class="em">🧪</span><h3 style="font-size:15px">④ 테스트로 검증 가드</h3><p style="font-size:12.5px">규칙을 코드·테스트로 박아둠. <b style="color:var(--txt)">통과 못 하면 완료 선언 금지.</b> AI가 직접 실행·확인</p></div>
+      <div class="def reveal d2"><span class="em">🪝</span><h3 style="font-size:15px">⑤ 훅(Hook)으로 사전 차단</h3><p style="font-size:12.5px">위험 행동(파일 삭제·민감 데이터·잘못된 커밋)을 <b style="color:var(--txt)">도구·훅으로 미리 차단</b>. pre-commit·salary-guard 등</p></div>
+      <div class="def reveal d3"><span class="em">♻️</span><h3 style="font-size:15px">⑥ 작업 분해 + 메모리</h3><p style="font-size:12.5px">한 번에 한 가지로 쪼개고 <b style="color:var(--txt)">MEMORY.md에 누적</b>. 긴 작업일수록 초기 지시가 흐려지는 <b style="color:var(--txt)">'Prompt Decay'</b> 방지</p></div>
+    </div>
+    <p class="note reveal">실전 팁: "이건 절대 ~하지 마"를 매번 말로 하지 말고 — ① <b style="color:var(--txt)">MD 규칙</b>에 적고 → ② 가능하면 <b style="color:var(--txt)">구조</b>로 막고 → ③ 최종적으로 <b style="color:var(--txt)">훅·테스트</b>로 자동 차단. <b style="color:var(--txt)">말 → 규칙(파일) → 구조 → 자동 검증</b>으로 갈수록 같은 실수가 사라집니다.</p>
+
     <p class="note reveal">핵심 마인드셋: <b style="color:var(--txt)">AI를 "시키는 대상"이 아니라 "더 나은 길을 같이 찾는 파트너"로.</b> ⭐스타·🔌MCP는 검증된 지름길, 🤝AI 역제안은 내가 모르던 선택지를 열어줍니다.</p>
     <h3 class="egtitle reveal">💡 실무 예시 3가지</h3>
     <div class="egs">
