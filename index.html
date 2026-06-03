@@ -1630,48 +1630,48 @@ GET /api/contacts/<span class="af-num">1042</span></div>
     <p class="reveal" style="font-size:14px">한 줄 답이 나오기까지, AI는 안에서 이런 단계를 거칩니다. (실제 Claude Code가 보여주는 trace 예시)</p>
     <div class="trace reveal" id="trace1">
       <div class="tg">▌ AI 처리 과정</div>
-      <div class="thead">📋 사용자 지시: <span class="ans">"강의 결론에서 중복 블록 정리해줘"</span></div>
-      <div class="tline"><span class="tic">🧠</span><span class="tcat">분석·계획</span> 어떤 블록이 어디와 중복인지 식별 → 위치 찾고 제거 → 검증 → 배포 순서로 진행</div>
+      <div class="thead">📋 사용자 지시: <span class="ans">"쇼핑몰 앱에 회원가입 기능 추가해줘"</span></div>
+      <div class="tline"><span class="tic">🧠</span><span class="tcat">분석·계획</span> 회원가입에 필요한 것 식별(폼·검증·DB·이메일 인증) → 기존 코드 구조 파악 → 단계별 추가</div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> "역질문 + 역제안 → 내 지식의 한계" 위치 찾기 <span class="ok">✔ 발견</span></div>
-      <div class="tline"><span class="tic">📖</span><span class="tcat">읽기</span> 해당 블록 앞뒤 12줄 읽어 맥락 확인 <span class="ok">✔ 확인 완료</span></div>
-      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> "명확한 지시 예시 3가지" 위치 찾기 <span class="ok">✔ 발견</span></div>
-      <div class="tline"><span class="tic">📖</span><span class="tcat">읽기</span> 해당 블록 앞뒤 12줄 읽어 맥락 확인 <span class="ok">✔ 확인 완료</span></div>
-      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ①</span> 역질문/역제안 블록 제거 <span class="ok">✔ 적용</span></div>
-      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ②</span> 명확한 지시 예시 3가지 제거 <span class="ok">✔ 적용</span></div>
+      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> 기존 User 모델 위치 찾기 <span class="ok">✔ models/User.js 발견</span></div>
+      <div class="tline"><span class="tic">📖</span><span class="tcat">읽기</span> User 모델 + 기존 로그인 라우트 확인 <span class="ok">✔ 구조 파악</span></div>
+      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> 인증 라이브러리 사용 여부 (package.json) <span class="ok">✔ bcrypt 발견</span></div>
+      <div class="tline"><span class="tic">📖</span><span class="tcat">읽기</span> 환경설정·DB 마이그레이션 폴더 확인 <span class="ok">✔ 위치 파악</span></div>
+      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ①</span> User 모델에 password·email 필드 추가 <span class="ok">✔ 적용</span></div>
+      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ②</span> /signup 라우트 추가 (해시·중복체크·인증 메일) <span class="ok">✔ 적용</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">✅</span><span class="tcat">검증</span> 미리보기 오류 0건, 결론에 중복 블록 없음 <span class="ok">통과</span></div>
-      <div class="tline"><span class="tic">📦</span><span class="tcat">저장·공유</span> 변경 내용 저장 → 공유 링크에 자동 반영 <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">✅</span><span class="tcat">검증</span> 폼 입력 → DB 저장 → 응답 테스트 <span class="ok">통과</span></div>
+      <div class="tline"><span class="tic">📦</span><span class="tcat">저장·공유</span> GitHub 커밋·푸시 → 배포 서버 자동 반영 <span class="ok">✔</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">💬</span><span class="tcat">최종 답변</span> <span class="ans">"중복 2블록 제거 완료. 결론 메시지가 더 응축됐어요."</span></div>
+      <div class="tline"><span class="tic">💬</span><span class="tcat">최종 답변</span> <span class="ans">"회원가입 기능 추가 완료. /signup으로 접근 가능하고 이메일 인증 메일 발송됩니다."</span></div>
     </div>
     <p class="note reveal">핵심: <b style="color:var(--txt)">한 문장 답 뒤에는 '계획 → 도구 사용(검색·읽기·편집) → 검증 → 배포 → 답변'</b>이라는 다단계가 돕니다. 이게 9번 섹션에서 본 <b style="color:var(--txt)">에이전트 루프</b>의 실제 모습이에요.</p>
 
     <h3 class="reveal" style="margin-top:54px;font-size:22px">⚖️ ② 같은 작업, 프롬프트 엔지니어링이 들어가면</h3>
     <p class="reveal" style="font-size:14px">지시를 <b style="color:var(--txt)">5가지 재료(역할·맥락·작업·출력·제약)</b>로 명세화하면, 트레이스가 더 정교하고 안전해집니다. 시행착오↓·범위 명확·답변 형식 보장.</p>
     <div class="prompteng reveal">
-      <div class="pe-row"><span class="petag">🎭 역할</span><span><b>강의 자료 편집자</b> — 보수적·신중</span></div>
-      <div class="pe-row"><span class="petag">📋 맥락</span><span>index.html, 13개 섹션. 결론(s13)에서 <b>다른 섹션과 메시지가 겹치는 블록</b>이 의심됨</span></div>
-      <div class="pe-row"><span class="petag">🎯 작업</span><span>s13 안에서만 ① <b>s8과 겹치는</b> "역질문/역제안" 블록, ② <b>s2와 겹치는</b> "명확한 지시 예시 3가지" 제거</span></div>
-      <div class="pe-row"><span class="petag">📐 출력</span><span>각 단계 <b>1줄 보고</b> + 마지막 <b>1줄 요약</b></span></div>
-      <div class="pe-row"><span class="petag">🛡️ 제약</span><span>다른 섹션은 손대지 말 것 · 콘솔 오류 발생 시 즉시 <b>롤백</b> · 결론 핵심 흐름(언어능력→4단계→역설계) <b>보존</b></span></div>
-      <div class="pe-row"><span class="petag">🧩 예시</span><span>응축된 결론 흐름: <b>[언어능력 → 명확vs모호 → 4단계 → 역설계]</b></span></div>
+      <div class="pe-row"><span class="petag">🎭 역할</span><span><b>풀스택 개발자</b> — 보수적·신중</span></div>
+      <div class="pe-row"><span class="petag">📋 맥락</span><span>쇼핑몰 앱(React + Node.js + PostgreSQL), 기존 <b>User 모델·로그인 기능</b> 있음</span></div>
+      <div class="pe-row"><span class="petag">🎯 작업</span><span>① User 모델에 <b>password·email 필드</b> 추가 ② <b>/signup API</b>(bcrypt 해시 + 이메일 중복체크 + 인증 메일)</span></div>
+      <div class="pe-row"><span class="petag">📐 출력</span><span>변경한 <b>파일 목록</b> + 마지막 <b>1줄 요약</b></span></div>
+      <div class="pe-row"><span class="petag">🛡️ 제약</span><span>기존 <b>/login 무변동</b> · 비밀번호 <b>평문 저장 금지</b>(bcrypt 필수) · 오류 시 <b>롤백</b></span></div>
+      <div class="pe-row"><span class="petag">🧩 예시</span><span>응답 형식: <b>{ "success": true, "userId": 123 }</b></span></div>
     </div>
     <div class="trace reveal" id="trace2">
       <div class="tg">▌ AI 처리 과정 · 프롬프트 엔지니어링 적용</div>
       <div class="thead">📋 명세화된 지시 → 처리 과정이 이렇게 달라집니다</div>
-      <div class="tline"><span class="tic">🧠</span><span class="tcat">분석·계획</span> 명세대로 후보 2개 바로 식별 + 제약 반영 → 즉시 실행 <span class="ok">(헤매는 단계 ↓)</span></div>
+      <div class="tline"><span class="tic">🧠</span><span class="tcat">분석·계획</span> 명세대로 필요한 변경 즉시 식별(User 모델·라우트·이메일) + 제약 반영 <span class="ok">(헤매는 단계 ↓)</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> "역질문 + 역제안" 위치 찾기 <span class="ok">✔ 명세에 그대로 매칭</span></div>
-      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ①</span> 제거 (핵심 흐름 무손상) <span class="ok">✔</span></div>
-      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> "명확한 지시 예시 3가지" 위치 찾기 <span class="ok">✔ 명세에 그대로 매칭</span></div>
-      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ②</span> 제거 <span class="ok">✔</span></div>
-      <div class="tline"><span class="tic">🛡️</span><span class="tcat">보호장치</span> 다른 섹션 변경 0건 확인 <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> models/User.js 위치 <span class="ok">✔ 명세에 매칭</span></div>
+      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ①</span> User 모델 — bcrypt 해시 적용 + password·email 필드 (명세대로) <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> routes/ 디렉터리 + 이메일 서비스 <span class="ok">✔ 발견</span></div>
+      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ②</span> /signup 라우트(중복체크 + 인증 메일) — 응답 형식 명세 준수 <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">🛡️</span><span class="tcat">보호장치</span> 기존 /login 기능 변경 0건 확인 <span class="ok">✔</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">✅</span><span class="tcat">검증</span> 오류 0건 · 핵심 흐름(언어능력 → 4단계 → 역설계) 보존 <span class="ok">통과</span></div>
-      <div class="tline"><span class="tic">📦</span><span class="tcat">저장·공유</span> 메모: "중복 정리(결론만): 역질문 블록·명확 지시 예시" <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">✅</span><span class="tcat">검증</span> 회원가입 통과 + 응답 <b>{ success: true, userId: 123 }</b> 명세 일치 <span class="ok">통과</span></div>
+      <div class="tline"><span class="tic">📦</span><span class="tcat">저장·공유</span> 커밋 메시지: "회원가입: bcrypt + /signup + 이메일 인증" <span class="ok">✔</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">💬</span><span class="tcat">최종 답변</span> <span class="ans">(명세된 1줄 요약) "결론에서 2개 중복 블록 제거. 핵심 흐름 보존, 다른 섹션 무변동."</span></div>
+      <div class="tline"><span class="tic">💬</span><span class="tcat">최종 답변</span> <span class="ans">(명세된 형식) "변경 파일 3개: models/User.js, routes/signup.js, services/email.js — 회원가입 기능 완성, /login 무변동."</span></div>
     </div>
 
     <h3 class="reveal" style="margin-top:30px;font-size:18px">①과 ②의 차이</h3>
