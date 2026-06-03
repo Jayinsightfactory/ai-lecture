@@ -72,6 +72,12 @@
   .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:float 9s ease-in-out infinite}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:13px;color:var(--sub);margin-bottom:26px}
   .dot-live{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(45,212,167,.18);animation:logoPulse 2s infinite}
+  /* architecture flow (own website) */
+  .archstep{flex:1;min-width:158px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center;position:relative}
+  .archstep .arch-em{font-size:30px;display:block;margin-bottom:6px}
+  .archstep .arch-title{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:4px}
+  .archstep .arch-desc{font-size:12.5px;color:var(--sub);line-height:1.55}
+  .archstep .arch-eg{font-size:11.5px;color:var(--accent);font-weight:600;border-top:1px dashed var(--line);padding-top:7px;margin-top:9px;line-height:1.45}
   /* detailed AI processing trace + token counter */
   .dtrace{background:#0a0c12;border:1px solid var(--line);border-radius:14px;margin-top:18px;overflow:hidden}
   .dtrace .dt-head{background:#10131c;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:10px}
@@ -1593,6 +1599,29 @@ GET /api/contacts/<span class="af-num">1042</span></div>
       <div class="step reveal d3" style="animation-delay:2.4s"><div class="ic">🎛️</div><div class="t">③ 대시보드 사이트</div><div class="s">한 화면에서 모든 에이전트 통합 제어</div></div>
     </div>
     <p class="note reveal">장점: 어디서든 접근(브라우저 한 개로 끝), 결과 한 곳에 모임, <b style="color:var(--txt)">새 에이전트 추가가 카드 한 줄</b>이 됨, 사내망에 두면 보안도 OK. <b style="color:var(--txt)">에이전트가 많아질수록 통합 대시보드의 가치가 커집니다.</b></p>
+
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">📦 대시보드 안에 꼭 함께 만들 것 — 로그·히스토리·롤백·시각화 (이유 포함)</h3>
+    <p class="reveal" style="font-size:14px">에이전트가 알아서 일을 해주는 만큼 <b style="color:var(--txt)">"안에서 무슨 일이 있었나"</b>가 보여야 합니다. 안 보이면 문제 생겼을 때 복기·복구가 안 돼요. 그래서 처음 만들 때 이 4가지를 함께 짜 두면 운영이 훨씬 안전·편해집니다.</p>
+    <div class="grid4">
+      <div class="def reveal d1"><span class="em">📝</span><h3 style="font-size:15px">① 작업 로그</h3><p style="font-size:12.5px">에이전트가 <b style="color:var(--txt)">무엇을·언제·왜</b> 했는지 자동 기록. <span style="color:var(--accent)">왜?</span> 문제 추적·재현·책임 소재가 가능</p></div>
+      <div class="def reveal d2"><span class="em">🕐</span><h3 style="font-size:15px">② 히스토리</h3><p style="font-size:12.5px">모든 변경을 <b style="color:var(--txt)">시간순으로 누적</b>. <span style="color:var(--accent)">왜?</span> 패턴·반복 실수 분석, 학습 데이터로 활용</p></div>
+      <div class="def reveal d3"><span class="em">⏪</span><h3 style="font-size:15px">③ 롤백 지점</h3><p style="font-size:12.5px">위험한 작업 전 <b style="color:var(--txt)">자동 스냅샷</b>. <span style="color:var(--accent)">왜?</span> 실수 시 한 번에 직전 상태로 되돌리기</p></div>
+      <div class="def reveal d4"><span class="em">📊</span><h3 style="font-size:15px">④ 시각 대시보드</h3><p style="font-size:12.5px"><b style="color:var(--txt)">상태·진행률·이상치</b>를 한눈에. <span style="color:var(--accent)">왜?</span> 빠른 판단·개입이 가능 (로그가 텍스트면 안 보임)</p></div>
+    </div>
+    <p class="note reveal">정리: <b style="color:var(--txt)">로그·히스토리·롤백</b>이 운영 안전망이고, <b style="color:var(--txt)">시각 대시보드</b>는 그걸 한눈에 보게 해주는 창입니다. 이게 없으면 에이전트는 '믿고 맡기기' 어려움. 있으면 <b style="color:var(--txt)">'믿되 보이게'</b> 운영이 가능합니다.</p>
+
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">🌐 로컬에서 → '나만의 사이트'로 — 필요한 4가지 구성요소</h3>
+    <p class="reveal" style="font-size:14px">지금까지 본 건 내 컴퓨터에서만 도는 <b style="color:var(--txt)">로컬</b> 웹서버. 진짜 '나만의 사이트'로 누구나 접속하려면 <b style="color:var(--txt)">프론트 + 도메인 + 배포 서버 + 저장 서버</b> 4가지가 필요해요.</p>
+    <div class="pipe">
+      <div class="archstep reveal d1"><span class="arch-em">🎨</span><div class="arch-title">① 프론트</div><div class="arch-desc">사용자가 보는 화면. HTML·CSS·JS</div><div class="arch-eg">예: 이 강의 사이트 같은 페이지</div></div>
+      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
+      <div class="archstep reveal d2"><span class="arch-em">🌐</span><div class="arch-title">② 도메인</div><div class="arch-desc">yoursite.com 같은 고유 주소. 구입해서 연결</div><div class="arch-eg">예: 가비아·후이즈 연 1~2만원</div></div>
+      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
+      <div class="archstep reveal d3"><span class="arch-em">🚀</span><div class="arch-title">③ 배포 서버</div><div class="arch-desc">프론트 코드를 올려두고 인터넷에 서비스</div><div class="arch-eg">예: Vercel·Netlify(무료부터)·Railway·AWS</div></div>
+      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
+      <div class="archstep reveal d4"><span class="arch-em">💾</span><div class="arch-title">④ 저장 서버</div><div class="arch-desc">데이터(연락처·주문·로그)를 보관</div><div class="arch-eg">예: PostgreSQL·Supabase·Firebase</div></div>
+    </div>
+    <p class="note reveal">흐름: <b style="color:var(--txt)">사용자 → 도메인 → 배포 서버(프론트가 거기에) → API 호출 → 저장 서버 → 답변</b>. 사실 <b style="color:var(--txt)">이 강의 사이트</b>도 같은 구조예요 — 도메인 <code style="color:var(--accent)">github.io</code>, 배포 서버 <code style="color:var(--accent)">GitHub Pages</code>, 저장은 git 저장소. <b style="color:var(--txt)">로그·히스토리·롤백도 git이 자동으로 해줍니다</b> — 이게 git이 좋은 이유.</p>
 
     <h3 class="reveal" style="margin-top:50px;font-size:22px;text-align:center">💬 실제 대화 예시 — 에이전트에게 일 맡기기</h3>
     <div class="convo reveal" id="convo8"></div>
