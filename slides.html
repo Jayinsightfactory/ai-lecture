@@ -215,6 +215,25 @@
 
   .dots3{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}
   .dots3 b{width:5px;height:5px;border-radius:50%;background:var(--dim);display:inline-block}
+
+  /* ===== 처리 과정 순차 플레이어 (slide 24) ===== */
+  .proc-instr{background:#10131c;border:1px solid var(--line);border-radius:10px;padding:11px 16px;font-size:14px;color:var(--txt);margin-top:14px;min-height:44px}
+  .proc-instr b{color:var(--accent)}
+  .proc-cur{color:var(--good);font-weight:700}
+  .procsteps{display:flex;flex-direction:column;gap:7px;margin-top:12px}
+  .pstep{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 14px;opacity:.32;transition:opacity .35s,border-color .35s,box-shadow .35s}
+  .pstep.active{opacity:1;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 8px 22px rgba(91,140,255,.22)}
+  .pstep.done{opacity:1;border-color:rgba(45,212,167,.45)}
+  .pst-ic{font-size:17px;width:22px;text-align:center;flex:none}
+  .pst-body{flex:1;display:flex;align-items:baseline;gap:10px;min-width:0}
+  .pst-body b{font-size:13.5px;color:var(--txt);flex:none;width:120px}
+  .pst-body span{font-size:12px;color:var(--sub);flex:1}
+  .pst-tok{font-size:11px;color:var(--accent);font-family:"Consolas",monospace;background:var(--bg2);border:1px solid var(--line);border-radius:5px;padding:3px 9px;flex:none}
+  .pstep.done .pst-tok{color:var(--good);border-color:rgba(45,212,167,.4)}
+  .proc-final{margin-top:12px;background:rgba(45,212,167,.06);border:1px solid rgba(45,212,167,.3);border-radius:10px;padding:0 16px;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s,opacity .5s,padding .5s}
+  .proc-final.show{max-height:140px;opacity:1;padding:12px 16px}
+  .pf-label{font-size:11px;color:var(--good);font-weight:800;letter-spacing:.1em;margin-bottom:6px}
+  .pf-body{font-size:13px;color:var(--txt);line-height:1.55;white-space:pre-wrap}
 </style>
 </head>
 <body>
@@ -830,27 +849,30 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
   </div>
 </section>
 
-<!-- 24 토큰 비용 -->
+<!-- 24 처리 과정 (순차 라이브) -->
 <section class="slide">
   <div class="wrap">
-    <div class="badge reveal-up d1"><span class="num">09</span><span class="lbl">AI 처리 + 토큰</span></div>
-    <h2 class="reveal-up d1">AI 답변 처리 — 토큰 사용량(비용)</h2>
-    <p class="lead reveal-up d2">"사고(reasoning)" 토큰이 입력·출력의 10~20배 → 비용·속도가 거기서 결정</p>
-    <div class="tokmeter reveal-up d2" id="tokmeter" style="margin-top:18px">
-      <span class="m">📥 입력<b data-t="287">0</b></span>
-      <span class="m">💭 사고<b data-t="3820">0</b></span>
-      <span class="m">📤 출력<b data-t="142">0</b></span>
-      <span class="m tot">합계<b data-t="4249">0</b></span>
-      <span class="m cost">≈<b data-t="52">0</b>원</span>
+    <div class="badge reveal-up d1"><span class="num">09</span><span class="lbl">AI 처리 과정</span></div>
+    <h2 class="reveal-up d1">지시가 들어오면 — 순서대로 처리됩니다</h2>
+    <div class="proc-instr reveal-up d2" id="procInstr">📋 지시: <b id="procCmd"></b><span class="proc-cur" id="procCur">▌</span></div>
+    <div class="tokmeter reveal-up d2" id="tokmeter2" style="margin-top:10px">
+      <span class="m">📥 입력<b data-k="inp">0</b></span>
+      <span class="m">💭 사고<b data-k="think">0</b></span>
+      <span class="m">📤 출력<b data-k="out">0</b></span>
+      <span class="m tot">합계<b data-k="tot">0</b></span>
+      <span class="m cost">≈<b data-k="cost">0</b>원</span>
     </div>
-    <div class="grid reveal-up d3" style="gap:7px;margin-top:16px">
-      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><b class="mono" style="color:var(--accent)">01</b><b style="width:130px">📥 입력 이해</b><span style="color:var(--sub);flex:1">사용자 의도·참석자·주제 파악</span><span class="pill mono" style="font-size:11px">+ 사고 187</span></div>
-      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><b class="mono" style="color:var(--accent)">02</b><b style="width:130px">🧭 계획 수립</b><span style="color:var(--sub);flex:1">처리 순서 결정 (6단계)</span><span class="pill mono" style="font-size:11px">+ 사고 312</span></div>
-      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><b class="mono" style="color:var(--accent)">03</b><b style="width:130px">🔎 텍스트 분석</b><span style="color:var(--sub);flex:1">발언자별 액션 식별</span><span class="pill mono" style="font-size:11px">+ 사고 1,458</span></div>
-      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><b class="mono" style="color:var(--accent)">04</b><b style="width:130px">✅ 자기 검증</b><span style="color:var(--sub);flex:1">누락·형식·마감 확인 → 보충</span><span class="pill mono" style="font-size:11px">+ 사고 1,420</span></div>
-      <div style="display:flex;align-items:center;gap:12px;font-size:13px"><b class="mono" style="color:var(--accent)">05</b><b style="width:130px">💬 답변 생성</b><span style="color:var(--sub);flex:1">자기회귀로 한 단어씩</span><span class="pill mono" style="font-size:11px">+ 출력 142</span></div>
+    <div class="procsteps" id="procSteps">
+      <div class="pstep" data-think="187"><span class="pst-ic">⏳</span><div class="pst-body"><b>📥 입력 이해</b><span>사용자 의도·참석자·주제 파악</span></div><span class="pst-tok">+사고 187</span></div>
+      <div class="pstep" data-think="312"><span class="pst-ic">⏳</span><div class="pst-body"><b>🧭 처리 계획</b><span>처리 순서 결정 (6단계)</span></div><span class="pst-tok">+사고 312</span></div>
+      <div class="pstep" data-think="1458"><span class="pst-ic">⏳</span><div class="pst-body"><b>🔎 텍스트 분석</b><span>발언자별 액션 식별</span></div><span class="pst-tok">+사고 1,458</span></div>
+      <div class="pstep" data-think="1420"><span class="pst-ic">⏳</span><div class="pst-body"><b>✅ 자기 검증</b><span>누락·형식·마감 확인 → 보충</span></div><span class="pst-tok">+사고 1,420</span></div>
+      <div class="pstep" data-think="443" data-out="142"><span class="pst-ic">⏳</span><div class="pst-body"><b>💬 답변 생성</b><span>자기회귀로 한 단어씩</span></div><span class="pst-tok">+사고 443·출력 142</span></div>
     </div>
-    <div class="note reveal-up d5">명확한 지시 = 적은 사고 토큰 = 빠르고 저렴한 답. 흐릿할수록 추측·재추측에 토큰 소모.</div>
+    <div class="proc-final" id="procFinal">
+      <div class="pf-label">📦 최종 답변</div>
+      <div class="pf-body" id="procAnswer"></div>
+    </div>
   </div>
 </section>
 
@@ -1054,13 +1076,10 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     else document.exitFullscreen?.();
   }
 
-  // start at hash
-  const h = parseInt(location.hash.replace('#',''))||1;
-  go(h-1);
-
   // ===== per-slide animations =====
-  let typerStarted=false, tokenStarted=false;
+  let typerStarted=false;
   function triggerSlide(n){
+    stopProcess(); // 이전 슬라이드의 처리 루프 정지
     const s = slides[n];
     // typewriter (slide 4)
     if(s.querySelector('#llmGen') && !typerStarted){
@@ -1068,13 +1087,75 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       typewriter(s.querySelector('#llmGen'),
         ['3분기 매출은 전분기 대비 12% 증가했습니다.','이번 달 거래처 상위 3곳이 전체의 68%를 차지합니다.'],55,28,1500);
     }
-    // token counter (slide 24)
-    const tm = s.querySelector('#tokmeter');
-    if(tm){
-      tm.querySelectorAll('b').forEach(b=>{ b.textContent='0'; animateNum(b, +b.dataset.t); });
-    }
     // 토큰 칩 등장
     if(s.querySelector('.tchip')) popTokens(s);
+    // AI 처리 과정 순차 재생 (slide 24)
+    if(s.querySelector('#procSteps')) playProcess(s);
+  }
+
+  // ===== AI 처리 과정 순차 플레이어 =====
+  let _procT=null, _procIv=null;
+  function stopProcess(){ if(_procT){clearTimeout(_procT);_procT=null;} if(_procIv){clearInterval(_procIv);_procIv=null;} }
+  function playProcess(s){
+    stopProcess();
+    const cmd="이 회의록 정리해서 액션 아이템 뽑아줘";
+    const ANSWER="회의 핵심 3가지:\n1. 3분기 출시 의견(김부장)  2. 예산 우려(이과장)  3. 마케팅 마감(박대리)\n액션 → 김부장: 일정 확정 · 이과장: 예산 재검토 · 박대리: 초안(화요일)";
+    const cmdEl=s.querySelector('#procCmd'), cur=s.querySelector('#procCur');
+    const steps=[...s.querySelectorAll('.pstep')];
+    const M={}; s.querySelectorAll('#tokmeter2 b').forEach(b=>M[b.dataset.k]=b);
+    const final=s.querySelector('#procFinal'), ans=s.querySelector('#procAnswer');
+    const fmt=n=>n.toLocaleString('ko-KR');
+    // 누적 사고 토큰 타임라인
+    const tk=steps.map(st=>+st.dataset.think);              // [187,312,1458,1420,443]
+    const cum=[]; tk.reduce((a,v,i)=>cum[i]=a+v,0);          // 누적
+    const outStepIdx=steps.findIndex(st=>st.dataset.out);   // 출력 발생 단계(마지막)
+    // 단계별 절대 시간(ms)
+    const CMD=cmd.length*70, GAP=320, STEP=1150, HOLD=2600, ANS=ANSWER.length*22;
+    const stepStart=i=>CMD+450+i*(STEP+GAP);
+    const totalEnd=stepStart(steps.length-1)+STEP+400;
+    // reset
+    cmdEl.textContent=''; cur.style.opacity='1';
+    steps.forEach(st=>{ st.classList.remove('active','done'); st.querySelector('.pst-ic').textContent='⏳'; });
+    M.inp.textContent='0';M.think.textContent='0';M.out.textContent='0';M.tot.textContent='0';M.cost.textContent='0';
+    final.classList.remove('show'); ans.textContent='';
+    // 단일 인터벌 상태머신 (절대 경과시간 기반 → throttle에도 멈추지 않음)
+    let t=0;
+    _procIv=setInterval(()=>{
+      if(!s.classList.contains('active')){ return; }
+      t+=70;
+      // ① 지시 타이핑
+      const ci=Math.min(cmd.length, Math.floor(t/70));
+      cmdEl.textContent=cmd.slice(0,ci);
+      // ② 입력 토큰 (지시 완료 후)
+      let inp = t>=CMD ? 287 : 0;
+      // ③ 단계 진행 + 사고/출력 누적
+      let think=0, out=0;
+      steps.forEach((st,i)=>{
+        const ic=st.querySelector('.pst-ic');
+        const s0=stepStart(i), s1=s0+STEP;
+        if(t>=s1){ // 완료
+          st.classList.add('done'); st.classList.remove('active'); if(ic.textContent!=='✓')ic.textContent='✓';
+          think=cum[i]; if(i===outStepIdx) out=142;
+        } else if(t>=s0){ // 처리중
+          st.classList.add('active'); st.classList.remove('done'); if(ic.textContent!=='🔄')ic.textContent='🔄';
+          const e=(t-s0)/STEP, base=i>0?cum[i-1]:0;
+          think=Math.round(base+(cum[i]-base)*e);
+          if(i===outStepIdx) out=Math.round(142*e);
+        } else { // 대기
+          st.classList.remove('active','done'); if(ic.textContent!=='⏳')ic.textContent='⏳';
+        }
+      });
+      M.inp.textContent=fmt(inp); M.think.textContent=fmt(think); M.out.textContent=fmt(out);
+      M.tot.textContent=fmt(inp+think+out); M.cost.textContent=fmt(Math.round((inp+think+out)/82));
+      // ④ 최종 답변
+      if(t>=totalEnd){
+        cur.style.opacity='0'; final.classList.add('show');
+        const ai=Math.min(ANSWER.length, Math.floor((t-totalEnd)/22));
+        ans.textContent=ANSWER.slice(0,ai);
+      }
+      // ⑤ 루프 재시작
+      if(t>=totalEnd+ANS+HOLD){ t=0; }
+    },70);
   }
   function typewriter(el,phrases,speed,del,pause){
     let p=0,i=0,deleting=false;
@@ -1126,6 +1207,10 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       setTimeout(()=>{ t.style.transition='.4s cubic-bezier(.2,.8,.3,1)'; t.style.opacity='1'; t.style.transform='scale(1)'; }, 120+i*90);
     });
   }
+
+  // ===== 시작 (모든 선언 후 실행) =====
+  const h = parseInt(location.hash.replace('#',''))||1;
+  go(h-1);
 </script>
 </body>
 </html>
