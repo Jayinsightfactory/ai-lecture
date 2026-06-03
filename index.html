@@ -72,6 +72,45 @@
   .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:float 9s ease-in-out infinite}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:13px;color:var(--sub);margin-bottom:26px}
   .dot-live{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(45,212,167,.18);animation:logoPulse 2s infinite}
+  /* detailed AI processing trace + token counter */
+  .dtrace{background:#0a0c12;border:1px solid var(--line);border-radius:14px;margin-top:18px;overflow:hidden}
+  .dtrace .dt-head{background:#10131c;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:10px}
+  .dtrace .dt-title{font-size:13.5px;font-weight:700;color:var(--txt)}
+  .dtrace .dt-meter{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;font-family:"Consolas",monospace}
+  .dtrace .dt-meter span{color:var(--sub)}
+  .dtrace .dt-meter b{color:var(--accent);font-weight:700}
+  .dtrace .dt-meter .mtot b{color:var(--good)}
+  .dtrace .dt-meter .mcost b{color:var(--warn)}
+  .dtrace .dt-body{padding:14px 20px;font-family:"Consolas",monospace;font-size:12.5px;color:#cdd6f4}
+  .dt-step{margin:14px 0;padding-left:24px;position:relative;opacity:0;transform:translateY(8px);transition:.5s}
+  .dt-step.show{opacity:1;transform:none}
+  .dt-step::before{content:'';position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(91,140,255,.2)}
+  .dt-step .dt-num{font-weight:800;color:var(--accent);margin-right:8px;font-family:"Consolas",monospace}
+  .dt-step .dt-stitle{font-weight:700;color:var(--txt);font-family:"Malgun Gothic",system-ui;font-size:13.5px}
+  .dt-step .dt-detail{color:var(--sub);margin-top:6px;font-family:"Malgun Gothic",system-ui;font-size:12.5px;line-height:1.7;white-space:pre-wrap}
+  .dt-step .dt-tokens{display:inline-block;background:var(--card2);border:1px solid var(--line);border-radius:5px;padding:2px 8px;font-size:10.5px;color:var(--accent);margin-top:7px;font-weight:700;font-family:"Consolas",monospace}
+  .dt-final{background:rgba(45,212,167,.08);border-top:2px solid rgba(45,212,167,.4);padding:14px 18px;font-family:"Malgun Gothic",system-ui;font-size:13px;color:var(--txt);line-height:1.7;white-space:pre-wrap}
+  .dt-final .dt-flabel{font-size:11px;color:var(--good);font-weight:800;letter-spacing:.12em;margin-bottom:8px;text-transform:uppercase;font-family:"Consolas",monospace}
+
+  /* API data flow */
+  .apiflow{margin-top:18px;display:flex;flex-direction:column;gap:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 18px}
+  .af-step{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .af-step:last-child{border:none}
+  .af-actor{flex:none;width:78px;font-size:12.5px;font-weight:700;color:var(--txt);padding-top:6px;text-align:center}
+  .af-actor .af-em{display:block;font-size:24px;margin-bottom:3px}
+  .af-content{flex:1;min-width:0}
+  .af-action{font-size:12px;font-weight:800;margin-bottom:6px;letter-spacing:.02em}
+  .af-action.send{color:var(--accent)}
+  .af-action.store{color:var(--warn)}
+  .af-action.modify{color:#b96fff}
+  .af-action.respond{color:var(--good)}
+  .af-data{background:#0a0c12;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-family:"Consolas",monospace;font-size:11.5px;color:#cdd6f4;line-height:1.65;white-space:pre-wrap;overflow-x:auto}
+  .af-data .af-key{color:var(--accent)}
+  .af-data .af-str{color:var(--good)}
+  .af-data .af-num{color:var(--warn)}
+  .af-data .af-cmt{color:var(--dim)}
+  .af-arrow2{text-align:center;font-size:14px;color:var(--accent);font-weight:900;padding:2px 0}
+
   /* multi-agent dashboard */
   .agentswarm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
   @media(max-width:760px){.agentswarm{grid-template-columns:1fr 1fr}}
@@ -1210,6 +1249,107 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     </div>
     <p class="note reveal">가능한 이유: <b style="color:var(--txt)">공개·민간 API가 데이터를 '표준 창구'로 내주니까,</b> AI·툴이 손쉽게 모아 매일·매시간 자동으로 가져다 줍니다. <b style="color:var(--txt)">"내가 매일 검색하던 것"이 → "자동으로 들어오는 것"으로 바뀝니다.</b></p>
 
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">🔄 API 값이 어떻게 오가는지 — 전송·저장·수정·답변 (실제 JSON)</h3>
+    <p class="reveal" style="font-size:14px">"창구로 요청한다"가 실제로는 어떻게 생겼을까요? 연락처 등록·수정·조회를 예로, <b style="color:var(--txt)">값(JSON)이 어떻게 흐르는지</b> 그대로 보여드립니다.</p>
+    <div class="apiflow reveal">
+      <div class="af-step">
+        <div class="af-actor"><span class="af-em">🙋</span>사용자</div>
+        <div class="af-content">
+          <div class="af-action send">📤 전송 — POST /api/contacts</div>
+          <div class="af-data"><span class="af-cmt">// 새 연락처 등록 요청</span>
+{
+  <span class="af-key">"name"</span>: <span class="af-str">"김철수"</span>,
+  <span class="af-key">"phone"</span>: <span class="af-str">"010-1234-5678"</span>,
+  <span class="af-key">"email"</span>: <span class="af-str">"kim@company.com"</span>
+}</div>
+        </div>
+      </div>
+      <div class="af-arrow2">▼</div>
+      <div class="af-step">
+        <div class="af-actor"><span class="af-em">💾</span>서버·DB</div>
+        <div class="af-content">
+          <div class="af-action store">💾 저장 — INSERT INTO contacts</div>
+          <div class="af-data"><span class="af-cmt">// DB가 새 row 생성, 고유 id 부여</span>
+contacts 테이블 → 새 행
+  id        = <span class="af-num">1042</span>
+  name      = <span class="af-str">"김철수"</span>
+  phone     = <span class="af-str">"010-1234-5678"</span>
+  email     = <span class="af-str">"kim@company.com"</span>
+  created_at= <span class="af-str">"2026-06-03 14:22:11"</span></div>
+        </div>
+      </div>
+      <div class="af-arrow2">▼</div>
+      <div class="af-step">
+        <div class="af-actor"><span class="af-em">🤖</span>서버 응답</div>
+        <div class="af-content">
+          <div class="af-action respond">📥 답변 — 201 Created</div>
+          <div class="af-data">{
+  <span class="af-key">"id"</span>: <span class="af-num">1042</span>,
+  <span class="af-key">"name"</span>: <span class="af-str">"김철수"</span>,
+  <span class="af-key">"created"</span>: <span class="af-str">"2026-06-03 14:22"</span>
+}</div>
+        </div>
+      </div>
+      <div class="af-arrow2">▼</div>
+      <div class="af-step">
+        <div class="af-actor"><span class="af-em">🙋</span>사용자</div>
+        <div class="af-content">
+          <div class="af-action modify">✏️ 수정 — PUT /api/contacts/1042</div>
+          <div class="af-data"><span class="af-cmt">// 전화번호만 바꾸기</span>
+{
+  <span class="af-key">"phone"</span>: <span class="af-str">"010-9999-1111"</span>
+}</div>
+        </div>
+      </div>
+      <div class="af-arrow2">▼</div>
+      <div class="af-step">
+        <div class="af-actor"><span class="af-em">💾</span>서버·DB</div>
+        <div class="af-content">
+          <div class="af-action store">💾 수정 저장 — UPDATE contacts</div>
+          <div class="af-data">contacts WHERE id = <span class="af-num">1042</span>
+SET phone = <span class="af-str">"010-9999-1111"</span>,
+    updated_at = <span class="af-str">"2026-06-03 14:25:08"</span></div>
+        </div>
+      </div>
+      <div class="af-arrow2">▼</div>
+      <div class="af-step">
+        <div class="af-actor"><span class="af-em">🤖</span>서버 응답</div>
+        <div class="af-content">
+          <div class="af-action respond">📥 답변 — 200 OK</div>
+          <div class="af-data">{
+  <span class="af-key">"id"</span>: <span class="af-num">1042</span>,
+  <span class="af-key">"updated"</span>: <span class="af-str">"2026-06-03 14:25"</span>,
+  <span class="af-key">"phone"</span>: <span class="af-str">"010-9999-1111"</span>
+}</div>
+        </div>
+      </div>
+      <div class="af-arrow2">▼</div>
+      <div class="af-step">
+        <div class="af-actor"><span class="af-em">🙋</span>사용자</div>
+        <div class="af-content">
+          <div class="af-action send">📤 조회 — GET /api/contacts/1042</div>
+          <div class="af-data"><span class="af-cmt">// 최종 데이터 확인</span>
+GET /api/contacts/<span class="af-num">1042</span></div>
+        </div>
+      </div>
+      <div class="af-arrow2">▼</div>
+      <div class="af-step">
+        <div class="af-actor"><span class="af-em">🤖</span>서버 답변</div>
+        <div class="af-content">
+          <div class="af-action respond">📥 답변 — 200 OK</div>
+          <div class="af-data">{
+  <span class="af-key">"id"</span>: <span class="af-num">1042</span>,
+  <span class="af-key">"name"</span>: <span class="af-str">"김철수"</span>,
+  <span class="af-key">"phone"</span>: <span class="af-str">"010-9999-1111"</span>,
+  <span class="af-key">"email"</span>: <span class="af-str">"kim@company.com"</span>,
+  <span class="af-key">"created"</span>: <span class="af-str">"2026-06-03 14:22"</span>,
+  <span class="af-key">"updated"</span>: <span class="af-str">"2026-06-03 14:25"</span>
+}</div>
+        </div>
+      </div>
+    </div>
+    <p class="note reveal">정리: <b style="color:var(--txt)">POST(전송·생성) → DB INSERT(저장) → PUT(수정) → DB UPDATE(수정 저장) → GET(조회) → JSON 답변</b>. API는 정해진 동사(GET/POST/PUT/DELETE)와 URL로 데이터를 다룹니다. <b style="color:var(--txt)">값이 JSON으로 그대로 오가니까</b> 어떤 화면·앱이든 같은 데이터를 쓸 수 있어요 — 이게 자동화의 토대.</p>
+
     <h3 class="reveal" style="margin-top:48px;font-size:22px">🌐 질문 하나가 거치는 '실제 경로' — 위치·비용·규모·에너지</h3>
     <p class="lead reveal" style="font-size:15px">웹사이트에서 질문을 누르면 내 기기는 거의 일하지 않습니다. 진짜 계산은 <b style="color:var(--txt)">멀리 있는 거대한 데이터센터</b>의 GPU가 하고, 답이 같은 길로 돌아옵니다.</p>
     <div class="journey reveal">
@@ -1512,6 +1652,66 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       <div class="def reveal d3"><span class="em">📐</span><h3 style="font-size:15px">형식·범위 보장</h3><p style="font-size:12.5px">답변이 지정한 형식과 범위 안으로 정확히 나옴</p></div>
     </div>
     <p class="note reveal">정리: <b style="color:var(--txt)">같은 AI, 같은 작업이라도 '지시의 품질'이 안에서 도는 트레이스의 품질을 결정합니다.</b> 그래서 2번 섹션의 프롬프트 엔지니어링이 9번 에이전트의 작업 품질로 그대로 이어집니다.</p>
+
+    <h3 class="reveal" style="margin-top:50px;font-size:22px">🔬 AI 답변 처리 — 상세 내부 흐름 + 토큰 사용량 (실시간)</h3>
+    <p class="reveal" style="font-size:14px">한 번의 답변에 안에서 일어나는 일을 좀 더 자세히 펼쳐 보겠습니다. <b style="color:var(--txt)">'사고(reasoning)' 토큰</b>이 보통 입력·출력의 10~20배 — 비용·속도가 거기서 결정돼요. 카운터가 처리 진행에 따라 올라가는 걸 보세요.</p>
+    <div class="dtrace reveal" id="dtrace1">
+      <div class="dt-head">
+        <div class="dt-title">📋 지시: "이 회의록 정리해서 액션 아이템 뽑아줘"</div>
+        <div class="dt-meter">
+          <span>📥 입력 <b data-target="287">0</b></span>
+          <span>💭 사고 <b data-target="3820">0</b></span>
+          <span>📤 출력 <b data-target="142">0</b></span>
+          <span class="mtot">합계 <b data-target="4249">0</b> 토큰</span>
+          <span class="mcost">≈ <b data-target="52">0</b>원</span>
+        </div>
+      </div>
+      <div class="dt-body">
+        <div class="dt-step">
+          <span class="dt-num">01</span><span class="dt-stitle">📥 입력 이해</span>
+          <div class="dt-detail">사용자가 원하는 것 파악: <b>회의록 정리</b> + <b>액션 아이템 추출</b>
+참석자 인식: 김부장 · 이과장 · 박대리
+주제 추정: 3분기 출시 관련 의사결정</div>
+          <span class="dt-tokens">+ 사고 187 토큰</span>
+        </div>
+        <div class="dt-step">
+          <span class="dt-num">02</span><span class="dt-stitle">🧭 처리 계획 수립</span>
+          <div class="dt-detail">① 회의 핵심 추출 → ② 발언자별 분류 → ③ 액션 아이템 식별 → ④ 마감일 부여 → ⑤ 자기검증 → ⑥ 출력</div>
+          <span class="dt-tokens">+ 사고 312 토큰</span>
+        </div>
+        <div class="dt-step">
+          <span class="dt-num">03</span><span class="dt-stitle">🔎 텍스트 분석 — 발언자별 액션 식별</span>
+          <div class="dt-detail">"김부장 — 3분기 출시 의견" → 액션: <b>출시 일정 확정</b> ✓
+"이과장 — 예산 부족 우려"      → 액션: <b>예산안 재검토</b> ✓
+"박대리 — 마케팅안 다음주까지" → 액션: <b>마케팅 초안</b> · 마감 명시됨 ✓</div>
+          <span class="dt-tokens">+ 사고 1,458 토큰</span>
+        </div>
+        <div class="dt-step">
+          <span class="dt-num">04</span><span class="dt-stitle">✅ 자기 검증 (Reflection)</span>
+          <div class="dt-detail">✔ 모든 발언자 다뤘나? — 네 (3명 모두)
+✔ 마감일 누락된 액션 없나? — ①·②는 마감 명시 X → <b>"다음 회의 전"</b>으로 추정 보충
+✔ 출력 형식이 깔끔한가? — 핵심 3가지 + 액션 리스트 구조 OK</div>
+          <span class="dt-tokens">+ 사고 1,420 토큰</span>
+        </div>
+        <div class="dt-step">
+          <span class="dt-num">05</span><span class="dt-stitle">💬 답변 생성 (자기회귀, 한 단어씩)</span>
+          <div class="dt-detail">"회의" → "핵심" → "3가지:" → "1." → "3분기" → … → 최종 문장 완성</div>
+          <span class="dt-tokens">+ 사고 443 + 출력 142 토큰</span>
+        </div>
+      </div>
+      <div class="dt-final">
+        <div class="dt-flabel">📦 최종 답변</div>
+회의 핵심 3가지:
+1. 3분기 신제품 출시 의견 (김부장)
+2. 예산 부족 우려 (이과장)
+3. 마케팅안 다음주까지 (박대리)
+
+액션 아이템:
+✓ 김부장 → 출시 일정 확정 (다음 회의 전)
+✓ 이과장 → 예산안 재검토 (다음 회의 전)
+✓ 박대리 → 마케팅 초안 작성 (다음주 화요일까지)</div>
+    </div>
+    <p class="note reveal">핵심: <b style="color:var(--txt)">사고 토큰이 가장 큰 비중</b>입니다. 지시가 흐릿할수록 추측·재추측에 더 많은 토큰이 소모돼 비용·시간이 올라가요. <b style="color:var(--txt)">명확한 지시 = 적은 사고 토큰 = 빠르고 저렴한 답</b>. (위 수치는 예시 — 실제 모델/지시에 따라 다름)</p>
 
     <h3 class="egtitle reveal">💡 실무 예시 3가지</h3>
     <div class="egs">
@@ -1840,6 +2040,29 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     ]
   };
   Object.keys(convos).forEach(id=>{const el=document.getElementById(id);if(el)playConvo(el,convos[id]);});
+
+  // Detailed processing trace with token counter animation
+  function animateNum(el, target, duration){
+    duration=duration||2400;
+    const start=parseInt(el.textContent.replace(/,/g,''))||0;
+    const t0=performance.now();
+    (function step(now){
+      const t=Math.min((now-t0)/duration,1);
+      const eased=1-Math.pow(1-t,3);
+      el.textContent=Math.round(start+(target-start)*eased).toLocaleString('ko-KR');
+      if(t<1)requestAnimationFrame(step);
+    })(t0);
+  }
+  document.querySelectorAll('.dtrace').forEach(tr=>{
+    const meterB=[...tr.querySelectorAll('.dt-meter b')];
+    const steps=[...tr.querySelectorAll('.dt-step')];
+    const io=new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){
+      meterB.forEach(b=>animateNum(b,parseInt(b.dataset.target)));
+      steps.forEach((s,i)=>setTimeout(()=>s.classList.add('show'),i*450));
+      o.disconnect();
+    }})},{threshold:.12});
+    io.observe(tr);
+  });
 
   // AI processing trace: staggered reveal (1회, 크기 고정)
   document.querySelectorAll('.trace').forEach(tr=>{
