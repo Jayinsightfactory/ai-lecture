@@ -72,6 +72,33 @@
   .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:float 9s ease-in-out infinite}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:13px;color:var(--sub);margin-bottom:26px}
   .dot-live{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(45,212,167,.18);animation:logoPulse 2s infinite}
+  /* multi-agent dashboard */
+  .agentswarm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+  @media(max-width:760px){.agentswarm{grid-template-columns:1fr 1fr}}
+  .agtile{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:12px;color:var(--sub);text-align:center;animation:dayPulse 3s ease-in-out infinite}
+  .agtile:nth-child(2){animation-delay:.3s}.agtile:nth-child(3){animation-delay:.6s}.agtile:nth-child(4){animation-delay:.9s}.agtile:nth-child(5){animation-delay:1.2s}.agtile:nth-child(6){animation-delay:1.5s}
+  .agtile .em{font-size:18px;display:block;margin-bottom:3px}
+  .dashmock{background:#0a0c12;border:1px solid var(--line);border-radius:10px;padding:14px;font-family:"Consolas",monospace;font-size:11.5px;line-height:1.7;color:#cdd6f4;margin:10px 0}
+  .dashmock .dm-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .dashmock .dm-row:last-child{border:none}
+  .dashmock .dm-row .nm{color:var(--accent)}
+  .dashmock .dm-status.ok{color:var(--good)}.dashmock .dm-status.run{color:var(--warn);animation:blink 1.2s steps(1) infinite}.dashmock .dm-status.idle{color:var(--dim)}
+  /* training stage text-evolution */
+  .train-evolve{margin-top:18px;display:flex;flex-direction:column;gap:6px}
+  .te-stage{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;border-left-width:3px}
+  .te-stage.stg1{border-left-color:var(--bad)}
+  .te-stage.stg2{border-left-color:var(--warn)}
+  .te-stage.stg3{border-left-color:var(--good)}
+  .te-label{font-size:11.5px;color:var(--accent);font-weight:800;letter-spacing:.12em;margin-bottom:10px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+  .te-label .te-stage-name{color:var(--txt);font-size:14.5px;letter-spacing:.02em;text-transform:none;font-weight:700}
+  .te-input{font-size:13px;color:var(--txt);background:rgba(91,140,255,.14);border:1px solid rgba(91,140,255,.4);border-radius:10px;padding:8px 13px;display:inline-block;margin-bottom:10px;max-width:100%}
+  .te-output{font-size:13.5px;color:var(--sub);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;line-height:1.65;white-space:pre-wrap}
+  .te-output b{color:var(--txt)}
+  .te-note{font-size:12.5px;color:var(--dim);margin-top:9px;padding-left:6px;border-left:2px solid var(--line)}
+  .te-stage.stg1 .te-note{border-left-color:var(--bad);color:var(--bad)}
+  .te-stage.stg2 .te-note{border-left-color:var(--warn);color:var(--warn)}
+  .te-stage.stg3 .te-note{border-left-color:var(--good);color:var(--good)}
+  .te-arrow{text-align:center;font-size:18px;color:var(--accent);font-weight:900;padding:2px 0;animation:march 1.2s infinite}
   /* AI evolution timeline */
   .timeline{position:relative;margin-top:22px;padding:8px 0 8px 30px;border-left:2px solid var(--line)}
   .tl-item{position:relative;margin:16px 0;padding:14px 18px;background:var(--card);border:1px solid var(--line);border-radius:12px}
@@ -463,7 +490,6 @@
 </head>
 <body>
 <div id="progress"></div>
-<div class="draft">애니메이션 v6 · 피드백 환영</div>
 
 <nav class="dots">
   <a href="#hero"><span>표지</span></a>
@@ -621,22 +647,8 @@
   <div class="wrap">
     <div class="big-num reveal">SECTION 01</div>
     <span class="kicker reveal">LLM의 구조 & 성능 차이</span>
-    <h2 class="reveal d1">AI는 결국 "다음에 올 단어를 맞히는 기계"</h2>
-    <p class="lead reveal d2">질문을 넣으면 → 문장을 잘게 쪼개고 → 의미를 숫자로 바꾸고 → 다음 단어를 확률로 예측해 → 한 단어씩 답을 이어 붙입니다. 데이터가 흐르는 걸 보세요.</p>
-    <div class="pipe">
-      <div class="step reveal d1" style="animation-delay:0s"><div class="ic">⌨️</div><div class="t">① 입력</div><div class="s">질문 문장</div></div>
-      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
-      <div class="step reveal d2" style="animation-delay:1.2s"><div class="ic">✂️</div><div class="t">② 토큰화</div><div class="s">조각으로 분해</div></div>
-      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
-      <div class="step reveal d3" style="animation-delay:2.4s"><div class="ic">🔢</div><div class="t">③ 의미 변환</div><div class="s">숫자(벡터)로</div></div>
-      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
-      <div class="step reveal d4" style="animation-delay:3.6s"><div class="ic">🎯</div><div class="t">④ 다음 단어 예측</div><div class="s">확률 높은 단어</div></div>
-      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
-      <div class="step reveal d4" style="animation-delay:4.8s"><div class="ic">💬</div><div class="t">⑤ 답변 생성</div><div class="s">이어 붙여 완성</div></div>
-    </div>
-
-    <h3 class="reveal" style="margin-top:50px;font-size:22px">🎯 그래서 — '다음 단어 맞히는 기계'라서, 입력이 정확해야 출력이 정확하다</h3>
-    <p class="reveal" style="font-size:14px">예측 확률은 <b style="color:var(--txt)">내가 준 맥락</b>에 전적으로 달려 있습니다. 입력이 흐릿하면 확률도 흐릿 → 엉뚱하거나 지어낸 답(환각). 입력이 정확하면 확률이 한 곳에 모여 → 정확한 답.</p>
+    <h2 class="reveal d1">'다음 단어 예측' 기계 — 입력이 정확해야 출력이 정확하다</h2>
+    <p class="lead reveal d2">AI는 한 단어씩 확률로 골라 답을 만듭니다. 그 확률은 <b style="color:var(--txt)">내가 준 맥락</b>에 전적으로 달려 있어요. 입력이 흐릿하면 확률도 흐릿 → 엉뚱·지어낸 답(환각). 입력이 정확하면 확률이 한 곳에 모여 → 정확한 답.</p>
     <div class="grid2">
       <div class="card reveal d1" style="border-color:rgba(255,93,108,.35)">
         <h3 style="color:var(--bad)">❌ 흐릿한 입력</h3>
@@ -669,21 +681,7 @@
     </div>
     <p class="note reveal">핵심: AI는 <b style="color:var(--txt)">다음 단어를 '맞히는' 기계</b>라서, 맞힐 근거(위치·출처·방향)가 정확할수록 정답에 가까워집니다. <b style="color:var(--txt)">흐릿한 입력 = 흐릿한 출력.</b></p>
 
-    <div class="card reveal d1" style="margin-top:40px">
-      <h3>실시간으로 벌어지는 일</h3>
-      <p style="font-size:14px">질문: <b style="color:var(--txt)">"이 엑셀 매출 데이터를 한 줄로 요약해줘"</b></p>
-      <div class="tokens" id="tokbox"></div>
-      <p style="font-size:13px;margin-top:6px">다음 단어 확률 계산 (막대가 살아 움직임) →</p>
-      <div class="prob">
-        <div class="row"><span class="word">"3분기"</span><span class="barwrap"><span class="bar" style="animation-delay:0s"></span></span><span class="pct">62%</span></div>
-        <div class="row"><span class="word">"이번"</span><span class="barwrap"><span class="bar" style="animation-delay:.4s;width:40%"></span></span><span class="pct">22%</span></div>
-        <div class="row"><span class="word">"전체"</span><span class="barwrap"><span class="bar" style="animation-delay:.8s;width:22%"></span></span><span class="pct">11%</span></div>
-      </div>
-      <p style="font-size:13px;margin-top:10px">→ 골라낸 단어를 이어 붙여 생성:</p>
-      <div class="gen"><span id="llmGen"></span><span class="cur"></span></div>
-    </div>
-
-    <h3 class="reveal" style="margin-top:54px;font-size:24px">🔬 심화 — LLM 내부를 한 단계씩 (전문 과정 시각화)</h3>
+    <h3 class="reveal" style="margin-top:54px;font-size:24px">🔬 LLM 내부를 한 단계씩 — 토큰부터 답변까지</h3>
     <p class="lead reveal" style="font-size:15px">위 5단계를 더 깊이 열어보면 이렇게 동작합니다. 조금 전문적이지만 그림으로 보면 쉬워요.</p>
 
     <div class="stage reveal">
@@ -819,13 +817,55 @@
     </div>
     <p class="note reveal">같은 "다음 단어 예측"이지만 <b style="color:var(--txt)">앞 문맥(한국어·코드·영어)</b>에 따라 후보와 확률이 완전히 달라집니다. 그래서 어떤 데이터로 학습했는지가 성능을 가릅니다.</p>
 
-    <h3 class="reveal" style="margin-top:48px;font-size:22px">같은 문장 — "이 엑셀 표를 정리해줘" (각 AI가 생각 중…)</h3>
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">📊 같은 질문, 모델마다 답이 이렇게 다릅니다</h3>
+    <p class="reveal" style="font-size:14px">사용자 질문: <b style="color:var(--txt)">"이 회의록 정리해서 액션 아이템 뽑아줘"</b> — 학습·특화 차이가 답에 어떻게 드러나는지 실제 텍스트로 비교해 보세요.</p>
     <div class="models">
-      <div class="model reveal d1"><div class="head"><div class="logo" style="background:var(--claude)">C</div><div><div class="nm">Claude</div><div class="role">Anthropic · 긴문서·코딩</div></div></div><div class="ans">"먼저 어떤 기준으로 정리할지 확인할게요. 표를 다듬고 합계 행을 추가하겠습니다." <span class="typing"><b></b><b></b><b></b></span></div><div class="tag">→ 맥락 확인 + 꼼꼼함</div></div>
-      <div class="model reveal d2"><div class="head"><div class="logo" style="background:var(--gpt)">G</div><div><div class="nm">GPT</div><div class="role">OpenAI · 범용·균형</div></div></div><div class="ans">"중복 제거하고 날짜순 정렬 후 합계를 추가했어요. 차트도 만들까요?" <span class="typing"><b></b><b></b><b></b></span></div><div class="tag">→ 빠르고 친근한 범용</div></div>
-      <div class="model reveal d3"><div class="head"><div class="logo" style="background:var(--codex)">{}</div><div><div class="nm">Codex</div><div class="role">코드 특화</div></div></div><div class="ans" style="font-family:monospace;font-size:12px">df=df.drop_duplicates()<br>df.sort_values('날짜') <span class="typing"><b></b><b></b><b></b></span></div><div class="tag">→ 실행 코드 위주</div></div>
-      <div class="model reveal d4"><div class="head"><div class="logo" style="background:var(--gemini)">◆</div><div><div class="nm">Gemini</div><div class="role">Google · 멀티모달</div></div></div><div class="ans">"정리했습니다. Sheets와도 연동돼요. 이미지·문서와 함께 처리하기 좋습니다." <span class="typing"><b></b><b></b><b></b></span></div><div class="tag">→ 구글·멀티모달</div></div>
+      <div class="model reveal d1"><div class="head"><div class="logo" style="background:var(--claude)">C</div><div><div class="nm">Claude</div><div class="role">긴문서·신중</div></div></div><div class="ans" style="white-space:pre-wrap">"회의록 정리해드릴게요. <b style="color:var(--txt)">먼저 짧게 확인할게요</b> — 참석자와 회의 목적이 어떻게 되나요? 액션 아이템을 빠뜨리지 않으려고요.
+
+우선 본문에서 보이는 항목으로 초안:
+• 김부장 — 3분기 출시 일정 확정
+• 이과장 — 예산 추가안 검토
+• 박대리 — 마케팅안 초안 (다음주 화)
+
+빠진 게 없는지 확인 부탁드려요."</div><div class="tag">→ 맥락 먼저 확인 + 신중·꼼꼼</div></div>
+
+      <div class="model reveal d2"><div class="head"><div class="logo" style="background:var(--gpt)">G</div><div><div class="nm">GPT</div><div class="role">범용·균형</div></div></div><div class="ans" style="white-space:pre-wrap">"정리해드릴게요!
+
+<b style="color:var(--txt)">회의 핵심 3가지:</b>
+1. 3분기 신제품 출시 의견 (김부장)
+2. 예산 부족 우려 (이과장)
+3. 마케팅안 다음주까지 (박대리)
+
+<b style="color:var(--txt)">액션 아이템:</b>
+✓ 김부장 → 출시 일정 확정
+✓ 이과장 → 예산안 재검토
+✓ 박대리 → 마케팅 초안
+
+표로도 정리해드릴까요?"</div><div class="tag">→ 빠르고 구조적 + 추가 제안</div></div>
+
+      <div class="model reveal d3"><div class="head"><div class="logo" style="background:var(--codex)">{}</div><div><div class="nm">Codex</div><div class="role">코드 특화</div></div></div><div class="ans" style="white-space:pre-wrap;font-family:'Consolas',monospace;font-size:12px">"회의록 자동 파싱 코드:
+
+<b style="color:var(--txt)">import re
+with open('meeting.md') as f:
+    text = f.read()
+actions = re.findall(
+    r'(\w+)\s*→\s*(.+)', text)
+for who, todo in actions:
+    print(f'- [{who}] {todo}')</b>
+
+실행하면 액션 아이템이 자동 추출됩니다."</div><div class="tag">→ 설명보다 코드·자동화</div></div>
+
+      <div class="model reveal d4"><div class="head"><div class="logo" style="background:var(--gemini)">◆</div><div><div class="nm">Gemini</div><div class="role">Google·멀티모달</div></div></div><div class="ans" style="white-space:pre-wrap">"회의록 정리하고 <b style="color:var(--txt)">Google Calendar에 일정도 등록</b>해드릴 수 있어요.
+
+주요 액션:
+• 김부장: 출시 일정 확정 (다음 회의 전)
+• 이과장: 예산안 재검토
+• 박대리: 마케팅 초안 (다음주 화)
+
+어떤 걸 할까요?
+[📋 Sheets로] [📅 Calendar 등록] [💬 팀 채팅 공유]"</div><div class="tag">→ 구글 생태계 연계·다중 옵션</div></div>
     </div>
+    <p class="note reveal">같은 "다음 단어 예측" 구조이지만 — <b style="color:var(--txt)">학습 데이터·특화·튜닝 방향</b>에 따라 답의 길이·말투·형식·후속 제안까지 완전히 다른 결로 나옵니다. <b style="color:var(--txt)">작업에 따라 어느 모델이 더 맞을지 보는 안목이 중요</b>합니다.</p>
 
     <h3 class="reveal" style="margin-top:48px;font-size:22px">🎓 AI는 어떻게 "배우나" — 학습 3단계</h3>
     <p class="reveal" style="font-size:14px">네 모델 모두 큰 흐름은 같습니다. <b style="color:var(--txt)">방대한 글로 기본기를 쌓고 → 좋은 예시를 모방하고 → 사람 피드백으로 다듬습니다.</b></p>
@@ -836,7 +876,33 @@
       <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
       <div class="step reveal d3" style="animation-delay:3s"><div class="ic">👍</div><div class="t">③ 인간 피드백(RLHF)</div><div class="s">사람이 더 나은 답에 점수 → 그 방향으로 강화</div></div>
     </div>
-    <p class="reveal" style="font-size:13.5px;color:var(--sub);margin-top:10px"><b style="color:var(--txt)">대답 생성:</b> 학습이 끝난 모델은 위에서 본 <b style="color:var(--txt)">자기회귀(한 단어씩)</b> 방식으로 답을 만듭니다. 차이는 어떤 데이터로 ①~③을 거쳤느냐에서 생깁니다.</p>
+    <p class="reveal" style="font-size:13.5px;color:var(--sub);margin-top:10px"><b style="color:var(--txt)">대답 생성:</b> 학습이 끝난 모델은 <b style="color:var(--txt)">자기회귀(한 단어씩)</b> 방식으로 답을 만듭니다. 차이는 어떤 데이터로 ①~③을 거쳤느냐에서 생깁니다.</p>
+
+    <h3 class="reveal" style="margin-top:34px;font-size:20px">📝 같은 질문, 단계가 진행될수록 답이 이렇게 변합니다</h3>
+    <p class="reveal" style="font-size:14px">사용자 질문: <b style="color:var(--txt)">"오늘 기분이 어때?"</b> — 각 학습 단계 직후의 모델이 어떤 답을 내는지 실제 텍스트로 비교해 보세요.</p>
+    <div class="train-evolve">
+      <div class="te-stage stg1 reveal d1">
+        <div class="te-label"><span>① 사전학습 직후</span><span class="te-stage-name">📚 인터넷 글로 다음 단어 채우기만 학습</span></div>
+        <div class="te-input">🙋 "오늘 기분이 어때?"</div>
+        <div class="te-output">"오늘 기분이 어때? 그래, 가끔 사람들은 자기 기분에 대해 묻곤 하지. 어제 본 뉴스에서는 날씨가 좋다고 했는데, 옛날 그리스 철학자들은 감정에 대해 이렇게 말했다…"</div>
+        <div class="te-note">⚠️ "질문에 답한다"는 개념 자체가 없음. 그저 입력 뒤에 그럴듯한 글을 계속 이어 쓸 뿐. 즉, <b>아직 비서가 아니라 자동 작문기</b>.</div>
+      </div>
+      <div class="te-arrow">▼</div>
+      <div class="te-stage stg2 reveal d2">
+        <div class="te-label"><span>② 지도 미세조정(SFT) 후</span><span class="te-stage-name">🧑‍🏫 좋은 '질문–답변' 예시 수만 개 모방</span></div>
+        <div class="te-input">🙋 "오늘 기분이 어때?"</div>
+        <div class="te-output">"안녕하세요. 저는 AI 언어 모델이므로 감정을 가지고 있지 않습니다. 하지만 도움이 필요하시면 언제든 알려주세요. 무엇을 도와드릴까요?"</div>
+        <div class="te-note">✓ 이제 질문이 오면 <b>답변 형식으로</b> 응답. 다만 톤이 딱딱·사무적이고, 사람의 의도(감정 공유)에는 둔감.</div>
+      </div>
+      <div class="te-arrow">▼</div>
+      <div class="te-stage stg3 reveal d3">
+        <div class="te-label"><span>③ 인간 피드백(RLHF) 후</span><span class="te-stage-name">👍 사람이 더 좋다고 평가한 답으로 강화</span></div>
+        <div class="te-input">🙋 "오늘 기분이 어때?"</div>
+        <div class="te-output">"고마워요, 그렇게 물어봐 주셔서 😊 저는 감정은 없지만 오늘도 도움이 될 준비는 충분히 됐어요! 혹시 본인 기분은 어떠세요? 좋은 일이 있었나요, 아니면 좀 풀어내고 싶은 일이 있나요?"</div>
+        <div class="te-note">⭐ 자연스럽고 따뜻함. <b>맥락 인식 + 되묻기 + 톤 조절</b>까지 — 사람이 선호하는 답변으로 다듬어져 대화가 자연스럽게 이어짐.</div>
+      </div>
+    </div>
+    <p class="note reveal">핵심: 학습 단계별로 <b style="color:var(--txt)">"같은 입력 → 점점 사람에게 도움 되는 답"</b>으로 진화합니다. 우리가 쓰는 ChatGPT·Claude·Gemini는 모두 <b style="color:var(--txt)">③번 RLHF까지 끝난 모델</b>이에요.</p>
 
     <h3 class="reveal" style="margin-top:34px;font-size:18px">모델별 학습·생성 방식의 차이</h3>
     <div class="mtab">
@@ -1350,6 +1416,44 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     </div>
     <p class="note reveal">⚠️ 가장 중요한 원칙(Anthropic 권고): <b style="color:var(--txt)">단순하게 시작하라.</b> 대부분의 업무는 정해진 자동화(워크플로우)로 충분합니다. <b style="color:var(--txt)">진짜 판단·유연성이 필요할 때만</b> 에이전트를 쓰고, 중요한 행동(결제·발송·삭제)에는 <b style="color:var(--txt)">반드시 사람 승인</b>을 끼우세요. 화려함이 아니라 안정성이 중요합니다.</p>
 
+    <h3 class="reveal" style="margin-top:48px;font-size:22px">🎛️ 에이전트가 많아지면 — 통합 대시보드로 한 곳에서 관리</h3>
+    <p class="reveal" style="font-size:14px">코딩·리서치·메일·데이터·고객응대 에이전트가 늘어날수록 각자 다른 화면·도구에서 돌면 관리가 안 됩니다. <b style="color:var(--txt)">하나의 로컬 웹서버 + API로 묶은 사이트(대시보드)</b>를 만들면 모든 게 한 곳에서 보입니다.</p>
+    <div class="grid2">
+      <div class="card reveal d1" style="border-color:rgba(255,93,108,.35)">
+        <h3 style="color:var(--bad)">❌ 흩어진 에이전트들</h3>
+        <div class="agentswarm">
+          <div class="agtile"><span class="em">💻</span>코딩 에이전트</div>
+          <div class="agtile"><span class="em">🔎</span>리서치 에이전트</div>
+          <div class="agtile"><span class="em">📨</span>메일 에이전트</div>
+          <div class="agtile"><span class="em">📊</span>데이터 분석</div>
+          <div class="agtile"><span class="em">🎧</span>고객 응대</div>
+          <div class="agtile"><span class="em">📅</span>일정 관리</div>
+        </div>
+        <p style="font-size:13px">각자 다른 도구·화면 → "지금 뭐가 도는지" 모름, 결과 모으기 힘듦, 새 에이전트 끼우기 번거로움</p>
+      </div>
+      <div class="card reveal d2" style="border-color:rgba(45,212,167,.35)">
+        <h3 style="color:var(--good)">✅ 통합 대시보드 (로컬 웹서버 + API)</h3>
+        <div class="dashmock">
+          <div class="dm-row"><span class="nm">💻 코딩 에이전트</span><span class="dm-status run">● 실행중 (버그 #142)</span></div>
+          <div class="dm-row"><span class="nm">🔎 리서치 에이전트</span><span class="dm-status ok">✔ 완료</span></div>
+          <div class="dm-row"><span class="nm">📨 메일 에이전트</span><span class="dm-status idle">○ 대기</span></div>
+          <div class="dm-row"><span class="nm">📊 데이터 분석</span><span class="dm-status run">● 처리중</span></div>
+          <div class="dm-row"><span class="nm">🎧 고객 응대</span><span class="dm-status ok">✔ 12건 처리</span></div>
+        </div>
+        <p style="font-size:13px">한 화면에서 <b style="color:var(--txt)">트리거·모니터·결과·재시작</b>까지 — 보이고, 관리되고, 새 에이전트도 한 줄로 추가</p>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="margin-top:30px;font-size:18px">구성은 단순합니다 — 3단계</h3>
+    <div class="pipe">
+      <div class="step reveal d1" style="animation-delay:0s"><div class="ic">🖥️</div><div class="t">① 로컬 웹서버</div><div class="s">Node·Python·FastAPI 한 줄로 시작</div></div>
+      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
+      <div class="step reveal d2" style="animation-delay:1.2s"><div class="ic">🔌</div><div class="t">② API 엔드포인트</div><div class="s">에이전트마다 /run, /status, /result</div></div>
+      <div class="flow"><i>▶</i><i>▶</i><i>▶</i></div>
+      <div class="step reveal d3" style="animation-delay:2.4s"><div class="ic">🎛️</div><div class="t">③ 대시보드 사이트</div><div class="s">한 화면에서 모든 에이전트 통합 제어</div></div>
+    </div>
+    <p class="note reveal">장점: 어디서든 접근(브라우저 한 개로 끝), 결과 한 곳에 모임, <b style="color:var(--txt)">새 에이전트 추가가 카드 한 줄</b>이 됨, 사내망에 두면 보안도 OK. <b style="color:var(--txt)">에이전트가 많아질수록 통합 대시보드의 가치가 커집니다.</b></p>
+
     <h3 class="reveal" style="margin-top:50px;font-size:22px;text-align:center">💬 실제 대화 예시 — 에이전트에게 일 맡기기</h3>
     <div class="convo reveal" id="convo8"></div>
 
@@ -1632,13 +1736,7 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
   const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;dots.forEach(d=>d.classList.toggle('active',d.getAttribute('href')==='#'+id));}}),{threshold:.5});
   secs.forEach(s=>so.observe(s));
 
-  const tokWords=['이','엑셀','매출','데이터','를','요약','해줘'];
-  const tokbox=document.getElementById('tokbox');
-  function renderTokens(){tokbox.innerHTML='';tokWords.forEach((w,i)=>{const s=document.createElement('span');s.className='tok';s.textContent=w;s.style.animationDelay=(i*0.12)+'s';tokbox.appendChild(s);});}
-  renderTokens();setInterval(renderTokens,4200);
-
   function typewriter(el,phrases,speed,del,pause){let p=0,i=0,deleting=false;(function tick(){const full=phrases[p];el.textContent=deleting?full.slice(0,i-1):full.slice(0,i+1);i+=deleting?-1:1;let t=deleting?del:speed;if(!deleting&&i===full.length){deleting=true;t=pause;}else if(deleting&&i===0){deleting=false;p=(p+1)%phrases.length;t=400;}setTimeout(tick,t);})();}
-  typewriter(document.getElementById('llmGen'),['3분기 매출은 전분기 대비 12% 증가했습니다.','이번 달 거래처 상위 3곳이 전체의 68%를 차지합니다.'],60,28,1600);
 
   const termSeq=[{pre:'$ ',cmd:'rename 사진_*.jpg → 행사2026_*.jpg'},{text:'  ✔ 100개 파일 이름 변경 완료 (0.1초)'},{pre:'$ ',cmd:'python 정리.py   # 엑셀 50개 자동 처리'},{text:'  ✔ 50 files → 정리완료/ 저장됨'}];
   const termBody=document.getElementById('termBody');
