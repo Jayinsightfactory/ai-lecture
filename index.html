@@ -1356,19 +1356,19 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     <h3 class="reveal" style="margin-top:50px;font-size:22px">🧠 그 안에서 어떻게 처리되나 — ① 일반 지시</h3>
     <p class="reveal" style="font-size:14px">한 줄 답이 나오기까지, AI는 안에서 이런 단계를 거칩니다. (실제 Claude Code가 보여주는 trace 예시)</p>
     <div class="trace reveal" id="trace1">
-      <div class="tg">▌ AI Processing Trace</div>
+      <div class="tg">▌ AI 처리 과정</div>
       <div class="thead">📋 사용자 지시: <span class="ans">"강의 결론에서 중복 블록 정리해줘"</span></div>
-      <div class="tline"><span class="tic">🧠</span><span class="tcat">분석/계획</span> 어떤 블록이 어디와 중복인지 식별 → 위치 찾고 제거 → 검증 → 배포 순서로 진행</div>
+      <div class="tline"><span class="tic">🧠</span><span class="tcat">분석·계획</span> 어떤 블록이 어디와 중복인지 식별 → 위치 찾고 제거 → 검증 → 배포 순서로 진행</div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">🔎</span><span class="tcat">Grep</span> pattern="역질문 + 역제안 → 내 지식의 한계" <span class="ok">✔ line 1361</span></div>
-      <div class="tline"><span class="tic">📖</span><span class="tcat">Read</span> index.html lines 1358–1371 <span class="ok">✔ 컨텍스트 확인</span></div>
-      <div class="tline"><span class="tic">🔎</span><span class="tcat">Grep</span> pattern="명확한 지시 예시 3가지" <span class="ok">✔ line 1383</span></div>
-      <div class="tline"><span class="tic">📖</span><span class="tcat">Read</span> index.html lines 1378–1391 <span class="ok">✔ 컨텍스트 확인</span></div>
-      <div class="tline"><span class="tic">✏️</span><span class="tcat">Edit ①</span> 역질문/역제안 블록 제거 <span class="ok">✔ 적용</span></div>
-      <div class="tline"><span class="tic">✏️</span><span class="tcat">Edit ②</span> 명확한 지시 예시 3가지 제거 <span class="ok">✔ 적용</span></div>
+      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> "역질문 + 역제안 → 내 지식의 한계" 위치 찾기 <span class="ok">✔ 발견</span></div>
+      <div class="tline"><span class="tic">📖</span><span class="tcat">읽기</span> 해당 블록 앞뒤 12줄 읽어 맥락 확인 <span class="ok">✔ 확인 완료</span></div>
+      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> "명확한 지시 예시 3가지" 위치 찾기 <span class="ok">✔ 발견</span></div>
+      <div class="tline"><span class="tic">📖</span><span class="tcat">읽기</span> 해당 블록 앞뒤 12줄 읽어 맥락 확인 <span class="ok">✔ 확인 완료</span></div>
+      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ①</span> 역질문/역제안 블록 제거 <span class="ok">✔ 적용</span></div>
+      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ②</span> 명확한 지시 예시 3가지 제거 <span class="ok">✔ 적용</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">✅</span><span class="tcat">Verify</span> 미리보기 콘솔 오류 0건, s13에 중복 블록 없음 <span class="ok">PASS</span></div>
-      <div class="tline"><span class="tic">📦</span><span class="tcat">Commit & Push</span> 메시지 작성 → GitHub 푸시 <span class="ok">✔ 링크 자동 반영</span></div>
+      <div class="tline"><span class="tic">✅</span><span class="tcat">검증</span> 미리보기 오류 0건, 결론에 중복 블록 없음 <span class="ok">통과</span></div>
+      <div class="tline"><span class="tic">📦</span><span class="tcat">저장·공유</span> 변경 내용 저장 → 공유 링크에 자동 반영 <span class="ok">✔</span></div>
       <div class="hr"></div>
       <div class="tline"><span class="tic">💬</span><span class="tcat">최종 답변</span> <span class="ans">"중복 2블록 제거 완료. 결론 메시지가 더 응축됐어요."</span></div>
     </div>
@@ -1385,20 +1385,20 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       <div class="pe-row"><span class="petag">🧩 예시</span><span>응축된 결론 흐름: <b>[언어능력 → 명확vs모호 → 4단계 → 역설계]</b></span></div>
     </div>
     <div class="trace reveal" id="trace2">
-      <div class="tg">▌ AI Processing Trace · WITH Prompt Engineering</div>
-      <div class="thead">📋 명세화된 지시 → 트레이스가 이렇게 달라집니다</div>
-      <div class="tline"><span class="tic">🧠</span><span class="tcat">분석/계획</span> 명세대로 후보 2개 식별 + 제약 반영 → 바로 실행 <span class="ok">(탐색 단계↓)</span></div>
+      <div class="tg">▌ AI 처리 과정 · 프롬프트 엔지니어링 적용</div>
+      <div class="thead">📋 명세화된 지시 → 처리 과정이 이렇게 달라집니다</div>
+      <div class="tline"><span class="tic">🧠</span><span class="tcat">분석·계획</span> 명세대로 후보 2개 바로 식별 + 제약 반영 → 즉시 실행 <span class="ok">(헤매는 단계 ↓)</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">🔎</span><span class="tcat">Grep</span> "역질문 + 역제안" <span class="ok">✔ s13/line 1361 — 명세 매칭</span></div>
-      <div class="tline"><span class="tic">✏️</span><span class="tcat">Edit ①</span> 제거 (핵심 흐름 무손상) <span class="ok">✔</span></div>
-      <div class="tline"><span class="tic">🔎</span><span class="tcat">Grep</span> "명확한 지시 예시 3가지" <span class="ok">✔ s13/line 1383 — 명세 매칭</span></div>
-      <div class="tline"><span class="tic">✏️</span><span class="tcat">Edit ②</span> 제거 <span class="ok">✔</span></div>
-      <div class="tline"><span class="tic">🛡️</span><span class="tcat">Guard</span> 다른 섹션(s1~s12) 변경 0건 확인 <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> "역질문 + 역제안" 위치 찾기 <span class="ok">✔ 명세에 그대로 매칭</span></div>
+      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ①</span> 제거 (핵심 흐름 무손상) <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">🔎</span><span class="tcat">검색</span> "명확한 지시 예시 3가지" 위치 찾기 <span class="ok">✔ 명세에 그대로 매칭</span></div>
+      <div class="tline"><span class="tic">✏️</span><span class="tcat">수정 ②</span> 제거 <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">🛡️</span><span class="tcat">보호장치</span> 다른 섹션 변경 0건 확인 <span class="ok">✔</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">✅</span><span class="tcat">Verify</span> 콘솔 0건 · 핵심 흐름(언어능력→4단계→역설계) 보존 <span class="ok">PASS</span></div>
-      <div class="tline"><span class="tic">📦</span><span class="tcat">Commit & Push</span> "중복 정리(s13만): 역질문블록·명확지시egs" <span class="ok">✔</span></div>
+      <div class="tline"><span class="tic">✅</span><span class="tcat">검증</span> 오류 0건 · 핵심 흐름(언어능력 → 4단계 → 역설계) 보존 <span class="ok">통과</span></div>
+      <div class="tline"><span class="tic">📦</span><span class="tcat">저장·공유</span> 메모: "중복 정리(결론만): 역질문 블록·명확 지시 예시" <span class="ok">✔</span></div>
       <div class="hr"></div>
-      <div class="tline"><span class="tic">💬</span><span class="tcat">최종 답변</span> <span class="ans">(명세된 1줄 요약) "s13에서 2개 중복 블록 제거. 핵심 흐름 보존, 다른 섹션 무변동."</span></div>
+      <div class="tline"><span class="tic">💬</span><span class="tcat">최종 답변</span> <span class="ans">(명세된 1줄 요약) "결론에서 2개 중복 블록 제거. 핵심 흐름 보존, 다른 섹션 무변동."</span></div>
     </div>
 
     <h3 class="reveal" style="margin-top:30px;font-size:18px">①과 ②의 차이</h3>
