@@ -181,6 +181,49 @@
   .qbob{animation:qbob 1.6s ease-in-out infinite;display:inline-block}
   @keyframes qbob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-7px) rotate(5deg)}}
   .blink{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+
+  /* ===== LLM internals visuals (사이트 효과 복원) ===== */
+  @keyframes vecpulse{0%,100%{opacity:.35}50%{opacity:1}}
+  @keyframes floatY{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-9px)}}
+  @keyframes popIn{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.1)}100%{transform:scale(1)}}
+  @keyframes layerGlow{0%{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 6px 18px rgba(91,140,255,.3)}28%,100%{border-color:var(--line);box-shadow:none}}
+  @keyframes barLive{0%,100%{transform:scaleX(.84)}50%{transform:scaleX(1)}}
+  @keyframes bounce3{0%,80%,100%{transform:scale(.5);opacity:.4}40%{transform:scale(1);opacity:1}}
+
+  .tokchips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .tchip{background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:7px 12px;text-align:center;font-size:15px;color:var(--txt)}
+  .slide.active .tchip{animation:popIn .5s both}
+  .slide.active .tchip:nth-child(2){animation-delay:.1s}.slide.active .tchip:nth-child(3){animation-delay:.2s}
+  .slide.active .tchip:nth-child(4){animation-delay:.3s}.slide.active .tchip:nth-child(5){animation-delay:.4s}
+  .tchip .id{display:block;font-size:10px;color:var(--accent);font-family:"Consolas",monospace;margin-top:3px}
+
+  .vrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+  .vtag{font-size:14px;background:var(--bg2);border:1px solid var(--line);border-radius:9px;padding:7px 12px;color:var(--txt)}
+  .vbars{display:flex;gap:3px}
+  .vbars b{width:13px;height:30px;border-radius:3px;display:block}
+  .slide.active .vbars b{animation:vecpulse 2.6s ease-in-out infinite}
+
+  .vmap{position:relative;height:188px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;margin-top:14px;overflow:hidden;
+    background-image:radial-gradient(circle at 50% 50%,rgba(91,140,255,.06),transparent 70%)}
+  .vpt{position:absolute;font-size:15px;color:var(--txt);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 12px;transform:translate(-50%,-50%);white-space:nowrap}
+  .slide.active .vpt{animation:floatY 3.4s ease-in-out infinite}
+
+  .attn{display:grid;grid-template-columns:auto repeat(4,42px);gap:5px;align-items:center;font-size:12px;width:max-content;margin:6px auto 0}
+  .attn .h{text-align:center;color:var(--dim)}
+  .attn .rh{text-align:right;padding-right:6px;color:var(--sub)}
+  .attn .c{height:30px;border-radius:5px;background:var(--accent)}
+  .slide.active .attn .c{animation:vecpulse 3s ease-in-out infinite}
+
+  .layers{display:flex;flex-direction:column-reverse;gap:6px;margin-top:6px}
+  .layers .ly{height:16px;border-radius:5px;background:var(--card2);border:1px solid var(--line)}
+  .slide.active .layers .ly{animation:layerGlow 4.5s linear infinite}
+
+  .slide.active .bar.live{transform-origin:left;animation:barLive 2.6s ease-in-out infinite}
+
+  .dots3{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}
+  .dots3 b{width:5px;height:5px;border-radius:50%;background:var(--dim);display:inline-block}
+  .slide.active .dots3 b{animation:bounce3 1.2s infinite}
+  .slide.active .dots3 b:nth-child(2){animation-delay:.2s}.slide.active .dots3 b:nth-child(3){animation-delay:.4s}
 </style>
 </head>
 <body>
@@ -196,7 +239,7 @@
       이 강의는 <b style="color:var(--txt)">필요한 누군가</b>에겐 도움이 될 거고,<br>필요 없는 사람에겐 영원히 필요 없을지도 모릅니다.<br>
       그래도 — <span class="hl" style="font-weight:800">단 한 명에게라도 도움이 된다면,</span> 그걸로 충분합니다.
     </div>
-    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 30장</p>
+    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 31장</p>
   </div>
 </section>
 
@@ -289,9 +332,9 @@
         <h3 style="color:var(--bad);font-size:18px;margin-bottom:8px">❌ 흐릿한 입력</h3>
         <p style="color:var(--txt);font-size:14px;margin-bottom:10px">"그거 좀 정리해줘"</p>
         <div class="prob">
-          <div class="pr"><span class="w">정렬?</span><span class="barwrap"><span class="bar bad" style="width:38%"></span></span><span class="pct">38%</span></div>
-          <div class="pr"><span class="w">요약?</span><span class="barwrap"><span class="bar bad" style="width:33%"></span></span><span class="pct">33%</span></div>
-          <div class="pr"><span class="w">삭제?</span><span class="barwrap"><span class="bar bad" style="width:29%"></span></span><span class="pct">29%</span></div>
+          <div class="pr"><span class="w">정렬?</span><span class="barwrap"><span class="bar bad live" style="width:38%"></span></span><span class="pct">38%</span></div>
+          <div class="pr"><span class="w">요약?</span><span class="barwrap"><span class="bar bad live" style="width:33%"></span></span><span class="pct">33%</span></div>
+          <div class="pr"><span class="w">삭제?</span><span class="barwrap"><span class="bar bad live" style="width:29%"></span></span><span class="pct">29%</span></div>
         </div>
         <p style="color:var(--bad);font-size:13px;margin-top:10px;font-weight:700">→ 아무거나 골라 틀릴 위험·환각</p>
       </div>
@@ -310,21 +353,87 @@
   </div>
 </section>
 
-<!-- 6 내부 6단계 -->
+<!-- 6 LLM 내부 ① 토큰·임베딩·의미공간 -->
 <section class="slide">
   <div class="wrap">
-    <div class="badge reveal-up d1"><span class="num">01</span><span class="lbl">LLM 내부</span></div>
-    <h2 class="reveal-up d1">LLM 내부를 한 단계씩</h2>
-    <p class="lead reveal-up d2">토큰화 → 임베딩 → 위치 → 어텐션 → 트랜스포머 층 → 출력(확률)</p>
-    <div class="grid g3 reveal-up d2" style="margin-top:20px">
-      <div class="card"><h3 style="color:var(--accent)">① 토큰화</h3><p>문장을 조각으로 분해 + 번호 부여<br><span class="mono" style="font-size:11px;color:var(--dim)">인공[#8123] 지능[#4502]</span></p></div>
-      <div class="card"><h3 style="color:var(--accent)">② 임베딩</h3><p>각 토큰을 의미 벡터(숫자 768+)로. 비슷한 의미는 가까운 좌표</p></div>
-      <div class="card"><h3 style="color:var(--accent)">③ 위치 인코딩</h3><p>순서 정보 추가<br>"개가 사람을" ≠ "사람이 개를"</p></div>
-      <div class="card" style="border-color:var(--accent)"><h3 style="color:var(--accent)">④ 어텐션 (핵심)</h3><p>각 단어가 어디에 주목할지 가중치 → 문맥·관계 파악</p></div>
-      <div class="card"><h3 style="color:var(--accent)">⑤ 트랜스포머 층</h3><p>어텐션·계산을 수십 층 반복 → 점점 정교한 의미</p></div>
-      <div class="card"><h3 style="color:var(--accent)">⑥ 출력(Softmax)</h3><p>전체 사전 확률 분포 → 하나 고르고 다시 ①로 (자기회귀)</p></div>
+    <div class="badge reveal-up d1"><span class="num">01</span><span class="lbl">LLM 내부 ①</span></div>
+    <h2 class="reveal-up d1">토큰화 → 임베딩 → 의미 공간</h2>
+    <p class="lead reveal-up d2">문장을 조각(토큰)으로 나누고, 각 조각을 의미 좌표(벡터)로 — 비슷한 뜻은 가까이 모입니다.</p>
+    <div class="row reveal-up d2" style="margin-top:14px;align-items:stretch">
+      <div class="col card">
+        <h3 style="color:var(--accent)">① 토큰화 — 조각 + 번호</h3>
+        <div class="tokchips" style="margin-top:10px">
+          <span class="tchip">인공<span class="id">#8123</span></span>
+          <span class="tchip">지능<span class="id">#4502</span></span>
+          <span class="tchip">은<span class="id">#11</span></span>
+          <span class="tchip">똑똑<span class="id">#9981</span></span>
+          <span class="tchip">하다<span class="id">#205</span></span>
+        </div>
+        <p style="font-size:12px;color:var(--dim);margin-top:11px">"인공지능은 똑똑하다" → ID 배열 [8123, 4502, 11, 9981, 205]</p>
+      </div>
+      <div class="col card">
+        <h3 style="color:var(--accent)">② 임베딩 — 의미 벡터</h3>
+        <div class="vrow">
+          <span class="vtag">지능 #4502</span>
+          <span style="color:var(--accent);font-weight:800">▶</span>
+          <span class="vbars">
+            <b style="background:#5b8cff"></b><b style="background:#7c5cff;animation-delay:.2s"></b><b style="background:#2dd4a7;animation-delay:.4s"></b><b style="background:#ff6b3b;animation-delay:.6s"></b><b style="background:#ffc93c;animation-delay:.8s"></b><b style="background:#4185f4;animation-delay:1s"></b><b style="background:#d97757;animation-delay:1.2s"></b><b style="background:#b96fff;animation-delay:1.4s"></b><b style="background:#2dd4a7;animation-delay:1.6s"></b><b style="background:#5b8cff;animation-delay:1.8s"></b>
+          </span>
+        </div>
+        <p style="font-size:12px;color:var(--dim);margin-top:11px">…실제론 768~수천 개 숫자. 이 숫자들이 곧 "의미 좌표"</p>
+      </div>
     </div>
-    <div class="note reveal-up d5">④ 어텐션이 트랜스포머의 핵심 — 각 단어가 문장 안 다른 단어에 얼마나 "주목"할지 계산.</div>
+    <div class="vmap reveal-up d3">
+      <span class="vpt" style="left:24%;top:30%">👑 왕</span>
+      <span class="vpt" style="left:40%;top:21%;animation-delay:.3s">👑 여왕</span>
+      <span class="vpt" style="left:73%;top:56%;animation-delay:.6s">🍎 사과</span>
+      <span class="vpt" style="left:86%;top:70%;animation-delay:.9s">🍌 바나나</span>
+      <span class="vpt" style="left:25%;top:72%;animation-delay:1.2s">🐱 고양이</span>
+      <span class="vpt" style="left:42%;top:82%;animation-delay:1.5s">🐶 강아지</span>
+    </div>
+    <div class="note reveal-up d4">'왕·여왕'은 가깝고 '사과·바나나'는 따로 모임 → AI가 "비슷한 의미"를 이해. (왕−남자+여자 ≈ 여왕 같은 계산도 가능)</div>
+  </div>
+</section>
+
+<!-- 6b LLM 내부 ② 위치·어텐션·층·출력 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">01</span><span class="lbl">LLM 내부 ②</span></div>
+    <h2 class="reveal-up d1">위치 → 어텐션 → 층 → 출력</h2>
+    <div class="row reveal-up d2" style="margin-top:14px;align-items:stretch">
+      <div class="col card" style="flex:1.15">
+        <h3 style="color:var(--accent)">④ 어텐션 — 어디에 주목할지 (핵심)</h3>
+        <p style="font-size:12px;color:var(--sub);margin:6px 0 6px">밝을수록 더 주목 — "찾았다" → "돈을·은행"을 봄</p>
+        <div class="attn">
+          <span></span><span class="h">나는</span><span class="h">은행</span><span class="h">돈을</span><span class="h">찾았다</span>
+          <span class="rh">나는</span><span class="c" style="opacity:.85"></span><span class="c" style="opacity:.2"></span><span class="c" style="opacity:.2"></span><span class="c" style="opacity:.2"></span>
+          <span class="rh">은행</span><span class="c" style="opacity:.2"></span><span class="c" style="opacity:.75"></span><span class="c" style="opacity:.5"></span><span class="c" style="opacity:.3"></span>
+          <span class="rh">돈을</span><span class="c" style="opacity:.2"></span><span class="c" style="opacity:.45"></span><span class="c" style="opacity:.8"></span><span class="c" style="opacity:.35"></span>
+          <span class="rh">찾았다</span><span class="c" style="opacity:.2"></span><span class="c" style="opacity:.5"></span><span class="c" style="opacity:.9"></span><span class="c" style="opacity:.3"></span>
+        </div>
+      </div>
+      <div class="col card" style="flex:.65">
+        <h3 style="color:var(--accent)">⑤ 트랜스포머 층</h3>
+        <p style="font-size:12px;color:var(--sub);margin:6px 0">아래→위로 의미가 점점 정교해짐</p>
+        <div class="layers">
+          <div class="ly"></div><div class="ly" style="animation-delay:.4s"></div><div class="ly" style="animation-delay:.8s"></div><div class="ly" style="animation-delay:1.2s"></div><div class="ly" style="animation-delay:1.6s"></div><div class="ly" style="animation-delay:2s"></div>
+        </div>
+      </div>
+      <div class="col card" style="flex:1">
+        <h3 style="color:var(--accent)">⑥ 출력 (Softmax)</h3>
+        <p style="font-size:12px;color:var(--sub);margin:6px 0 8px">다음 단어 확률 → 하나 선택</p>
+        <div class="prob">
+          <div class="pr"><span class="w" style="width:64px">똑똑하다</span><span class="barwrap"><span class="bar live" style="width:64%"></span></span><span class="pct">64%</span></div>
+          <div class="pr"><span class="w" style="width:64px">유용하다</span><span class="barwrap"><span class="bar live" style="width:24%"></span></span><span class="pct">21%</span></div>
+          <div class="pr"><span class="w" style="width:64px">빠르다</span><span class="barwrap"><span class="bar live" style="width:13%"></span></span><span class="pct">11%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card reveal-up d3" style="margin-top:14px">
+      <h3 style="color:var(--accent);font-size:14px">③ 위치 인코딩 — 순서를 기억</h3>
+      <p style="font-size:13px;margin-top:6px;color:var(--sub)">"개가<span style="color:var(--accent);font-size:10px"> pos1</span> 사람을<span style="color:var(--accent);font-size:10px"> pos2</span> 물다<span style="color:var(--accent);font-size:10px"> pos3</span>" ≠ "사람이 개를 물다" — 위치가 바뀌면 의미가 정반대. 그래서 각 토큰에 순서 정보를 더합니다.</p>
+    </div>
+    <div class="note reveal-up d4">④ 어텐션이 트랜스포머의 핵심 — 각 단어가 문장 안 다른 단어에 얼마나 "주목"할지 계산해 문맥을 이해.</div>
   </div>
 </section>
 
@@ -361,10 +470,10 @@
     <h2 class="reveal-up d1">같은 질문, 모델마다 답이 다르다</h2>
     <p class="lead reveal-up d2">질문: "이 회의록 정리해서 액션 아이템 뽑아줘" — 학습·특화 차이가 답에 드러남</p>
     <div class="grid g4 reveal-up d2" style="margin-top:18px">
-      <div class="card"><div class="mhead"><div class="logo" style="background:var(--claude)">C</div><div><div style="font-weight:800;font-size:14px">Claude</div><div style="font-size:11px;color:var(--dim)">긴문서·신중</div></div></div><div class="ans">"먼저 짧게 확인할게요 — 참석자·목적이 어떻게 되나요? 액션을 빠뜨리지 않으려고요."</div><div class="tag">→ 맥락 먼저 확인</div></div>
-      <div class="card"><div class="mhead"><div class="logo" style="background:var(--gpt)">G</div><div><div style="font-weight:800;font-size:14px">GPT</div><div style="font-size:11px;color:var(--dim)">범용·균형</div></div></div><div class="ans">"핵심 3가지: ①출시 의견 ②예산 우려 ③마케팅 마감. 액션도 정리할까요?"</div><div class="tag">→ 빠르고 구조적</div></div>
-      <div class="card"><div class="mhead"><div class="logo" style="background:var(--codex)">{}</div><div><div style="font-weight:800;font-size:14px">Codex</div><div style="font-size:11px;color:var(--dim)">코드 특화</div></div></div><div class="ans mono" style="font-size:11px">actions = re.findall(r'(\w+)→(.+)', text)</div><div class="tag">→ 코드·자동화 위주</div></div>
-      <div class="card"><div class="mhead"><div class="logo" style="background:var(--gemini)">◆</div><div><div style="font-weight:800;font-size:14px">Gemini</div><div style="font-size:11px;color:var(--dim)">Google·멀티모달</div></div></div><div class="ans">"정리하고 Calendar에 자동 등록 가능. [Sheets] [Calendar] [팀 채팅]"</div><div class="tag">→ 생태계 연계</div></div>
+      <div class="card"><div class="mhead"><div class="logo" style="background:var(--claude)">C</div><div><div style="font-weight:800;font-size:14px">Claude</div><div style="font-size:11px;color:var(--dim)">긴문서·신중</div></div></div><div class="ans">"먼저 짧게 확인할게요 — 참석자·목적이 어떻게 되나요? 액션을 빠뜨리지 않으려고요. <span class="dots3"><b></b><b></b><b></b></span>"</div><div class="tag">→ 맥락 먼저 확인</div></div>
+      <div class="card"><div class="mhead"><div class="logo" style="background:var(--gpt)">G</div><div><div style="font-weight:800;font-size:14px">GPT</div><div style="font-size:11px;color:var(--dim)">범용·균형</div></div></div><div class="ans">"핵심 3가지: ①출시 의견 ②예산 우려 ③마케팅 마감. 액션도 정리할까요? <span class="dots3"><b></b><b></b><b></b></span>"</div><div class="tag">→ 빠르고 구조적</div></div>
+      <div class="card"><div class="mhead"><div class="logo" style="background:var(--codex)">{}</div><div><div style="font-weight:800;font-size:14px">Codex</div><div style="font-size:11px;color:var(--dim)">코드 특화</div></div></div><div class="ans mono" style="font-size:11px">actions = re.findall(r'(\w+)→(.+)', text) <span class="dots3"><b></b><b></b><b></b></span></div><div class="tag">→ 코드·자동화 위주</div></div>
+      <div class="card"><div class="mhead"><div class="logo" style="background:var(--gemini)">◆</div><div><div style="font-weight:800;font-size:14px">Gemini</div><div style="font-size:11px;color:var(--dim)">Google·멀티모달</div></div></div><div class="ans">"정리하고 Calendar에 자동 등록 가능. [Sheets] [Calendar] [팀 채팅] <span class="dots3"><b></b><b></b><b></b></span>"</div><div class="tag">→ 생태계 연계</div></div>
     </div>
     <div class="note reveal-up d5">구조는 같음(다음 단어 예측). 차이는 학습·특화·튜닝. 작업에 따라 어느 모델이 강한지 보는 안목이 중요.</div>
   </div>
