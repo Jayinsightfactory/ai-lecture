@@ -72,6 +72,59 @@
   .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:float 9s ease-in-out infinite}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:13px;color:var(--sub);margin-bottom:26px}
   .dot-live{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(45,212,167,.18);animation:logoPulse 2s infinite}
+  /* full dashboard UI mockup */
+  .bigdash{background:#08090f;border:1px solid var(--line);border-radius:14px;margin-top:16px;overflow:hidden;font-family:"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif}
+  .bd-topbar{background:linear-gradient(180deg,#10131c,#0c0f17);padding:11px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:8px}
+  .bd-logo{font-size:13.5px;font-weight:800;color:var(--txt)}
+  .bd-nav{display:flex;gap:14px;font-size:12px;color:var(--dim)}
+  .bd-nav .nav-on{color:var(--accent);font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:1px}
+  .bd-status{font-size:11.5px;color:var(--sub);display:flex;align-items:center;gap:6px}
+  .bd-status .bd-dot{width:8px;height:8px;border-radius:50%;background:var(--good);animation:logoPulse 2s infinite;box-shadow:0 0 0 4px rgba(45,212,167,.15)}
+  .bd-body{display:grid;grid-template-columns:158px 1fr;min-height:480px}
+  @media(max-width:760px){.bd-body{grid-template-columns:1fr}}
+  .bd-side{background:#0c0f17;border-right:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;gap:5px}
+  .bd-side-title{font-size:10.5px;color:var(--dim);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin:4px 6px 6px}
+  .bd-side-item{font-size:12.5px;color:var(--sub);padding:7px 10px;border-radius:7px;display:flex;align-items:center;gap:7px;transition:.2s;cursor:pointer}
+  .bd-side-item:hover{background:rgba(91,140,255,.08)}
+  .bd-side-item.act{background:rgba(91,140,255,.15);color:var(--txt);border-left:3px solid var(--accent);padding-left:7px}
+  .bd-main{padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+  @media(max-width:760px){.bd-main{grid-template-columns:1fr}}
+  .bd-panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px}
+  .bd-panel.full{grid-column:1/-1}
+  .bd-ptitle{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:.05em;margin-bottom:11px;display:flex;justify-content:space-between;align-items:center}
+  .bd-ptitle small{color:var(--dim);font-weight:600;font-size:10.5px}
+  /* active agents progress */
+  .bd-row{display:flex;align-items:center;gap:9px;margin:7px 0;font-size:12px}
+  .bd-rname{flex:none;width:96px;color:var(--txt)}
+  .bd-progress{flex:1;height:8px;background:var(--bg2);border:1px solid var(--line);border-radius:5px;overflow:hidden;position:relative}
+  .bd-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--codex));border-radius:5px;animation:probLive 2.4s ease-in-out infinite;transform-origin:left}
+  .bd-rpct{font-size:11px;color:var(--sub);width:42px;text-align:right;font-family:"Consolas",monospace}
+  /* chart */
+  .bd-chart{display:flex;align-items:flex-end;gap:8px;height:118px;padding-bottom:18px;position:relative;margin-top:4px}
+  .bd-bar{flex:1;background:linear-gradient(180deg,var(--accent),rgba(91,140,255,.3));border-radius:5px 5px 0 0;position:relative;animation:probLive 2.6s ease-in-out infinite;transform-origin:bottom}
+  .bd-bar.hot{background:linear-gradient(180deg,var(--good),rgba(45,212,167,.3))}
+  .bd-bar::after{content:attr(data-h);position:absolute;left:50%;transform:translateX(-50%);bottom:-16px;font-size:10px;color:var(--dim);white-space:nowrap}
+  /* logs */
+  .bd-log{font-size:11.5px;color:var(--sub);padding:6px 8px;border-left:2px solid var(--line);margin:4px 0;font-family:"Consolas","Malgun Gothic",monospace;line-height:1.5}
+  .bd-log .bd-tm{color:var(--accent);font-weight:700;margin-right:6px;font-family:"Consolas",monospace}
+  .bd-log .bd-em2{margin-right:4px}
+  /* history timeline */
+  .bd-tl{display:flex;flex-direction:column;gap:7px}
+  .bd-tl-row{display:flex;align-items:center;gap:9px;font-size:11.5px;padding:5px 4px;border-radius:6px;position:relative}
+  .bd-tl-row::before{content:'';position:absolute;left:48px;top:13px;bottom:-8px;width:1px;background:var(--line)}
+  .bd-tl-row:last-child::before{display:none}
+  .bd-tl-time{flex:none;width:36px;color:var(--accent);font-weight:700;font-family:"Consolas",monospace;font-size:11px}
+  .bd-tl-icon{flex:none;width:24px;height:24px;background:var(--bg2);border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:13px;z-index:2}
+  .bd-tl-text{color:var(--sub)}
+  .bd-tl-row.tl-rb .bd-tl-icon{background:rgba(255,201,60,.18);border-color:var(--warn)}
+  .bd-tl-row.tl-rb .bd-tl-text{color:var(--warn)}
+  /* rollback grid */
+  .bd-rbgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  @media(max-width:760px){.bd-rbgrid{grid-template-columns:1fr}}
+  .bd-rb{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:8px;padding:10px 12px}
+  .bd-rb-name{font-size:12px;color:var(--txt);font-weight:700;margin-bottom:3px;line-height:1.4}
+  .bd-rb-time{font-size:10.5px;color:var(--dim);font-family:"Consolas",monospace;margin-bottom:7px}
+  .bd-rb-btn{font-size:11px;color:var(--warn);font-weight:700;background:rgba(255,201,60,.12);border:1px solid rgba(255,201,60,.4);border-radius:6px;padding:4px 10px;display:inline-block;cursor:pointer}
   /* architecture flow (own website) */
   .archstep{flex:1;min-width:158px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center;position:relative}
   .archstep .arch-em{font-size:30px;display:block;margin-bottom:6px}
@@ -1609,6 +1662,85 @@ GET /api/contacts/<span class="af-num">1042</span></div>
       <div class="def reveal d4"><span class="em">📊</span><h3 style="font-size:15px">④ 시각 대시보드</h3><p style="font-size:12.5px"><b style="color:var(--txt)">상태·진행률·이상치</b>를 한눈에. <span style="color:var(--accent)">왜?</span> 빠른 판단·개입이 가능 (로그가 텍스트면 안 보임)</p></div>
     </div>
     <p class="note reveal">정리: <b style="color:var(--txt)">로그·히스토리·롤백</b>이 운영 안전망이고, <b style="color:var(--txt)">시각 대시보드</b>는 그걸 한눈에 보게 해주는 창입니다. 이게 없으면 에이전트는 '믿고 맡기기' 어려움. 있으면 <b style="color:var(--txt)">'믿되 보이게'</b> 운영이 가능합니다.</p>
+
+    <h3 class="reveal" style="margin-top:32px;font-size:18px">🖥️ 실제 화면으로 보면 — 에이전트 작업 + 로그 + 히스토리 + 롤백 + 차트 한 화면</h3>
+    <div class="bigdash reveal">
+      <div class="bd-topbar">
+        <div class="bd-logo">🎛️ MyAgents Dashboard</div>
+        <div class="bd-nav"><span class="nav-on">홈</span><span>에이전트</span><span>로그</span><span>설정</span></div>
+        <div class="bd-status"><span class="bd-dot"></span>6/6 정상 · 14:25</div>
+      </div>
+      <div class="bd-body">
+        <div class="bd-side">
+          <div class="bd-side-title">에이전트</div>
+          <div class="bd-side-item act">💻 코딩</div>
+          <div class="bd-side-item">🔎 리서치</div>
+          <div class="bd-side-item">📨 메일</div>
+          <div class="bd-side-item">📊 데이터 분석</div>
+          <div class="bd-side-item">🎧 고객응대</div>
+          <div class="bd-side-item">📅 일정 관리</div>
+        </div>
+        <div class="bd-main">
+          <div class="bd-panel">
+            <div class="bd-ptitle">🤖 작업 중인 에이전트<small>실시간</small></div>
+            <div class="bd-row"><span class="bd-rname">💻 코딩</span><div class="bd-progress"><span style="width:72%"></span></div><span class="bd-rpct">72%</span></div>
+            <div class="bd-row"><span class="bd-rname">📊 데이터 분석</span><div class="bd-progress"><span style="width:34%;animation-delay:.3s"></span></div><span class="bd-rpct">34%</span></div>
+            <div class="bd-row"><span class="bd-rname">🎧 고객응대</span><div class="bd-progress"><span style="width:100%;background:var(--good);animation:none"></span></div><span class="bd-rpct" style="color:var(--good)">완료</span></div>
+            <div class="bd-row"><span class="bd-rname">📨 메일</span><div class="bd-progress"><span style="width:0%;background:var(--dim);animation:none"></span></div><span class="bd-rpct" style="color:var(--dim)">대기</span></div>
+          </div>
+          <div class="bd-panel">
+            <div class="bd-ptitle">📊 오늘 처리량 (시간대별)<small>건수</small></div>
+            <div class="bd-chart">
+              <div class="bd-bar" data-h="10시" style="height:42%"></div>
+              <div class="bd-bar" data-h="11시" style="height:68%;animation-delay:.2s"></div>
+              <div class="bd-bar" data-h="12시" style="height:55%;animation-delay:.4s"></div>
+              <div class="bd-bar" data-h="13시" style="height:80%;animation-delay:.6s"></div>
+              <div class="bd-bar hot" data-h="14시" style="height:95%;animation-delay:.8s"></div>
+            </div>
+          </div>
+          <div class="bd-panel">
+            <div class="bd-ptitle">📝 작업 로그<small>최근 6건</small></div>
+            <div class="bd-log"><span class="bd-tm">14:24</span><span class="bd-em2">💻</span>코딩 · <b style="color:var(--txt)">/signup 라우트 추가</b> 완료</div>
+            <div class="bd-log"><span class="bd-tm">14:18</span><span class="bd-em2">📊</span>데이터 · 3분기 매출 표 생성</div>
+            <div class="bd-log"><span class="bd-tm">14:11</span><span class="bd-em2">🎧</span>고객응대 · 문의 #1042 처리</div>
+            <div class="bd-log"><span class="bd-tm">14:03</span><span class="bd-em2">📨</span>메일 · 일괄 발송 (123건)</div>
+            <div class="bd-log"><span class="bd-tm">13:55</span><span class="bd-em2">🔎</span>리서치 · 경쟁사 가격 조사</div>
+            <div class="bd-log"><span class="bd-tm">13:40</span><span class="bd-em2">📅</span>일정 · 회의 자동 등록</div>
+          </div>
+          <div class="bd-panel">
+            <div class="bd-ptitle">🕐 히스토리 (오늘 타임라인)</div>
+            <div class="bd-tl">
+              <div class="bd-tl-row"><span class="bd-tl-time">14:24</span><span class="bd-tl-icon">💻</span><span class="bd-tl-text">User.js 수정 · /signup 라우트 추가</span></div>
+              <div class="bd-tl-row tl-rb"><span class="bd-tl-time">14:20</span><span class="bd-tl-icon">⏪</span><span class="bd-tl-text"><b>롤백 지점 #14 자동 생성</b></span></div>
+              <div class="bd-tl-row"><span class="bd-tl-time">14:18</span><span class="bd-tl-icon">📊</span><span class="bd-tl-text">매출 분석 테이블 생성</span></div>
+              <div class="bd-tl-row"><span class="bd-tl-time">14:11</span><span class="bd-tl-icon">🎧</span><span class="bd-tl-text">문의 응답 발송</span></div>
+              <div class="bd-tl-row tl-rb"><span class="bd-tl-time">14:00</span><span class="bd-tl-icon">⏪</span><span class="bd-tl-text"><b>롤백 지점 #13 자동 생성</b></span></div>
+            </div>
+          </div>
+          <div class="bd-panel full">
+            <div class="bd-ptitle">⏪ 롤백 지점 (위험 작업 직전 자동 스냅샷)<small>한 번 클릭으로 복구</small></div>
+            <div class="bd-rbgrid">
+              <div class="bd-rb">
+                <div class="bd-rb-name">#14 회원가입 기능 추가 직전</div>
+                <div class="bd-rb-time">14:20 · User.js 변경 전 상태</div>
+                <span class="bd-rb-btn">⏪ 되돌리기</span>
+              </div>
+              <div class="bd-rb">
+                <div class="bd-rb-name">#13 결제 모듈 적용 직전</div>
+                <div class="bd-rb-time">14:00 · DB 마이그레이션 전</div>
+                <span class="bd-rb-btn">⏪ 되돌리기</span>
+              </div>
+              <div class="bd-rb">
+                <div class="bd-rb-name">#12 메일 일괄 발송 직전</div>
+                <div class="bd-rb-time">13:55 · 발송 큐 상태 보존</div>
+                <span class="bd-rb-btn">⏪ 되돌리기</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note reveal" style="margin-top:6px">한 화면에 <b style="color:var(--txt)">🤖 작업 중 + 📊 처리량 차트 + 📝 로그 + 🕐 히스토리 + ⏪ 롤백</b>이 다 보이면, 에이전트가 많아져도 관리가 안정적입니다. <b style="color:var(--txt)">"내가 시킨 적 없는 일을 했는가? / 잘못된 시점은 언제인가? / 되돌릴 수 있는가?"</b> — 세 질문에 즉시 답이 나오는 게 핵심.</p>
 
     <h3 class="reveal" style="margin-top:48px;font-size:22px">🌐 로컬에서 → '나만의 사이트'로 — 필요한 4가지 구성요소</h3>
     <p class="reveal" style="font-size:14px">지금까지 본 건 내 컴퓨터에서만 도는 <b style="color:var(--txt)">로컬</b> 웹서버. 진짜 '나만의 사이트'로 누구나 접속하려면 <b style="color:var(--txt)">프론트 + 도메인 + 배포 서버 + 저장 서버</b> 4가지가 필요해요.</p>
