@@ -259,6 +259,49 @@
   .uxc .ln .i{flex:none}
   .uxarrow{position:absolute;right:-13px;top:50%;transform:translateY(-50%);z-index:3;width:26px;height:26px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;color:var(--accent);font-weight:900;font-size:13px}
   @media(max-width:820px){.uxarrow{display:none}}
+
+  /* ===== UI/UX/AX 화면 목업 (모바일 · PC) ===== */
+  .phones{display:flex;justify-content:center;gap:26px;margin-top:16px;flex-wrap:wrap}
+  .pwrap{text-align:center}
+  .phone{width:196px;background:#06080d;border:7px solid #2a3344;border-radius:26px;overflow:hidden;box-shadow:0 14px 44px rgba(0,0,0,.45)}
+  .pbar{background:#10131c;color:var(--sub);font-size:10px;padding:6px 11px;display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}
+  .pscr{height:344px;padding:11px;overflow:hidden;font-size:11px;text-align:left;background:var(--bg2)}
+  .pcap{font-size:13px;font-weight:800;margin-top:12px}
+  .pcap small{display:block;font-size:11px;font-weight:500;color:var(--sub);margin-top:3px}
+  /* plain UI */
+  .frow{display:flex;align-items:center;gap:6px;margin:7px 0;color:var(--sub)}
+  .frow span{width:40px;flex:none;font-size:10px}
+  .fctrl{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:5px 7px;color:var(--dim);font-size:9.5px}
+  .pbtn{margin-top:11px;background:#3a4252;color:#fff;text-align:center;padding:8px;border-radius:6px;font-size:11px;font-weight:700}
+  .pbtn.accent{background:var(--accent)}
+  /* UX */
+  .uxsteps{display:flex;gap:5px;justify-content:center;margin-bottom:11px}
+  .uxsteps i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+  .uxsteps i.on{background:var(--accent);width:18px;border-radius:4px}
+  .uxcard{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px;margin:7px 0;display:flex;gap:8px;align-items:center}
+  .uxcard .thumb{width:32px;height:32px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--codex));flex:none}
+  .uxcard .nm{font-size:11px;color:var(--txt);font-weight:600}
+  .uxcard .meta{font-size:9px;color:var(--dim)}
+  .uxchip{display:inline-block;background:rgba(45,212,167,.12);border:1px solid rgba(45,212,167,.35);color:var(--good);border-radius:999px;padding:3px 9px;font-size:9.5px;margin:6px 0}
+  .uxstep{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 9px;margin:7px 0;font-size:11px;color:var(--txt)}
+  .uxstep .qty{color:var(--accent);font-weight:800}
+  /* AX chat */
+  .axb{font-size:10.5px;line-height:1.42;padding:6px 9px;border-radius:9px;margin:6px 0;max-width:90%;white-space:pre-wrap}
+  .axb.me{background:rgba(91,140,255,.16);border:1px solid rgba(91,140,255,.4);color:var(--txt);margin-left:auto}
+  .axb.ai{background:var(--card2);border:1px solid var(--line);color:var(--sub)}
+  .axbtns{display:flex;gap:6px;margin:7px 0}
+  .axbtns span{flex:1;text-align:center;font-size:10px;font-weight:800;padding:6px;border-radius:6px}
+  .axbtns .ok{background:var(--good);color:#04150f}.axbtns .no{background:var(--card);border:1px solid var(--line);color:var(--sub)}
+  .axdone{background:rgba(45,212,167,.1);border:1px solid rgba(45,212,167,.4);color:var(--good);border-radius:8px;padding:7px;font-size:10px;text-align:center;margin-top:6px;font-weight:700}
+  /* PC 브라우저 창 */
+  .pcs{display:flex;gap:16px;margin-top:16px;align-items:stretch}
+  @media(max-width:820px){.pcs{flex-direction:column}}
+  .pcwin{flex:1;background:#06080d;border:1px solid var(--line);border-radius:11px;overflow:hidden;display:flex;flex-direction:column}
+  .pctop{background:#10131c;padding:7px 11px;display:flex;gap:5px;align-items:center;border-bottom:1px solid var(--line)}
+  .pctop i{width:8px;height:8px;border-radius:50%}
+  .pctop .r{background:#ff5f57}.pctop .y{background:#febc2e}.pctop .g{background:#28c840}
+  .pcurl{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:3px 9px;font-size:9px;color:var(--dim);margin-left:7px;font-family:"Consolas",monospace;white-space:nowrap;overflow:hidden}
+  .pcbody{padding:13px;height:300px;overflow:hidden;text-align:left;background:var(--bg2)}
   .proc-instr{background:#10131c;border:1px solid var(--line);border-radius:10px;padding:11px 16px;font-size:14px;color:var(--txt);margin-top:14px;min-height:44px}
   .proc-instr b{color:var(--accent)}
   .proc-cur{color:var(--good);font-weight:700}
@@ -317,7 +360,7 @@
       이 강의는 <b style="color:var(--txt)">필요한 누군가</b>에겐 도움이 될 거고,<br>필요 없는 사람에겐 영원히 필요 없을지도 모릅니다.<br>
       그래도 — <span class="hl" style="font-weight:800">단 한 명에게라도 도움이 된다면,</span> 그걸로 충분합니다.
     </div>
-    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 35장</p>
+    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 37장</p>
   </div>
 </section>
 
@@ -1116,6 +1159,107 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       <div class="col card" style="padding:13px 16px"><div class="clabel" style="color:var(--good);margin-top:0">📊 왜 지금</div><p style="font-size:12.5px;margin-top:5px">2026년, 기업 앱의 <b style="color:var(--txt)">40%가 AI 에이전트를 탑재</b> 전망(’25년 5% 미만). AX 설계가 새 경쟁력.</p></div>
     </div>
     <div class="figcap reveal-up d4"><b>요지.</b> UI가 "도구를 잘 만드는 것", UX가 "경험을 잘 설계하는 것"이라면, <b>AX는 "AI라는 동료가 잘 일하게 만드는 것"</b>입니다.</div>
+  </div>
+</section>
+
+<!-- 27d UI/UX/AX 모바일 예시 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">예시</span><span class="lbl">화면 비교 · 모바일</span></div>
+    <h2 class="reveal-up d1">같은 업무 "발주하기" — UI vs UX vs AX (모바일)</h2>
+    <div class="phones reveal-up d2">
+      <div class="pwrap">
+        <div class="phone">
+          <div class="pbar"><span>발주 시스템</span><span>9:41 ▮▮▮</span></div>
+          <div class="pscr">
+            <div class="frow"><span>품목</span><div class="fctrl">▾ 선택하세요</div></div>
+            <div class="frow"><span>수량</span><div class="fctrl">[ ____ ]</div></div>
+            <div class="frow"><span>거래처</span><div class="fctrl">▾ 선택하세요</div></div>
+            <div class="frow"><span>단가</span><div class="fctrl">[ ____ ]</div></div>
+            <div class="frow"><span>납기</span><div class="fctrl">[ ____-__-__ ]</div></div>
+            <div class="frow"><span>창고</span><div class="fctrl">▾ 선택하세요</div></div>
+            <div class="frow"><span>메모</span><div class="fctrl">[ ____ ]</div></div>
+            <div class="pbtn">등록</div>
+          </div>
+        </div>
+        <div class="pcap" style="color:var(--bad)">UI<small>기능 나열 — 7칸을 다 입력</small></div>
+      </div>
+      <div class="pwrap">
+        <div class="phone">
+          <div class="pbar"><span>스마트 발주</span><span>9:41 ▮▮▮</span></div>
+          <div class="pscr">
+            <div class="uxsteps"><i class="on"></i><i></i><i></i></div>
+            <div style="font-size:12px;color:var(--txt);font-weight:700;margin-bottom:7px">무엇을 발주할까요?</div>
+            <div class="uxcard"><div class="thumb"></div><div><div class="nm">A4 복사용지</div><div class="meta">최근 발주 · 박스당 12,000원</div></div></div>
+            <div class="uxcard"><div class="thumb" style="background:linear-gradient(135deg,var(--good),var(--gemini))"></div><div><div class="nm">토너 카트리지</div><div class="meta">재고 부족 ⚠️</div></div></div>
+            <div class="uxchip">📍 거래처: A상사 (최근 자동)</div>
+            <div class="uxstep"><span>수량</span><span class="qty">− 5 +</span></div>
+            <div class="pbtn accent">다음 →</div>
+          </div>
+        </div>
+        <div class="pcap" style="color:var(--warn)">UX<small>흐름·추천·기본값 — 쉽고 빠르게</small></div>
+      </div>
+      <div class="pwrap">
+        <div class="phone">
+          <div class="pbar"><span>🤖 AI 발주 비서</span><span>9:41 ▮▮▮</span></div>
+          <div class="pscr">
+            <div class="axb me">🙋 A상사에 A4용지 5박스 발주해줘</div>
+            <div class="axb ai">🤖 확인했어요 👇
+• 거래처: A상사
+• 품목: A4 복사용지 × 5박스
+• 예상 금액: 60,000원
+• 납기: 모레(자동)</div>
+            <div class="axbtns"><span class="ok">✓ 발송</span><span class="no">수정</span></div>
+            <div class="axdone">✅ 발주 완료 · 담당자에게 알림 전송</div>
+          </div>
+        </div>
+        <div class="pcap" style="color:var(--good)">AX<small>말하면 AI가 채우고 처리 · 확인만</small></div>
+      </div>
+    </div>
+    <div class="figcap reveal-up d4"><b>흐름.</b> 입력 7칸(UI) → 추천·기본값으로 1~2번 탭(UX) → 한 문장이면 AI가 채우고 확인만(AX). 사람의 '일'이 점점 줄어듭니다.</div>
+  </div>
+</section>
+
+<!-- 27e UI/UX/AX PC 예시 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">예시</span><span class="lbl">화면 비교 · PC</span></div>
+    <h2 class="reveal-up d1">같은 업무 "매출 보고서" — UI vs UX vs AX (PC)</h2>
+    <div class="pcs reveal-up d2">
+      <div class="pcwin">
+        <div class="pctop"><i class="r"></i><i class="y"></i><i class="g"></i><div class="pcurl">erp.com/report/new</div></div>
+        <div class="pcbody">
+          <div style="font-size:12px;color:var(--txt);font-weight:700;margin-bottom:9px">보고서 생성</div>
+          <div class="frow"><span>기간</span><div class="fctrl">[ ____-__-__ ~ ____-__-__ ]</div></div>
+          <div class="frow"><span>채널</span><div class="fctrl">▾ 선택</div></div>
+          <div class="frow"><span>항목</span><div class="fctrl">☐ 매출 ☐ 원가 ☐ 이익</div></div>
+          <div class="frow"><span>정렬</span><div class="fctrl">▾ 선택</div></div>
+          <div class="frow"><span>형식</span><div class="fctrl">▾ 표 / 차트</div></div>
+          <div class="pbtn">생성</div>
+        </div>
+        <div class="pcap" style="color:var(--bad);margin:10px 13px 13px">UI<small>옵션 일일이 선택</small></div>
+      </div>
+      <div class="pcwin">
+        <div class="pctop"><i class="r"></i><i class="y"></i><i class="g"></i><div class="pcurl">erp.com/insights</div></div>
+        <div class="pcbody">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px"><span style="font-size:12px;color:var(--txt);font-weight:700">3분기 대시보드</span><span class="uxchip" style="margin:0">⚡ 자동 추천</span></div>
+          <div style="display:flex;gap:7px;margin-bottom:9px"><div style="flex:1;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px"><div style="font-size:9px;color:var(--dim)">매출</div><div style="font-size:15px;font-weight:800;color:var(--good)">+12%</div></div><div style="flex:1;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px"><div style="font-size:9px;color:var(--dim)">이익</div><div style="font-size:15px;font-weight:800;color:var(--accent)">+8%</div></div></div>
+          <div style="display:flex;align-items:flex-end;gap:5px;height:80px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px"><div style="flex:1;height:42%;background:var(--accent);border-radius:3px"></div><div style="flex:1;height:65%;background:var(--accent);border-radius:3px"></div><div style="flex:1;height:55%;background:var(--accent);border-radius:3px"></div><div style="flex:1;height:80%;background:var(--good);border-radius:3px"></div></div>
+        </div>
+        <div class="pcap" style="color:var(--warn);margin:10px 13px 13px">UX<small>핵심 지표·차트를 한눈에</small></div>
+      </div>
+      <div class="pcwin">
+        <div class="pctop"><i class="r"></i><i class="y"></i><i class="g"></i><div class="pcurl">erp.com/ai</div></div>
+        <div class="pcbody">
+          <div class="axb me">🙋 3분기 매출 보고서 만들어 팀에 공유해줘</div>
+          <div class="axb ai">🤖 ① 데이터 집계 ✓ ② 표·차트 생성 ✓ ③ 요약 작성 ✓</div>
+          <div class="axb ai">🤖 "3분기 매출 +12%, 상위 품목 A·B가 견인" — 보고서 완성</div>
+          <div class="axbtns"><span class="ok">✓ 팀 공유</span><span class="no">미리보기</span></div>
+        </div>
+        <div class="pcap" style="color:var(--good);margin:10px 13px 13px">AX<small>말하면 만들고 공유까지</small></div>
+      </div>
+    </div>
+    <div class="figcap reveal-up d4"><b>요지.</b> UI는 "내가 만든다", UX는 "보기 좋게 도와준다", <b>AX는 "AI가 만들어 가져온다"</b> — 사람은 방향 제시와 최종 확인에 집중.</div>
   </div>
 </section>
 
