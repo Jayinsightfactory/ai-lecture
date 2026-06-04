@@ -216,6 +216,15 @@
   .dots3{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}
   .dots3 b{width:5px;height:5px;border-radius:50%;background:var(--dim);display:inline-block}
 
+  /* ===== 컴팩트 대화 카드 (예시 대화 샘플) ===== */
+  .mchat{display:flex;flex-direction:column;gap:5px}
+  .mb{font-size:11.5px;line-height:1.42;padding:6px 10px;border-radius:10px;max-width:94%;white-space:pre-wrap}
+  .mb.me{align-self:flex-end;background:rgba(91,140,255,.15);border:1px solid rgba(91,140,255,.4);color:var(--txt)}
+  .mb.ai{align-self:flex-start;background:var(--card2);border:1px solid var(--line);color:var(--sub)}
+  .mb.warn{align-self:flex-start;background:rgba(255,201,60,.1);border:1px solid rgba(255,201,60,.4);color:var(--warn)}
+  .mb.good{align-self:flex-start;background:rgba(45,212,167,.1);border:1px solid rgba(45,212,167,.4);color:var(--good)}
+  .clabel{font-size:12px;font-weight:700;margin-top:9px}
+
   /* ===== 처리 과정 순차 플레이어 (slide 24) ===== */
   .proc-instr{background:#10131c;border:1px solid var(--line);border-radius:10px;padding:11px 16px;font-size:14px;color:var(--txt);margin-top:14px;min-height:44px}
   .proc-instr b{color:var(--accent)}
@@ -527,12 +536,14 @@
       <div class="card" style="text-align:center"><span class="em">🎓</span><h3>훈련 방법</h3><p>RLHF·정렬</p></div>
       <div class="card" style="text-align:center"><span class="em">🎯</span><h3>특화 튜닝</h3><p>코드·검색 등</p></div>
     </div>
-    <p class="reveal-up d3" style="color:var(--accent);font-weight:800;margin-top:18px;font-size:16px">▌이럴 땐 이걸 (모든 걸 1등하는 모델은 없음)</p>
-    <div class="grid g4 reveal-up d3" style="margin-top:8px">
-      <div class="card" style="text-align:center"><span class="em">📑</span><h3>긴 문서 분석</h3><p>계약서·보고서 → <b style="color:var(--txt)">Claude</b></p></div>
-      <div class="card" style="text-align:center"><span class="em">⚡</span><h3>빠른 범용</h3><p>일상·초안 → <b style="color:var(--txt)">GPT</b></p></div>
-      <div class="card" style="text-align:center"><span class="em">💻</span><h3>코드 작성</h3><p>리팩터 → <b style="color:var(--txt)">Codex·Claude</b></p></div>
-      <div class="card" style="text-align:center"><span class="em">🖼️</span><h3>이미지+검색</h3><p>사진·최신 → <b style="color:var(--txt)">Gemini</b></p></div>
+    <p class="reveal-up d3" style="color:var(--accent);font-weight:800;margin-top:18px;font-size:16px">▌이럴 땐 이걸 — "어떤 모델 쓸까?" (모든 걸 1등하는 모델은 없음)</p>
+    <div class="card reveal-up d3" style="margin-top:8px">
+      <div class="chat">
+        <div class="b me">🙋 긴 계약서·보고서 통째로 분석하려면?</div>
+        <div class="b ai">🤖 긴 문맥엔 <b style="color:var(--txt)">Claude</b>가 강해요 📑</div>
+        <div class="b me">🙋 일상 질문·초안은? / 코드 작성은? / 사진 분석+최신 검색은?</div>
+        <div class="b ai">🤖 빠른 범용 → <b style="color:var(--txt)">GPT</b> ⚡ · 코드 → <b style="color:var(--txt)">Codex·Claude</b> 💻 · 이미지+검색 → <b style="color:var(--txt)">Gemini</b> 🖼️</div>
+      </div>
     </div>
   </div>
 </section>
@@ -550,9 +561,15 @@
       <div class="card" style="text-align:center"><span class="em">📐</span><h3>출력 형식</h3><p>"표로 / 3줄 요약"</p></div>
       <div class="card" style="text-align:center"><span class="em">🧩</span><h3>예시</h3><p>"이런 식으로: …"</p></div>
     </div>
-    <div class="row reveal-up d4" style="margin-top:20px">
-      <div class="col card ba bad"><b style="color:var(--bad)">❌ "보고서 써줘"</b><p style="margin-top:6px">→ AI가 되묻거나 추측 (여러 번 다시)</p></div>
-      <div class="col card ba good"><b style="color:var(--good)">✅ "3분기 매출, A4 1장, 표+증감 이유 3가지"</b><p style="margin-top:6px">→ 한 번에 정확하게</p></div>
+    <div class="row reveal-up d4" style="margin-top:18px">
+      <div class="col card ba bad">
+        <div class="clabel" style="color:var(--bad)">❌ 모호한 지시</div>
+        <div class="mchat" style="margin-top:6px"><div class="mb me">🙋 보고서 써줘</div><div class="mb ai">🤖 어떤 주제·길이·형식일까요? (되물음·추측 → 여러 번 다시)</div></div>
+      </div>
+      <div class="col card ba good">
+        <div class="clabel" style="color:var(--good)">✅ 명확한 지시</div>
+        <div class="mchat" style="margin-top:6px"><div class="mb me">🙋 3분기 매출 보고서, A4 1장, 표 포함, 증감 이유 3가지</div><div class="mb good">🤖 작성 완료 ✓ (한 번에 정확하게)</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -709,13 +726,13 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     <div class="badge reveal-up d1"><span class="num">06</span><span class="lbl">API 일상</span></div>
     <h2 class="reveal-up d1">API로 일상이 이렇게 편해진다</h2>
     <p class="lead reveal-up d2">"내가 매일 검색하던 것" → "자동으로 들어오는 것"</p>
-    <div class="grid g6 reveal-up d2" style="margin-top:18px">
-      <div class="card"><span class="em">🌫️</span><h3>미세먼지·날씨</h3><p>기상청 API → 매일 아침 자동 알림</p></div>
-      <div class="card"><span class="em">🚌</span><h3>버스 도착</h3><p>실시간 알림 → 일찍 나가는 낭비 없음</p></div>
-      <div class="card"><span class="em">🏠</span><h3>부동산 실거래가</h3><p>국토부 API → 관심 동네 자동 추적</p></div>
-      <div class="card"><span class="em">💳</span><h3>자동 가계부</h3><p>카드 API → 지출 자동 집계·분류</p></div>
-      <div class="card"><span class="em">✈️</span><h3>항공권 추적</h3><p>가격 떨어지면 알림, 최저가 캐치</p></div>
-      <div class="card"><span class="em">📰</span><h3>뉴스 요약</h3><p>매일 3줄 요약 메일, 누락 없이</p></div>
+    <div class="grid g6 reveal-up d2" style="margin-top:16px">
+      <div class="card"><div class="mchat"><div class="mb me">🙋 오늘 미세먼지 어때?</div><div class="mb ai">🤖 (기상청 API) 나쁨 😷 마스크 챙기세요</div></div><div class="clabel" style="color:var(--accent)">🌫️ 미세먼지·날씨</div></div>
+      <div class="card"><div class="mchat"><div class="mb me">🙋 153번 버스 언제 와?</div><div class="mb ai">🤖 (버스 API) 3분 후 도착 🚌</div></div><div class="clabel" style="color:var(--accent)">🚌 버스 도착</div></div>
+      <div class="card"><div class="mchat"><div class="mb me">🙋 우리 동네 시세 올랐어?</div><div class="mb ai">🤖 (국토부 API) 지난달 대비 +1.2% 📈</div></div><div class="clabel" style="color:var(--accent)">🏠 부동산 실거래가</div></div>
+      <div class="card"><div class="mchat"><div class="mb me">🙋 이번 달 외식비 얼마 썼어?</div><div class="mb ai">🤖 (카드 API) 32만원 (식비 자동 분류)</div></div><div class="clabel" style="color:var(--accent)">💳 자동 가계부</div></div>
+      <div class="card"><div class="mchat"><div class="mb me">🙋 도쿄 항공권 싸지면 알려줘</div><div class="mb ai">🤖 (예약 API) 18만원으로 하락! ✈️ 알림</div></div><div class="clabel" style="color:var(--accent)">✈️ 항공권 추적</div></div>
+      <div class="card"><div class="mchat"><div class="mb me">🙋 오늘 AI 뉴스 요약해줘</div><div class="mb ai">🤖 (뉴스 API) 3건: ①신모델 ②규제 ③투자</div></div><div class="clabel" style="color:var(--accent)">📰 뉴스 요약</div></div>
     </div>
   </div>
 </section>
@@ -817,8 +834,14 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
   <div class="wrap">
     <div class="badge reveal-up d1"><span class="num">08</span><span class="lbl">반복 실수 대응</span></div>
     <h2 class="reveal-up d1">AI가 같은 실수를 반복할 때 — 6가지</h2>
-    <p class="lead reveal-up d2">규칙을 영구화·구조화·자동 검증으로 옮긴다</p>
-    <div class="grid g6 reveal-up d2" style="margin-top:18px">
+    <div class="card reveal-up d2" style="margin-top:10px;max-width:880px">
+      <div class="chat" style="gap:6px">
+        <div class="b me">🙋 또 그 실수네… 하지 말랬잖아</div>
+        <div class="b ai">🤖 죄송, 매번 새로 시작해 잊었어요 (기억은 휘발성)</div>
+        <div class="b good" style="background:rgba(45,212,167,.1);border:1px solid rgba(45,212,167,.4);color:var(--good);align-self:flex-start">🤖 CLAUDE.md에 규칙으로 적어두면 → 매 세션 자동 적용 ✓ ("말" 대신 규칙·구조·자동검증으로)</div>
+      </div>
+    </div>
+    <div class="grid g6 reveal-up d2" style="margin-top:12px">
       <div class="card"><span class="em">📝</span><h3>① MD 규칙 파일</h3><p>CLAUDE.md / AGENTS.md 매 세션 자동 로딩</p></div>
       <div class="card"><span class="em">🏗️</span><h3>② 스키마 재설계</h3><p>헷갈리는 구조를 명확히, 실수 가능성 제거</p></div>
       <div class="card"><span class="em">📐</span><h3>③ 출력 형식 강제</h3><p>JSON 스키마, 어긋나면 자동 거부</p></div>
@@ -826,7 +849,6 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
       <div class="card"><span class="em">🪝</span><h3>⑤ 훅 사전 차단</h3><p>위험 행동을 도구·훅으로 차단</p></div>
       <div class="card"><span class="em">♻️</span><h3>⑥ 분해 + 메모리</h3><p>한 번에 하나, MEMORY.md 누적</p></div>
     </div>
-    <div class="note reveal-up d5">"말 → 규칙(파일) → 구조 → 자동 검증"으로 갈수록 같은 실수가 사라집니다.</div>
   </div>
 </section>
 
@@ -834,20 +856,25 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
 <section class="slide">
   <div class="wrap">
     <div class="badge reveal-up d1"><span class="num">09</span><span class="lbl">AI 에이전트</span></div>
-    <h2 class="reveal-up d1">챗봇 → 에이전트</h2>
-    <p class="lead reveal-up d2">챗봇이 "상담원"이라면, 에이전트는 "일을 맡기는 직원"</p>
-    <div class="row reveal-up d2" style="margin-top:22px">
+    <h2 class="reveal-up d1">챗봇 → 에이전트 — "상담원" vs "일을 맡기는 직원"</h2>
+    <div class="row reveal-up d2" style="margin-top:20px;align-items:stretch">
       <div class="col card">
-        <h3 style="font-size:18px">🗣️ 챗봇 — 한 번 답한다</h3>
-        <p style="margin:10px 0;font-size:14px;color:var(--accent)">"회의록 요약해줘"</p>
-        <p style="font-size:14px">→ 요약을 보여주고 끝.<br>다음 단계는 내가 직접.</p>
-        <div class="pill" style="margin-top:14px">물으면 답하는 상담원</div>
+        <h3 style="font-size:16px;margin-bottom:10px">🗣️ 챗봇 — 한 번 답한다</h3>
+        <div class="chat">
+          <div class="b me">🙋 회의록 요약해줘</div>
+          <div class="b ai">🤖 핵심 3가지: ①출시 ②예산 ③마케팅. 끝!</div>
+          <div class="b ai">🤖 ("메일도 보내줘" → 그건 직접 하셔야 해요 🙏)</div>
+        </div>
+        <div class="pill" style="margin-top:12px">→ 물으면 답하고 끝 (상담원)</div>
       </div>
       <div class="col card ba good">
-        <h3 style="font-size:18px">🤖 에이전트 — 끝까지 해낸다</h3>
-        <p style="margin:10px 0;font-size:13px;color:var(--accent)">"경쟁사 3곳 조사해 보고서 만들어 메일로 보내줘"</p>
-        <p style="font-size:14px">→ 검색 → 정리 → 문서 작성 → 발송까지 스스로 처리</p>
-        <div class="pill" style="margin-top:14px;border-color:var(--good);color:var(--good)">맡기면 처리하는 직원</div>
+        <h3 style="font-size:16px;margin-bottom:10px">🤖 에이전트 — 끝까지 해낸다</h3>
+        <div class="chat">
+          <div class="b me">🙋 경쟁사 3곳 조사해 보고서 만들어 메일로 보내줘</div>
+          <div class="b ai">🤖 ①검색 ②정리 ③보고서 ④발송 — 순서대로 처리 ✓</div>
+          <div class="b ai">🤖 메일 발송 완료 ✓ (발송 전 확인 부탁드려요)</div>
+        </div>
+        <div class="pill" style="margin-top:12px;border-color:var(--good);color:var(--good)">→ 맡기면 끝까지 처리 (직원)</div>
       </div>
     </div>
   </div>
@@ -991,11 +1018,11 @@ df.<span class="f">to_excel</span>(<span class="s">"정리완료.xlsx"</span>)</
     <div class="badge reveal-up d1"><span class="num">10</span><span class="lbl">AI 안전</span></div>
     <h2 class="reveal-up d1">AI를 안전하게 쓰는 4가지 기본기</h2>
     <p class="lead reveal-up d2">잘 쓰는 것만큼 중요 — 사고 안 나게 쓰는 법</p>
-    <div class="grid g4 reveal-up d2" style="margin-top:20px">
-      <div class="card" style="text-align:center"><span class="em">🤥</span><h3>환각</h3><p style="margin:6px 0">그럴듯하게 틀린 답을 자신 있게</p><p style="color:var(--good);font-size:12px;font-weight:700">→ 출처·교차검증·1차 자료</p></div>
-      <div class="card" style="text-align:center"><span class="em">🔒</span><h3>보안</h3><p style="margin:6px 0">기밀·개인정보 함부로 넣지 말 것</p><p style="color:var(--good);font-size:12px;font-weight:700">→ 가명화·기업용 플랜</p></div>
-      <div class="card" style="text-align:center"><span class="em">📅</span><h3>한계·컷오프</h3><p style="margin:6px 0">학습 이후 모름, 계산·실시간 약함</p><p style="color:var(--good);font-size:12px;font-weight:700">→ 검색·RAG·도구 보완</p></div>
-      <div class="card" style="text-align:center"><span class="em">⚖️</span><h3>저작권·윤리</h3><p style="margin:6px 0">생성물 저작권 모호, 표절 위험</p><p style="color:var(--good);font-size:12px;font-weight:700">→ 검토·편집·사내 가이드</p></div>
+    <div class="grid g4 reveal-up d2" style="margin-top:18px">
+      <div class="card"><div class="clabel" style="color:var(--bad)">🤥 환각</div><div class="mchat" style="margin-top:6px"><div class="mb me">🙋 ○○법 몇 조에 있어?</div><div class="mb ai">🤖 제12조에 있습니다</div><div class="mb warn">⚠️ 실제론 없는 조항일 수 있음</div></div><p style="color:var(--good);font-size:11px;font-weight:700;margin-top:7px">→ 출처 요구·교차검증·1차 자료</p></div>
+      <div class="card"><div class="clabel" style="color:var(--bad)">🔒 보안</div><div class="mchat" style="margin-top:6px"><div class="mb me">🙋 [고객 주민번호 명단] 분석해줘</div><div class="mb warn">⚠️ 기밀·개인정보 입력 위험!</div></div><p style="color:var(--good);font-size:11px;font-weight:700;margin-top:7px">→ 가명화 후 · 기업용 플랜 사용</p></div>
+      <div class="card"><div class="clabel" style="color:var(--bad)">📅 한계·컷오프</div><div class="mchat" style="margin-top:6px"><div class="mb me">🙋 어제 발표된 그 뉴스 알려줘</div><div class="mb ai">🤖 학습 시점 이후라 저는 몰라요</div></div><p style="color:var(--good);font-size:11px;font-weight:700;margin-top:7px">→ 검색·RAG·도구로 보완</p></div>
+      <div class="card"><div class="clabel" style="color:var(--bad)">⚖️ 저작권·윤리</div><div class="mchat" style="margin-top:6px"><div class="mb me">🙋 이 생성 이미지 상업적으로 써도 돼?</div><div class="mb ai">🤖 저작권이 모호해요, 확인이 필요</div></div><p style="color:var(--good);font-size:11px;font-weight:700;margin-top:7px">→ 검토·편집·사내 가이드</p></div>
     </div>
     <div class="note reveal-up d5">① 사실은 의심하고 검증 ② 기밀은 넣지 말기 ③ 한계를 알고 도구로 보완 ④ 저작권·규정 지키기</div>
   </div>
