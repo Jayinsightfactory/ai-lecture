@@ -15,6 +15,7 @@ AI 활용과 업무 자동화 바이브 코딩 강의의 공개 저장소다.
 3. `docs/CHANGE_CHECKLIST.md`로 변경 범위와 완료 조건을 정한다.
 4. 과거 반복 문제는 `docs/GIT_HISTORY_RETROSPECTIVE.md`에서 확인한다.
 5. 요청 작성은 `docs/AI_작업요청_및_재작업방지_가이드.md`의 빈칸 템플릿을 사용한다.
+6. 컨텍스트 압축이나 새 세션 전에는 `docs/CURRENT_TASK_TEMPLATE.md`로 현재 상태를 인수인계한다.
 
 ## 원본과 산출물
 
