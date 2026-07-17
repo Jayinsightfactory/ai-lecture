@@ -365,7 +365,7 @@
       이 강의는 <b style="color:var(--txt)">누군가에게는 꼭 필요한</b>도움이 되겠지만,<br>필요 없는 분들에게는 영원히 필요하지 않을 수도 있습니다.<br>
       그래도 — <span class="hl" style="font-weight:800">단 한 명에게라도 도움이 된다면,</span> 그걸로 충분합니다.
     </div>
-    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 61장</p>
+    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 64장</p>
   </div>
 </section>
 
@@ -1050,7 +1050,7 @@
   <div class="wrap">
     <div class="badge reveal-up d1"><span class="num">09</span><span class="lbl">에이전트 루프</span></div>
     <h2 class="reveal-up d1">에이전트의 작동 루프</h2>
-    <p class="lead reveal-up d2">AI가 한 번의 응답으로 끝내지 않고, '스스로 행동(Action)하고 → 그 결과를 관찰(Observation)하여 → 다음 행동을 결정'하는 과정을 목표가 달성될 때까지 무한 반복합니다.</p>
+    <p class="lead reveal-up d2">AI가 한 번의 응답으로 끝내지 않고, '스스로 행동(Action)하고 → 그 결과를 관찰(Observation)하여 → 다음 행동을 결정'하는 과정을 완료 조건이나 재시도 한도에 도달할 때까지 반복합니다.</p>
     <div class="pipe reveal-up d2" style="margin-top:24px">
       <div class="step"><div class="ic">🎯</div><div class="t">① 목표</div><div class="s">사용자가 '이 작업을 완수해 줘'라고 최종 목표를 부여합니다.</div></div>
       <div class="ar"><i>▶</i></div>
@@ -1062,7 +1062,7 @@
       <div class="ar"><i>▶</i></div>
       <div class="step hot"><div class="ic">🔁</div><div class="t">⑤ 다음 행동</div><div class="s">관찰 결과를 바탕으로 다음 단계를 실행하거나, 오류가 있으면 수정하여 최종 목표에 도달할 때까지 루프를 돕니다.</div></div>
     </div>
-    <div class="reveal-up d4" style="margin-top:24px;text-align:center"><span style="display:inline-block;background:var(--card2);border:1px dashed var(--accent);color:var(--accent);font-weight:700;padding:11px 22px;border-radius:999px">↺ 최종 목표가 달성되었다고 스스로 판단할 때까지 ②계획부터 ⑤다음 행동까지의 과정을 끊임없이 반복합니다.</span></div>
+    <div class="reveal-up d4" style="margin-top:24px;text-align:center"><span style="display:inline-block;background:var(--card2);border:1px dashed var(--accent);color:var(--accent);font-weight:700;padding:11px 22px;border-radius:999px">↺ ②계획부터 ⑤다음 행동까지 반복하되, 완료 조건·최대 횟수·사람 전달 기준에서 반드시 멈춥니다.</span></div>
     <div class="note reveal-up d5">⚠️ 현업 적용 시 가장 중요한 원칙: 처음부터 복잡한 에이전트를 만들려 하지 말고 단순하게 시작하세요. 대부분의 반복 업무는 정해진 순서대로 실행되는 워크플로우(Workflow)로 충분하며, 중간중간 AI의 자율적인 '판단'이 꼭 필요할 때만 에이전트 방식을 도입하는 것이 현명합니다.</div>
   </div>
 </section>
@@ -1120,6 +1120,61 @@
       <div class="card soft"><h3>🎼 오케스트레이션</h3><p><b>여러 작업자 사이에서</b> 담당과 순서를 조정합니다. 예: 수집→매칭→검증→보고→승인.</p></div>
     </div>
     <div class="note reveal-up d5"><b>실무 원칙:</b> 에이전트를 늘리기 전에 각 역할의 입력·출력·완료 조건을 먼저 정의하세요. 역할이 불명확하면 협업이 아니라 오류 전달만 빨라집니다.</div>
+  </div>
+</section>
+
+<!-- 23d 도입 판단 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">도입 판단</span><span class="lbl">워크플로우·루프·오케스트레이션 중 무엇이 필요한가</span></div>
+    <h2 class="reveal-up d1">처음부터 여러 에이전트를 만들지 말고, <span class="hl-good">업무의 불확실성만큼만 자율성</span>을 줍니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:22px">
+      <div class="card" style="border-color:var(--accent)"><span class="em">➡️</span><h3>순서가 항상 같다</h3><p>입력과 규칙이 명확하고 같은 단계로 처리됩니다.</p><div class="tag">선택: 워크플로우</div><p style="margin-top:9px">예: 파일명 변경 → 폴더 이동 → 메일 첨부</p></div>
+      <div class="card" style="border-color:var(--warn)"><span class="em">🔁</span><h3>결과를 보고 다시 판단한다</h3><p>검증 결과에 따라 수정하거나 일부 항목을 재처리합니다.</p><div class="tag" style="color:var(--warn)">선택: 에이전트 루프</div><p style="margin-top:9px">예: 미매칭 품목만 기준을 바꿔 재시도</p></div>
+      <div class="card" style="border-color:var(--good)"><span class="em">🎼</span><h3>역할과 도구가 여러 개다</h3><p>수집·판단·검증·보고 담당의 순서와 전달을 조정합니다.</p><div class="tag" style="color:var(--good)">선택: 오케스트레이션</div><p style="margin-top:9px">예: 주문 수집 → 재고 비교 → 승인 → 보고</p></div>
+    </div>
+    <div class="note reveal-up d4"><b>용어 정리.</b> 오케스트라는 여러 연주자가 함께 연주하는 조직을 뜻하는 비유입니다. 시스템에서 역할과 실행 순서를 조율하는 구조의 정확한 명칭은 <b>오케스트레이션(Orchestration)</b>입니다.</div>
+  </div>
+</section>
+
+<!-- 23e 필수 기능 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">필수 기능</span><span class="lbl">실제로 작동하는 오케스트레이션의 구성</span></div>
+    <h2 class="reveal-up d1">에이전트 수보다 먼저 만들어야 할 것은 <span class="hl">일의 전달·검증·중단 기능</span>입니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:18px;gap:12px">
+      <div class="card"><h3>1. 작업 접수</h3><p>파일·요청을 받고 작업 ID와 담당 흐름을 생성합니다.</p></div>
+      <div class="card"><h3>2. 상태와 순서</h3><p>대기·처리 중·검토·완료·실패 상태와 다음 단계를 관리합니다.</p></div>
+      <div class="card"><h3>3. 데이터 전달</h3><p>앞 단계의 출력 형식을 고정해 다음 역할에 정확히 넘깁니다.</p></div>
+      <div class="card"><h3>4. 검증과 재시도</h3><p>완료 조건을 검사하고 실패한 항목만 제한적으로 다시 실행합니다.</p></div>
+      <div class="card"><h3>5. 사람 승인</h3><p>외부 발송·확정 저장·결제 전에 미리보기와 승인 버튼을 둡니다.</p></div>
+      <div class="card"><h3>6. 로그와 복구</h3><p>입력·판단 근거·수정·승인을 기록하고 이전 상태로 되돌립니다.</p></div>
+    </div>
+    <div class="code reveal-up d3" style="margin-top:18px;font-size:13px">작업 ID: JOB-2026-0717-03　상태: 검토 필요
+수집 ✓　표준화 ✓　매칭 △　검증 대기　보고 중지
+예외: 신뢰도 70% 미만 17건 → 담당자 승인 요청</div>
+    <div class="note reveal-up d4"><b>좋은 시스템의 모습.</b> 모든 일을 조용히 자동 처리하는 것이 아니라, 어디까지 처리했고 왜 멈췄는지 사람이 바로 이해할 수 있어야 합니다.</div>
+  </div>
+</section>
+
+<!-- 23f 단계별 도입 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">도입 순서</span><span class="lbl">작은 자동화에서 실제 운영까지</span></div>
+    <h2 class="reveal-up d1">오케스트레이션은 한 번에 구축하지 않고 <span class="hl-good">고정 흐름에서 예외 처리까지</span> 단계적으로 확장합니다</h2>
+    <div class="pipe reveal-up d2" style="margin-top:26px">
+      <div class="step"><div class="ic">📝</div><div class="t">1. 업무 분해</div><div class="s">입력·규칙·판단·결과·승인 지점을 적습니다.</div></div><div class="ar"><i>▶</i></div>
+      <div class="step"><div class="ic">➡️</div><div class="t">2. 고정 흐름</div><div class="s">AI 없이도 설명 가능한 순서를 먼저 자동화합니다.</div></div><div class="ar"><i>▶</i></div>
+      <div class="step hot"><div class="ic">🔁</div><div class="t">3. 판단 루프</div><div class="s">불확실한 한 단계에만 AI 판단과 재시도를 넣습니다.</div></div><div class="ar"><i>▶</i></div>
+      <div class="step"><div class="ic">🎼</div><div class="t">4. 역할 분리</div><div class="s">업무량과 전문성이 필요할 때 담당 역할을 나눕니다.</div></div><div class="ar"><i>▶</i></div>
+      <div class="step"><div class="ic">🛡️</div><div class="t">5. 제한 운영</div><div class="s">샘플·내부 사용자·사람 승인으로 시작해 범위를 늘립니다.</div></div>
+    </div>
+    <div class="grid g3 reveal-up d3" style="margin-top:24px">
+      <div class="card"><h3>시작 조건</h3><p>반복량이 많고 입력·출력을 설명할 수 있다.</p></div>
+      <div class="card"><h3>확대 조건</h3><p>성공률·검토 건수·처리 시간을 로그로 확인했다.</p></div>
+      <div class="card"><h3>중단 조건</h3><p>같은 오류 반복, 비용 초과, 보안·승인 기준 위반.</p></div>
+    </div>
+    <div class="note reveal-up d4"><b>첫 도입 권장 범위.</b> 하루 업무 전체가 아니라 “주문 파일과 재고 파일을 비교해 검토 목록을 만드는 단계” 하나부터 시작합니다.</div>
   </div>
 </section>
 
