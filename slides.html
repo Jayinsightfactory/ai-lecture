@@ -365,7 +365,7 @@
       이 강의는 <b style="color:var(--txt)">누군가에게는 꼭 필요한</b>도움이 되겠지만,<br>필요 없는 분들에게는 영원히 필요하지 않을 수도 있습니다.<br>
       그래도 — <span class="hl" style="font-weight:800">단 한 명에게라도 도움이 된다면,</span> 그걸로 충분합니다.
     </div>
-    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 63장</p>
+    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 65장</p>
   </div>
 </section>
 
@@ -1014,6 +1014,39 @@
       <div class="card" style="border-color:var(--bad)"><span class="em">🆕</span><h3>클리어·새 세션</h3><p>채팅 컨텍스트를 새로 시작합니다. 이전 대화를 자동으로 안다고 기대하면 안 됩니다.</p><div class="tag" style="color:var(--bad)">파일과 문서로 남긴 정보부터 다시 읽음</div></div>
     </div>
     <div class="note reveal-up d4"><b>정확한 표현.</b> 압축은 완전한 기억 삭제가 아니라 <b>손실이 있을 수 있는 요약</b>입니다. 새 세션은 새로운 담당자에게 업무를 넘기는 것에 더 가깝습니다.</div>
+  </div>
+</section>
+
+<!-- 컨텍스트 모델 발전 1 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">MODEL EVOLUTION</span><span class="lbl">강해진 모델이 보완한 부분</span></div>
+    <h2 class="reveal-up d1">최신 모델은 더 오래 보고, 더 잘 계획하고, <span class="hl-good">끝까지 수행하는 능력</span>이 좋아졌습니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:18px">
+      <div class="card" style="border-color:var(--accent)"><h3>OpenAI · GPT-5.4 → 5.5 → 5.6</h3><p>GPT-5.4·5.5와 GPT-5.6 Sol·Terra·Luna는 최대 약 105만 토큰 컨텍스트와 함수·검색·파일·컴퓨터 도구 사용을 지원합니다.</p><div class="tag">더 긴 자료 + 복잡한 추론 + 다양한 도구 실행</div></div>
+      <div class="card" style="border-color:var(--good)"><h3>Anthropic · Sonnet 5 · Opus 4.8 · Fable 5</h3><p>Sonnet 5는 계획, 도구 사용, 코딩과 장기 작업 지속성이 강화됐고, 이전에 더 큰 모델이 필요했던 작업을 더 효율적으로 수행하도록 발전했습니다.</p><div class="tag" style="color:var(--good)">더 긴 집중 + 자기검증 + 다단계 작업 완수</div></div>
+    </div>
+    <div class="grid g4 reveal-up d3" style="margin-top:18px;gap:10px">
+      <div class="card"><h3>📚 긴 자료 이해</h3><p>더 많은 코드와 문서를 한 번에 참고</p></div>
+      <div class="card"><h3>🧭 계획 유지</h3><p>여러 단계의 목표와 순서를 더 안정적으로 추적</p></div>
+      <div class="card"><h3>🧰 도구 사용</h3><p>검색·터미널·파일·API를 연결해 실제 행동</p></div>
+      <div class="card"><h3>✅ 자기검증</h3><p>테스트와 결과 확인을 스스로 수행할 가능성 증가</p></div>
+    </div>
+    <div class="figcap reveal-up d4">공식 자료: developers.openai.com/api/docs/models · anthropic.com/news/claude-sonnet-5　※ 모델명·사양은 강의 시점에 다시 확인합니다.</div>
+  </div>
+</section>
+
+<!-- 컨텍스트 모델 발전 2 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">STILL REQUIRED</span><span class="lbl">강한 모델도 해결하지 못한 부분</span></div>
+    <h2 class="reveal-up d1">모델이 강해져도 <span class="hl">대화 기록이 자동으로 업무 기록이 되지는 않습니다</span></h2>
+    <div class="row reveal-up d2" style="margin-top:20px;align-items:stretch">
+      <div class="col card" style="border-color:var(--good)"><h3 style="color:var(--good)">많이 보완된 문제</h3><div class="checkrow">긴 대화에서 요구사항을 놓치는 빈도 감소</div><div class="checkrow">다단계 계획과 도구 사용의 안정성 향상</div><div class="checkrow">압축 요약과 작업 재개 품질 향상</div><div class="checkrow">테스트·검증까지 이어서 수행하는 능력 향상</div></div>
+      <div class="col card" style="border-color:var(--bad)"><h3 style="color:var(--bad)">여전히 남는 문제</h3><div class="checkrow">컨텍스트 크기는 여전히 유한함</div><div class="checkrow">중요한 정보가 잡음 속에 묻힐 수 있음</div><div class="checkrow">압축은 세부 내용을 잃을 수 있는 요약임</div><div class="checkrow">새 세션은 이전 채팅을 자동으로 이어받지 않음</div></div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px" class="reveal-up d3"><span class="pill">강한 모델</span><span class="ar">＋</span><span class="pill">명확한 인수인계</span><span class="ar">＋</span><span class="pill">파일·Git 기록</span><span class="ar">＝</span><span class="pill" style="border-color:var(--good);color:var(--good)">안정적인 장기 작업</span></div>
+    <div class="note reveal-up d4"><b>교육 핵심.</b> 좋은 모델은 맥락 손실의 확률을 낮춥니다. 문서화는 손실이 발생해도 다시 정확한 상태로 돌아오게 만듭니다.</div>
   </div>
 </section>
 
