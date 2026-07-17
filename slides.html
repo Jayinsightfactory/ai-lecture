@@ -365,7 +365,7 @@
       이 강의는 <b style="color:var(--txt)">누군가에게는 꼭 필요한</b>도움이 되겠지만,<br>필요 없는 분들에게는 영원히 필요하지 않을 수도 있습니다.<br>
       그래도 — <span class="hl" style="font-weight:800">단 한 명에게라도 도움이 된다면,</span> 그걸로 충분합니다.
     </div>
-    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 37장</p>
+    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 61장</p>
   </div>
 </section>
 
@@ -1826,6 +1826,115 @@
 7. 완료 조건과 테스트 사례
 8. 공통 UI에 기능을 추가할 최종 구현 프롬프트</div>
     </div>
+  </div>
+</section>
+
+<!-- 실제 작업 회고 1 모바일 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">실제 사례 1</span><span class="lbl">모바일판을 네 번 다시 만든 이유</span></div>
+    <h2 class="reveal-up d1">결과물의 이름보다 <span class="hl-good">사용 환경과 완료 기준</span>을 말해야 합니다</h2>
+    <div class="row reveal-up d2" style="margin-top:18px;align-items:stretch">
+      <div class="col card" style="border-color:var(--bad)">
+        <h3 style="color:var(--bad)">처음 요청</h3>
+        <div class="mchat" style="margin-top:10px"><div class="mb me">모바일 버전으로 볼 수 있게 만들어줘.</div></div>
+        <div class="checkrow">PC 화면을 그대로 축소함</div><div class="checkrow">확대해야 읽을 수 있음</div><div class="checkrow">카드가 어색하게 잘림</div><div class="checkrow">워터마크가 본문과 겹침</div>
+      </div>
+      <div class="col card" style="border-color:var(--good)">
+        <h3 style="color:var(--good)">개선 요청</h3>
+        <div class="code" style="margin-top:10px;font-size:12px;line-height:1.6">모바일판은 1080×1920의 9:16 세로형으로 만들어줘.
+PC 슬라이드를 축소하거나 좌우로 자르지 말고,
+제목·본문·UI를 의미 단위 카드로 다시 배치해줘.
+확대 없이 읽혀야 하고 본문은 최소 30px로 해줘.
+워터마크는 콘텐츠 밖 하단 여백에 배치해줘.</div>
+      </div>
+    </div>
+    <div class="note reveal-up d4"><b>배운 기준.</b> “모바일”이라는 이름만으로는 부족합니다. 방향·해상도·최소 글자·분할 방식·완료 상태를 함께 적어야 합니다.</div>
+  </div>
+</section>
+
+<!-- 실제 작업 회고 2 UI -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">실제 사례 2</span><span class="lbl">업무 UI가 통계 화면이 된 이유</span></div>
+    <h2 class="reveal-up d1">필요한 기능과 함께 <span class="hl">만들지 않을 것</span>도 알려줍니다</h2>
+    <div class="row reveal-up d2" style="margin-top:18px;align-items:stretch">
+      <div class="col card" style="border-color:var(--warn)">
+        <h3>AI가 흔히 떠올리는 화면</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px">
+          <div class="metric"><div class="v">72%</div><div class="l">자동화율</div></div><div class="metric"><div class="v">128</div><div class="l">처리 건수</div></div>
+        </div>
+        <div style="height:90px;margin-top:12px;display:flex;align-items:flex-end;gap:8px;background:var(--bg2);border:1px solid var(--line);padding:12px;border-radius:9px"><span class="dbar" style="height:35%"></span><span class="dbar" style="height:70%"></span><span class="dbar hot" style="height:52%"></span><span class="dbar" style="height:84%"></span></div>
+        <p style="margin-top:10px;color:var(--warn)">보기에는 그럴듯하지만 실제 업무를 시작할 수 없습니다.</p>
+      </div>
+      <div class="col card" style="border-color:var(--good)">
+        <h3>실제로 필요했던 업무 행동</h3>
+        <div class="grid g3" style="margin-top:12px;gap:8px">
+          <div class="checkrow">📤 파일 업로드</div><div class="checkrow">🔗 품목·자료 매칭</div><div class="checkrow">👁 미리보기</div>
+          <div class="checkrow">⚖ 원본 비교 검증</div><div class="checkrow">↓ Excel·PDF</div><div class="checkrow">🧾 이력·로그</div>
+        </div>
+        <div class="code" style="margin-top:12px;font-size:12px">통계 대시보드가 아니라 업무를 실행하는 화면을 만들어줘.
+요청하지 않은 통계와 차트는 추가하지 마.</div>
+      </div>
+    </div>
+    <div class="note reveal-up d4"><b>배운 기준.</b> 화면 구성요소가 아니라 사용자가 실제로 해야 할 행동을 순서대로 설명합니다.</div>
+  </div>
+</section>
+
+<!-- 실제 작업 회고 3 Git -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">실제 기록</span><span class="lbl">44개 Git 커밋에서 찾은 반복 패턴</span></div>
+    <h2 class="reveal-up d1">빠르게 고치는 것보다 중요한 것은 <span class="hl-good">같은 문제를 다시 만들지 않는 기준</span>입니다</h2>
+    <div class="grid g4 reveal-up d2" style="margin-top:18px">
+      <div class="metric"><div class="v">44</div><div class="l">전체 커밋</div></div>
+      <div class="metric"><div class="v">26</div><div class="l">15분 안에 이어진 수정</div></div>
+      <div class="metric"><div class="v">15,431</div><div class="l">추가된 줄</div></div>
+      <div class="metric"><div class="v">5,699</div><div class="l">삭제된 줄</div></div>
+    </div>
+    <div class="reveal-up d3" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap">
+      <div class="step"><div class="ic">➕</div><div class="t">아이디어 추가</div><div class="s">바로 새 카드 생성</div></div><div class="ar">→</div>
+      <div class="step"><div class="ic">♊</div><div class="t">비슷한 내용 누적</div><div class="s">중복이 늦게 보임</div></div><div class="ar">→</div>
+      <div class="step"><div class="ic">🧹</div><div class="t">전체 정리</div><div class="s">순서와 사례 교체</div></div><div class="ar">→</div>
+      <div class="step"><div class="ic">🛠</div><div class="t">동작 수정</div><div class="s">애니메이션 재검증</div></div><div class="ar">→</div>
+      <div class="step"><div class="ic">📄</div><div class="t">산출물 재생성</div><div class="s">PC·모바일 동기화</div></div>
+    </div>
+    <div class="note reveal-up d4"><b>숫자의 의미.</b> 커밋이 많은 것이 문제는 아닙니다. 구조 없이 빠르게 수정하면 개선 속도만큼 재작업도 빨라집니다.</div>
+  </div>
+</section>
+
+<!-- 실제 작업 회고 4 추가 대체 통합 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">재작업 방지</span><span class="lbl">새 요청 전에 하는 한 가지 판단</span></div>
+    <h2 class="reveal-up d1">새 내용을 만들기 전에 <span class="hl">추가·대체·통합</span>부터 정합니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:24px">
+      <div class="card" style="border-color:var(--accent)"><span class="em">➕</span><h3>추가</h3><p>기존 강의에 없는 새로운 주장이나 실습을 넣습니다.</p><div class="tag">예: 루프와 오케스트레이션</div></div>
+      <div class="card" style="border-color:var(--warn)"><span class="em">🔁</span><h3>대체</h3><p>효과가 낮은 설명을 더 구체적인 사례로 바꿉니다.</p><div class="tag" style="color:var(--warn)">예: 텍스트 카드 → 실제 대화</div></div>
+      <div class="card" style="border-color:var(--good)"><span class="em">🧩</span><h3>통합</h3><p>같은 주장을 반복하는 여러 장을 하나로 합칩니다.</p><div class="tag" style="color:var(--good)">예: 역질문·역제안 중복 정리</div></div>
+    </div>
+    <div class="code reveal-up d3" style="margin-top:24px;font-size:14px">먼저 기존 슬라이드에서 겹치는 내용을 찾아줘.
+이번 요청이 추가·대체·통합 중 무엇인지 추천하고,
+들어갈 위치와 없어져도 되는 내용을 보여준 뒤 수정해줘.</div>
+    <div class="note reveal-up d4"><b>핵심.</b> AI에게 “무엇을 더할지”만 말하지 말고, 기존 결과물과의 관계를 판단하게 합니다.</div>
+  </div>
+</section>
+
+<!-- 실제 작업 회고 5 여섯 칸 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">작성 실습</span><span class="lbl">AI에게 일을 맡기는 6칸 요청서</span></div>
+    <h2 class="reveal-up d1">완벽한 문장 대신 <span class="hl-good">결과를 결정하는 여섯 가지</span>를 채웁니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:16px;gap:10px">
+      <div class="card"><h3>1. 목적</h3><p>내가 만들고 싶은 것은 [　　　　　]이다.</p></div>
+      <div class="card"><h3>2. 사용자</h3><p>이 결과물을 사용하는 사람은 [　　　　　]이다.</p></div>
+      <div class="card"><h3>3. 필수 기능</h3><p>반드시 작동해야 하는 것은 [　　　　　]이다.</p></div>
+      <div class="card"><h3>4. 기존과의 관계</h3><p>이번 작업은 추가 / 대체 / 통합이다.</p></div>
+      <div class="card"><h3>5. 제외 범위</h3><p>임의로 추가하지 않을 것은 [　　　　　]이다.</p></div>
+      <div class="card"><h3>6. 완료 조건</h3><p>[　　　　　] 상태가 되면 작업이 끝난다.</p></div>
+    </div>
+    <div class="mchat reveal-up d3" style="margin-top:18px"><div class="mb me">바로 만들지 말고 결과를 크게 바꿀 수 있는 질문을 최대 3개만 해줘.</div><div class="mb good">각 질문에는 추천 기본값과 그 이유도 함께 알려줘.</div></div>
+    <div class="note reveal-up d4"><b>바이브 코딩의 핵심.</b> 완벽한 첫 프롬프트가 아니라, 기준을 남기고 작은 결과를 확인하며 확장하는 것입니다.</div>
   </div>
 </section>
 
