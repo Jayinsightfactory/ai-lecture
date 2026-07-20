@@ -16,6 +16,7 @@ AI 활용과 업무 자동화 바이브 코딩에 필요한 핵심 정보를 찾
 4. 과거 반복 문제는 `docs/GIT_HISTORY_RETROSPECTIVE.md`에서 확인한다.
 5. 요청 작성은 `docs/AI_작업요청_및_재작업방지_가이드.md`의 빈칸 템플릿을 사용한다.
 6. 컨텍스트 압축이나 새 세션 전에는 `docs/CURRENT_TASK_TEMPLATE.md`로 현재 상태를 인수인계한다.
+7. 화면 문구를 수정하기 전에는 `docs/KOREAN_STYLE_GUIDE.md`의 한국어 문장 기준을 확인한다.
 
 ## 원본과 산출물
 
