@@ -1,10 +1,10 @@
-# AI 실무 강의 자료
+# AI 업무자동화 필수 학습 자료
 
-AI 활용과 업무 자동화 바이브 코딩 강의의 공개 저장소다.
+AI 활용과 업무 자동화 바이브 코딩에 필요한 핵심 정보를 찾아보고 바로 적용할 수 있도록 구성한 공개 학습 저장소다.
 
 ## 공개 결과물
 
-- 강의 HTML: `slides.html`
+- 필수 학습 슬라이드: `slides.html`
 - PC·모바일 다운로드 선택: `downloads/index.html`
 - 공개 주소: <https://jayinsightfactory.github.io/ai-lecture/>
 
