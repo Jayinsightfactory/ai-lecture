@@ -365,7 +365,7 @@
       처음부터 전부 외우는 자료가 아닙니다.<br><b style="color:var(--txt)">업무를 설명하고, 자동화하고, 검증할 때 필요한 핵심 정보</b>를<br>
       순서대로 찾고 바로 적용할 수 있도록 구성했습니다.
     </div>
-    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 77장</p>
+    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 82장</p>
   </div>
 </section>
 
@@ -1179,6 +1179,82 @@
     </div>
     <div class="note reveal-up d4"><b>공통 검증.</b> 음성 에이전트는 잘못 들은 값과 API 실행 결과를, 개인 인텔리전스는 잘못 연결한 기억과 오래된 정보를 사용자가 확인할 수 있어야 합니다.</div>
     <div class="src">출처: xAI Voice Agent Builder · Google Gemini Personal Intelligence 공식 발표</div>
+  </div>
+</section>
+
+<!-- 업종 연구 1 표본 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">FIELD MAP</span><span class="lbl">130개 업종 · 1,300개 공개 표본</span></div>
+    <h2 class="reveal-up d1">업종 이름보다 먼저 볼 것은 <span class="hl">업무가 들어와서 끝나는 흐름</span>입니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:20px">
+      <div class="card" style="border-color:var(--good)"><h3>🏪 소상공인</h3><p><b style="color:var(--txt);font-size:28px">100개 업종 · 1,000곳</b><br>예약·주문·판매·재고·고객 안내를 중심으로 봤습니다.</p><div class="tag">2026년 3월 영업 중 상가업소 자료</div></div>
+      <div class="card" style="border-color:var(--warn)"><h3>🏭 제조 중소공장</h3><p><b style="color:var(--txt);font-size:28px">30개 업종 · 300곳</b><br>수주·BOM·자재·생산·검사·출하를 중심으로 봤습니다.</p><div class="tag">2020년 2월 등록공장 자료</div></div>
+      <div class="card"><h3>🧭 읽는 방법</h3><p>상호·업종·주소는 공개자료입니다. 조직과 프로세스는 개별 회사의 사실이 아니라 <b style="color:var(--txt)">업종 표준 운영모델</b>입니다.</p><div class="tag">현장 인터뷰 전 자동화 가설</div></div>
+    </div>
+    <div class="note reveal-up d4"><b>주의.</b> 두 자료는 하나의 확률표본이 아닙니다. 1,300곳을 전국 기업 비율로 일반화하지 않고, 서로 다른 업무 구조와 자동화 시작점을 찾는 데 사용합니다.</div>
+    <div class="src">출처: 소상공인시장진흥공단 상가(상권)정보 2026-03 · 한국산업단지공단 전국등록공장현황 2020-02</div>
+  </div>
+</section>
+
+<!-- 업종 연구 2 다섯 질문 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">5 QUESTIONS</span><span class="lbl">어떤 업종도 같은 질문으로 시작</span></div>
+    <h2 class="reveal-up d1">자동화 기획은 <span class="hl-good">다섯 칸을 채우면</span> 구체적으로 바뀝니다</h2>
+    <div class="pipe reveal-up d2" style="margin-top:28px">
+      <div class="step"><div class="ic">📥</div><div class="t">무엇이 들어오나</div><div class="s">파일·메일·주문·사진·음성</div></div><div class="ar">→</div>
+      <div class="step"><div class="ic">🔁</div><div class="t">무엇을 반복하나</div><div class="s">정리·매칭·계산·작성</div></div><div class="ar">→</div>
+      <div class="step"><div class="ic">⚠️</div><div class="t">예외는 무엇인가</div><div class="s">누락·불일치·기한·위험</div></div><div class="ar">→</div>
+      <div class="step"><div class="ic">✋</div><div class="t">누가 승인하나</div><div class="s">가격·환불·불량·출하</div></div><div class="ar">→</div>
+      <div class="step"><div class="ic">📤</div><div class="t">무엇이 남아야 하나</div><div class="s">Excel·PDF·알림·로그</div></div>
+    </div>
+    <div class="mchat reveal-up d3" style="margin-top:28px"><div class="mb me">🙋 매일 [입력 자료]를 받아 [반복 작업]을 합니다. [예외 기준]은 사람이 확인하고, 최종적으로 [결과물]과 [작업 로그]가 남아야 합니다.</div><div class="mb ai">🤖 먼저 샘플 파일, 승인 기준, 실패했을 때 멈춰야 하는 지점을 확인하겠습니다.</div></div>
+  </div>
+</section>
+
+<!-- 업종 연구 3 비교 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">STARTING POINT</span><span class="lbl">소상공인과 제조업은 시작점이 다르다</span></div>
+    <h2 class="reveal-up d1">같은 AI라도 <span class="hl">먼저 줄여야 할 대기와 오류</span>가 다릅니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:18px">
+      <div class="card" style="border-color:var(--good)"><h3>🏪 소상공인: 오늘의 운영</h3><div class="checkrow">예약·주문·고객 문의를 한곳에 모으기</div><div class="checkrow">판매와 재고를 비교해 준비·발주 목록 만들기</div><div class="checkrow">누락·환불·특이 고객만 사람에게 전달하기</div><div class="tag">첫 실습: 하루 주문 + 재고 → 예외 목록</div></div>
+      <div class="card" style="border-color:var(--warn)"><h3>🏭 제조업: 납기와 품질</h3><div class="checkrow">수주서·도면·BOM의 품목과 버전 맞추기</div><div class="checkrow">재고와 생산계획을 비교해 부족 자재 계산하기</div><div class="checkrow">검사 결과·불량·출하 승인 근거 남기기</div><div class="tag">첫 실습: 발주서 + BOM + 재고 → 생산 가능 수량</div></div>
+    </div>
+    <div class="note reveal-up d4"><b>공통점.</b> AI가 최종 책임자를 대신하는 것이 아니라, 확인해야 할 예외를 줄이고 판단 근거를 한 화면에 모읍니다.</div>
+  </div>
+</section>
+
+<!-- 업종 연구 4 재사용 UI -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">ONE UI</span><span class="lbl">같은 그릇, 다른 파이프라인</span></div>
+    <h2 class="reveal-up d1">기본 UI는 그대로 두고 <span class="hl-good">업종별 처리 규칙만 교체</span>합니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:16px">
+      <div class="card"><h3>🍽️ 음식점</h3><p>판매·예약·재고 업로드 → 메뉴/재료 매칭 → 품절·준비량 확인 → 발주 Excel</p></div>
+      <div class="card"><h3>🏥 병·의원</h3><p>예약·문진 입력 → 필수항목 검증 → 누락·주의사항 확인 → 안내문·일정표</p></div>
+      <div class="card"><h3>🧰 현장 서비스</h3><p>접수 내용 → 지역·기술·일정 매칭 → 충돌·준비물 확인 → 배정표·체크리스트</p></div>
+      <div class="card"><h3>🏭 제조업</h3><p>수주·BOM·재고 업로드 → 품목·버전 매칭 → 부족·납기 검증 → 작업지시·검사 기록</p></div>
+    </div>
+    <div class="pipe reveal-up d3" style="margin-top:20px"><div class="step"><div class="t">업로드</div></div><div class="ar">→</div><div class="step"><div class="t">표준화·매칭</div></div><div class="ar">→</div><div class="step"><div class="t">미리보기·검증</div></div><div class="ar">→</div><div class="step"><div class="t">사람 승인</div></div><div class="ar">→</div><div class="step"><div class="t">다운로드·로그</div></div></div>
+  </div>
+</section>
+
+<!-- 업종 연구 5 연구 결과값 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">MEASURE</span><span class="lbl">자동화는 결과값으로 검증</span></div>
+    <h2 class="reveal-up d1">“편해졌다”에서 끝내지 말고 <span class="hl">도입 전후 숫자</span>를 남깁니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:18px">
+      <div class="card"><h3>⏱️ 시간</h3><p>처리시간 · 대기시간 · 보고서 작성시간 · 작업당 클릭 수</p></div>
+      <div class="card"><h3>🎯 정확도</h3><p>매칭 정확도 · 누락률 · 재작업률 · 검토 후 수정 비율</p></div>
+      <div class="card"><h3>✋ 사람의 일</h3><p>전체 검토 건수 · 예외 건수 · 승인 소요시간 · 개입 이유</p></div>
+      <div class="card"><h3>🏪 운영</h3><p>예약 누락 · 품절 · 응답시간 · 재고 차이 · 일마감 시간</p></div>
+      <div class="card"><h3>🏭 제조</h3><p>자재 부족 · 납기 준수 · 불량률 · 계획 변경 · 검사 작성시간</p></div>
+      <div class="card"><h3>🧾 신뢰</h3><p>판단 근거 기록률 · 오류 복구시간 · 승인 이력 · 재현 가능성</p></div>
+    </div>
+    <div class="note reveal-up d4"><b>논문과 현장의 공통 질문.</b> 어떤 업무에서, 어떤 조건으로, 누구의 개입을 얼마나 줄였고, 품질과 위험은 어떻게 달라졌는가?</div>
   </div>
 </section>
 
