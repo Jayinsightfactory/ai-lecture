@@ -365,7 +365,7 @@
       처음부터 전부 외우는 자료가 아닙니다.<br><b style="color:var(--txt)">업무를 설명하고, 자동화하고, 검증할 때 필요한 핵심 정보</b>를<br>
       순서대로 찾고 바로 적용할 수 있도록 구성했습니다.
     </div>
-    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 90장</p>
+    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 94장</p>
   </div>
 </section>
 
@@ -1341,6 +1341,61 @@
     </div>
     <div class="note reveal-up d4"><b>해석 주의.</b> 공급사 고객사례가 공개한 수치이며 독립 실험 결과는 아닙니다. 우리 회사 적용 전에는 같은 지표의 기준선과 계산식을 먼저 고정해야 합니다.</div>
     <div class="src">출처: Google Cloud Tchibo·Augury·Sift Lab 사례 · OpenAI Gradient Labs · Anthropic Block 사례</div>
+  </div>
+</section>
+
+<!-- 활용되지 않던 데이터 1 고객의 목소리 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">CASE · CUSTOMER VOICE</span><span class="lbl">읽히지 않던 대화가 제품 전략으로</span></div>
+    <h2 class="reveal-up d1">상담 기록은 보관용 파일이 아니라 <span class="hl-good">이탈과 제품 문제를 먼저 알리는 데이터</span>가 됩니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:15px">
+      <div class="card" style="border-color:var(--gemini)"><h3>Kapiche · 수백만 건의 고객 대화</h3><p><b style="color:var(--txt)">기존</b> 통화·메일·채팅·리뷰 중 일부만 표본 조사<br><b style="color:var(--txt)">변환</b> 주제·감정·제품 문제·해지 신호·상담 품질<br><b style="color:var(--txt)">예측</b> 이탈 위험·불만 확산·에스컬레이션 가능성</p><div class="mchat" style="margin-top:10px"><div class="mb me">최근 4주 대화에서 해지 고객이 공통으로 겪은 문제와 첫 징후를 찾아줘.</div><div class="mb ai">배송 지연 뒤 두 번째 문의가 발생한 고객군의 이탈 위험이 높습니다. 지역·제품별로 나누겠습니다.</div></div></div>
+      <div class="card" style="border-color:var(--claude)"><h3>Sourcegraph · 커뮤니티 피드백</h3><p><b style="color:var(--txt)">기존</b> 게시판·이슈·커뮤니티 의견이 담당자 기억에 의존<br><b style="color:var(--txt)">변환</b> 반복 요청·불편 단계·경쟁사 언급·감정 변화<br><b style="color:var(--txt)">기획</b> 제품 우선순위·답변 메시지·경쟁 포지셔닝</p><div class="mchat" style="margin-top:10px"><div class="mb me">요청 빈도보다 업무 중단 영향이 큰 문제를 찾아 다음 분기 개선안으로 묶어줘.</div><div class="mb ai">빈도는 낮지만 설치 실패가 사용 시작을 막습니다. 원인 3개와 개선 순서를 제안합니다.</div></div></div>
+    </div>
+    <div class="note reveal-up d4"><b>교육용 대화 재구성.</b> 실제 기업의 비공개 프롬프트가 아니라, 공개된 데이터 흐름을 실습에서 재현하도록 만든 질문입니다.</div>
+    <div class="src">사례 근거: Google Cloud Kapiche AI · Anthropic Sourcegraph 고객사례</div>
+  </div>
+</section>
+
+<!-- 활용되지 않던 데이터 2 현장 지식 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">FIELD KNOWLEDGE</span><span class="lbl">종이 장부와 정비 경험을 다시 사용</span></div>
+    <h2 class="reveal-up d1">사람의 기억과 오래된 기록을 연결하면 <span class="hl">현장에서 바로 묻는 지식 시스템</span>이 됩니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:15px">
+      <div class="card" style="border-color:var(--good)"><h3>Sharp 농장 · 1971년부터 쓴 손글씨 장부</h3><p><b style="color:var(--txt)">기존</b> 과거 파종일·수확량·작업 방식이 종이와 가족 기억에 존재<br><b style="color:var(--txt)">변환</b> 작물·밭·날짜·수확량·문제·대응을 검색 가능한 기록으로 구성<br><b style="color:var(--txt)">판단</b> 현재 밭과 비슷한 해의 작업 방식 비교</p><div class="mchat" style="margin-top:10px"><div class="mb me">비가 늦었던 해 중 이 밭과 같은 품종의 파종일과 수확 결과를 비교해줘.</div><div class="mb ai">조건이 비슷한 3개 연도를 찾았습니다. 파종 시기·수확량·병해 기록을 함께 보여드릴게요.</div></div></div>
+      <div class="card" style="border-color:var(--warn)"><h3>KONE · 정비 보고서와 IoT 기록</h3><p><b style="color:var(--txt)">기존</b> 매뉴얼·과거 수리기록·숙련자 경험이 흩어져 현장 검색이 어려움<br><b style="color:var(--txt)">변환</b> 증상·모델·오류코드·과거 조치·센서 상태 연결<br><b style="color:var(--txt)">권고</b> 가능한 원인·확인 순서·필요 부품·상담 이관 기준</p><div class="mchat" style="margin-top:10px"><div class="mb me">이 모델에서 진동과 문 닫힘 오류가 함께 발생한 과거 사례와 첫 점검 순서를 알려줘.</div><div class="mb ai">유사 사례 12건 중 8건은 정렬 문제였습니다. 안전 확인 뒤 세 단계로 점검하세요.</div></div></div>
+    </div>
+    <div class="note reveal-up d4"><b>가능해진 것.</b> ‘정답 자동 판정’보다 과거 근거를 빠르게 찾아 초보자도 숙련자의 점검 순서를 따르게 하는 데 먼저 가치가 생깁니다.</div>
+    <div class="src">사례 근거: OpenAI Small Business Stories — Sharp & Sharp · AWS KONE 사례(4만 명 기술자)</div>
+  </div>
+</section>
+
+<!-- 활용되지 않던 데이터 3 운영 흔적 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">CASE · OPERATIONAL TRACES</span><span class="lbl">종이 기록과 로그가 예방 신호로</span></div>
+    <h2 class="reveal-up d1">문제가 난 뒤 찾던 기록을 계속 분석하면 <span class="hl-good">고장과 사고를 먼저 막는 지표</span>가 됩니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:15px">
+      <div class="card"><h3>Breedon · 철도 화차 종이·Excel 기록</h3><p><b style="color:var(--txt)">기존</b> 이동·잔류 시멘트·정비기록이 누락되거나 뒤늦게 취합<br><b style="color:var(--txt)">지표</b> 화차별 잔류 발생률·반복 구간·정비 전후 성능<br><b style="color:var(--txt)">결정</b> 문제가 커지기 전 점검 대상과 우선순위 선정</p><div class="mchat" style="margin-top:10px"><div class="mb me">최근 8주 잔류 발생이 반복된 화차와 정비 후 개선되지 않은 화차를 구분해줘.</div><div class="mb ai">반복 위험 7대를 찾았습니다. 빈도·노선·마지막 정비일 기준으로 정렬했습니다.</div></div><div class="tag">공개 결과: 데이터 포착 100% · 대상 화차 성능 95% 개선</div></div>
+      <div class="card"><h3>CMS · 장애 때만 보던 시스템 로그</h3><p><b style="color:var(--txt)">기존</b> 하루 14~15TB 로그를 저장하지만 사건 발생 뒤 수작업으로 조사<br><b style="color:var(--txt)">지표</b> 이상 패턴·영향 범위·발생 순서·재발 조건<br><b style="color:var(--txt)">실행</b> 실시간 경보·관련 로그 재수집·사고 타임라인 생성</p><div class="mchat" style="margin-top:10px"><div class="mb me">정상 기준과 다른 호출 급증이 시작된 시점, 영향을 받은 서비스, 직전 변경을 연결해줘.</div><div class="mb ai">14:32부터 인증 오류가 증가했습니다. 직전 배포와 영향 서비스 4개를 표시합니다.</div></div><div class="tag">공개 결과: 저장비용 67% 절감 · 2주 수작업 조사 대체</div></div>
+    </div>
+    <div class="src">사례 근거: AWS Breedon·CMS 고객사례 · 대화는 교육용 재구성</div>
+  </div>
+</section>
+
+<!-- 활용되지 않던 데이터 4 질문 설계 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">CONVERSATION DESIGN</span><span class="lbl">요약이 아니라 새로운 신호를 찾는 질문</span></div>
+    <h2 class="reveal-up d1">“정리해 줘”에서 멈추지 말고 <span class="hl">비교·선행 신호·예외·행동</span>을 물어봅니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:15px">
+      <div class="card"><h3>낮은 가치 질문</h3><div class="mchat"><div class="mb me">고객 상담 내용을 요약해줘.</div><div class="mb ai">배송, 가격, 환불 문의가 있었습니다.</div></div><p style="margin-top:12px">무슨 일이 있었는지는 알지만, 다음 행동과 측정 기준이 없습니다.</p></div>
+      <div class="card" style="border-color:var(--good)"><h3>분석·기획으로 이어지는 질문</h3><div class="mchat"><div class="mb me">재구매 고객과 이탈 고객의 대화를 비교해, 이탈 30일 전에 먼저 나타나는 표현·사건·접촉 횟수를 찾아줘. 근거 대화와 표본 수도 보여줘.</div><div class="mb ai">두 번째 배송 문의와 “다시 연락” 표현이 먼저 증가합니다. 검증용 표본과 대응 실험안을 만들겠습니다.</div></div></div>
+    </div>
+    <div class="pipe reveal-up d3" style="margin-top:21px"><div class="step"><div class="t">대상 비교</div><div class="s">성공군 ↔ 실패군</div></div><div class="ar">→</div><div class="step"><div class="t">선행 신호</div><div class="s">결과 전에 나타난 것</div></div><div class="ar">→</div><div class="step"><div class="t">근거</div><div class="s">원문·건수·기간</div></div><div class="ar">→</div><div class="step"><div class="t">검증</div><div class="s">오탐·누락·재현</div></div><div class="ar">→</div><div class="step"><div class="t">실험</div><div class="s">누구에게 무엇을 할지</div></div></div>
+    <div class="note reveal-up d4"><b>복사해 쓸 구조.</b> “[좋은 결과 집단]과 [나쁜 결과 집단]을 비교해 결과 전에 나타나는 신호를 찾고, 근거·표본 수·오탐 가능성·실행할 실험을 제안해 줘.”</div>
   </div>
 </section>
 
