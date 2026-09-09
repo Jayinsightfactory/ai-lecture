@@ -53,7 +53,12 @@
   #dots{position:fixed;left:50%;transform:translateX(-50%);bottom:13px;z-index:50;display:flex;gap:6px;max-width:60vw;flex-wrap:wrap;justify-content:center}
   #dots span{width:7px;height:7px;border-radius:50%;background:#2c3346;cursor:pointer;transition:.2s}
   #dots span.on{background:var(--accent);transform:scale(1.3)}
-  @media(max-width:760px){#dots{display:none}.slide{padding:46px 22px 60px}}
+  @media(max-width:760px){
+    #dots{display:none}.slide{align-items:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:32px 18px 74px}
+    .wrap{max-height:none;margin:auto 0}.row{flex-direction:column}.lead{font-size:16px}.card{padding:15px}
+    #hintL{max-width:calc(100vw - 40px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  }
+  #brandMark{position:fixed;right:94px;bottom:17px;z-index:50;color:var(--dim);font:700 10px/1 "Consolas",monospace;letter-spacing:.12em;pointer-events:none}
 
   /* ===== reusable bits ===== */
   .badge{display:inline-flex;align-items:center;gap:9px;margin-bottom:18px}
@@ -350,9 +355,21 @@
   .gterm .t{font-family:"Consolas",monospace;font-size:12px;color:var(--txt);font-weight:700}
   .gterm .e{font-size:9px;color:var(--dim);font-family:"Consolas",monospace}
   .gterm .d{font-size:10.5px;color:var(--sub);line-height:1.38;margin-top:1px}
+
+/* Desktop readability: use the available canvas and preserve readable card text. */
+@media(min-width:1200px){
+ .wrap{max-width:1480px}.card p,.card li{font-size:18px!important;line-height:1.55!important}.card h3{font-size:22px!important}.lead{font-size:24px;max-width:1300px}.note{font-size:16px;color:#b0bad0}.badge .lbl{font-size:16px}.slide{overflow-y:auto}.slide .wrap{flex-shrink:0}
+}
 </style>
 </head>
 <body>
+<!--
+목적: 기존 94장 구조를 보존하면서 Astra 기반 실습 흐름을 연결한다.
+범위: 최신 기능은 확인 시점과 계정별 차이를 함께 표시한다.
+완료 기준: 설문·4주 경로, 컨텍스트, 지속 기록, 설정·효율을 바로 실행할 수 있다.
+시인성: 1920×1080의 카드 밀도와 390px 세로 읽기 흐름을 함께 지원한다.
+검증: 자동 장수·기존 hash 탐색·프롬프트 복사 구조를 유지한다.
+-->
 <div id="progress"></div>
 <div class="deck" id="deck">
 
@@ -365,7 +382,7 @@
       처음부터 전부 외우는 자료가 아닙니다.<br><b style="color:var(--txt)">업무를 설명하고, 자동화하고, 검증할 때 필요한 핵심 정보</b>를<br>
       순서대로 찾고 바로 적용할 수 있도록 구성했습니다.
     </div>
-    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 총 94장</p>
+    <p class="reveal-up d4" style="margin-top:34px;font-size:13px;color:var(--dim)">→ 또는 스페이스바 / 클릭으로 넘어갑니다 · 기존 94장 + 최신 실습 12장</p>
   </div>
 </section>
 
@@ -419,6 +436,38 @@
       <div class="tlc"><div class="y">2025-26</div><div class="tt">멀티에이전트</div><div class="td">장시간 자율 수행 및 AI 간 협업</div></div>
     </div>
     <div class="note reveal-up d5">빠른 답변 → 지시(프롬프트) → 외부 지식 활용(RAG) → 도구 사용(에이전트) → 검증 및 재시도(Reflection) → 자율 작업(하네스) → 협업으로 발전해 왔습니다.</div>
+  </div>
+</section>
+
+<!-- NEW · 학습 출발점 1 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">START HERE</span><span class="lbl">같은 강의라도 시작 과제는 다릅니다</span></div>
+    <h2 class="reveal-up d1">먼저 <span class="hl-good">내가 해결할 업무 하나</span>를 고릅니다</h2>
+    <p class="lead reveal-up d2">설문은 실력을 판정하는 시험이 아닙니다. 관심 분야와 준비된 자료를 확인해 첫 실습의 난도를 정하는 출발점입니다.</p>
+    <div class="grid g4 reveal-up d2" style="margin-top:20px">
+      <div class="card"><span class="em">🧭</span><h3>관심 분야</h3><p>반복업무, 문서·보고서, 데이터, 제작 중 어디에서 시작할지 고릅니다.</p></div>
+      <div class="card"><span class="em">📁</span><h3>샘플 자료</h3><p>공유 가능한 파일 한 개가 있는지 확인합니다.</p></div>
+      <div class="card"><span class="em">🎯</span><h3>첫 결과</h3><p>표, 초안, 분석, 화면처럼 바로 확인할 결과를 정합니다.</p></div>
+      <div class="card"><span class="em">✅</span><h3>검증 기준</h3><p>누락, 형식, 계산, 사람이 확인할 지점을 적습니다.</p></div>
+    </div>
+    <div class="card soft reveal-up d3" style="margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap"><div><b style="font-size:16px">나에게 필요한 AI 스터디 찾기</b><p style="font-size:13px;margin-top:4px">응답 결과를 바탕으로 첫 과제와 4주 흐름을 정합니다.</p></div><a class="copybtn good" href="https://office-ai-prompt-builder.nenovabusiness1.chatgpt.site/study-survey" target="_blank" rel="noopener">설문 열기 ↗</a></div>
+  </div>
+</section>
+
+<!-- NEW · 학습 출발점 2 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">4 WEEKS</span><span class="lbl">한 번 만들고 끝내지 않는 학습 경로</span></div>
+    <h2 class="reveal-up d1">4주 동안 <span class="hl">만들고, 틀려 보고, 다시 씁니다</span></h2>
+    <div class="pipe reveal-up d2" style="margin-top:24px">
+      <div class="step"><div class="ic">①</div><div class="t">좋은 질문</div><div class="s">업무 5줄과 완료 기준을 만듭니다.</div></div><div class="ar"><i>▶</i></div>
+      <div class="step"><div class="ic">②</div><div class="t">업무 적용</div><div class="s">작은 샘플로 첫 결과를 만듭니다.</div></div><div class="ar"><i>▶</i></div>
+      <div class="step"><div class="ic">③</div><div class="t">예외 검토</div><div class="s">누락·오류·사람 확인을 찾습니다.</div></div><div class="ar"><i>▶</i></div>
+      <div class="step hot"><div class="ic">④</div><div class="t">반복 사용</div><div class="s">규칙과 결과를 남겨 다음에도 씁니다.</div></div>
+    </div>
+    <div class="grid g2 reveal-up d3" style="margin-top:24px"><div class="card"><h3>매주 남길 것</h3><p>작동한 결과 하나, 확인한 실패 하나, 다음에 그대로 쓸 규칙 하나를 남깁니다.</p></div><div class="card"><h3>성과를 보는 법</h3><p>첫 답변 속도만 보지 않습니다. 검토와 재작업까지 포함한 전체 시간을 비교합니다.</p></div></div>
+    <div class="note reveal-up d4"><b>다음 행동.</b> 오늘은 설문 결과와 상관없이, 공유 가능한 자료 한 개와 첫 결과물 한 개를 정하면 충분합니다.</div>
   </div>
 </section>
 
@@ -589,19 +638,30 @@
   </div>
 </section>
 
-<!-- 8 4모델 비교 -->
+<!-- 8 Astra 기준 작업 구조 (2026-09-09 확인) -->
 <section class="slide">
   <div class="wrap">
-    <div class="badge reveal-up d1"><span class="num">01</span><span class="lbl">모델 비교</span></div>
-    <h2 class="reveal-up d1">같은 질문, 모델마다 답이 다르다</h2>
-    <p class="lead reveal-up d2">질문: "이 회의록을 정리해서 액션 아이템을 뽑아줘." — 각 모델의 학습 방식과 특화된 영역에 따라 답변 스타일이 확연히 다릅니다.</p>
-    <div class="grid g4 reveal-up d2" style="margin-top:18px">
-      <div class="card"><div class="mhead"><div class="logo" style="background:var(--claude)">C</div><div><div style="font-weight:800;font-size:14px">Claude</div><div style="font-size:11px;color:var(--dim)">긴 문서 분석 및 신중한 답변 특화</div></div></div><div class="ans">"먼저 짧게 확인할게요 — 참석자·목적이 어떻게 되나요? 액션을 빠뜨리지 않으려고요. <span class="dots3"><b></b><b></b><b></b></span>"</div><div class="tag">→ 작업 수행 전 맥락을 먼저 확인하여 정확도를 높입니다.</div></div>
-      <div class="card"><div class="mhead"><div class="logo" style="background:var(--gpt)">G</div><div><div style="font-weight:800;font-size:14px">GPT</div><div style="font-size:11px;color:var(--dim)">범용적이고 균형 잡힌 성능</div></div></div><div class="ans">"핵심 3가지: ①출시 의견 ②예산 우려 ③마케팅 마감. 액션도 정리할까요? <span class="dots3"><b></b><b></b><b></b></span>"</div><div class="tag">→ 빠르고 구조화된 형태로 핵심만 정리합니다.</div></div>
-      <div class="card"><div class="mhead"><div class="logo" style="background:var(--codex)">{}</div><div><div style="font-weight:800;font-size:14px">Codex</div><div style="font-size:11px;color:var(--dim)">프로그래밍 코드 작성 특화</div></div></div><div class="ans mono" style="font-size:11px">actions = re.findall(r'(\w+)→(.+)', text) <span class="dots3"><b></b><b></b><b></b></span></div><div class="tag">→ 자연어 대신 코드를 사용해 문제를 해결하려 합니다.</div></div>
-      <div class="card"><div class="mhead"><div class="logo" style="background:var(--gemini)">◆</div><div><div style="font-weight:800;font-size:14px">Gemini</div><div style="font-size:11px;color:var(--dim)">Google 생태계 및 멀티모달 특화</div></div></div><div class="ans">"정리하고 Calendar에 자동 등록 가능. [Sheets] [Calendar] [팀 채팅] <span class="dots3"><b></b><b></b><b></b></span>"</div><div class="tag">→ 다른 도구(스프레드시트, 캘린더 등)와의 연동을 적극 제안합니다.</div></div>
-    </div>
-    <div class="note reveal-up d5">모든 모델이 '다음 단어 예측'이라는 기본 구조는 같지만, 학습 데이터와 특화된 튜닝 방식에 따라 결과가 다릅니다. 따라서 어떤 작업에 어떤 모델이 적합한지 파악하는 안목이 중요합니다.</div>
+    <div class="badge reveal-up d1"><span class="num">01</span><span class="lbl">Astra 기준 작업 구조</span></div>
+    <h2 class="reveal-up d1"><span class="hl-good">Astra는 판단</span>하고, Codex는 일을 끝낼 환경을 만듭니다</h2>
+    <p class="lead reveal-up d2">모델 하나를 고르는 일과 실제로 파일·코드·도구를 쓰는 환경은 다릅니다. 연결 범위가 있어야 결과까지 이어집니다.</p>
+    <div class="pipe reveal-up d2" style="margin-top:22px"><div class="step hot"><div class="ic">🧠</div><div class="t">GPT-6 Astra</div><div class="s">복잡한 자료 이해, 판단, 코딩, 문서 작업을 돕는 모델입니다.</div></div><div class="ar"><i>▶</i></div><div class="step"><div class="ic">🖥️</div><div class="t">Codex</div><div class="s">파일을 읽고 고치고, 결과를 확인하는 작업 환경입니다.</div></div><div class="ar"><i>▶</i></div><div class="step"><div class="ic">🧰</div><div class="t">연결된 도구</div><div class="s">검색, 파일, 코드 실행, 브라우저처럼 일을 위한 손과 발입니다.</div></div><div class="ar"><i>▶</i></div><div class="step"><div class="ic">✅</div><div class="t">사람 확인</div><div class="s">결과를 바꾸는 결정과 외부 반영은 확인한 뒤 진행합니다.</div></div></div>
+    <div class="grid g2 reveal-up d3" style="margin-top:22px"><div class="card"><h3>계정에서 먼저 볼 것</h3><p>선택 가능한 모델, 연결된 도구, 실행 권한과 현재 상태를 화면에서 확인합니다.</p></div><div class="card"><h3>강의에서 지킬 말</h3><p>모델 기능이 모든 계정의 도구 사용을 보장하지는 않습니다. 내 화면의 제공 범위를 우선 확인합니다.</p></div></div>
+    <div class="figcap reveal-up d4">공식 근거: <a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener">GPT-6 Astra 모델 문서</a> · <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener">Astra 사용 가이드</a> · 기능과 제공 범위는 실습 직전에 각 계정에서 다시 확인합니다.</div>
+  </div>
+</section>
+
+<!-- NEW · Astra 요청법 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">ASK WELL</span><span class="lbl">Astra와 함께 일하는 요청법</span></div>
+    <h2 class="reveal-up d1">목적은 분명하게, <span class="hl">결과를 바꾸는 결정은 확인</span>하게 합니다</h2>
+    <div class="grid g4 reveal-up d2" style="margin-top:20px"><div class="card"><h3>목적</h3><p>무엇을 해결할지 한 문장으로 씁니다.</p></div><div class="card"><h3>입력·출력</h3><p>쓸 자료와 남겨야 할 결과를 정합니다.</p></div><div class="card"><h3>허용 범위</h3><p>스스로 정할 일과 물어볼 일을 나눕니다.</p></div><div class="card"><h3>검증</h3><p>누락·형식·계산·사람 확인 기준을 적습니다.</p></div></div>
+    <div class="prompt-actions reveal-up d3" style="margin-top:18px"><button class="copybtn" onclick="copySlidePrompt('prompt-astra-work',this)">📋 요청문 복사</button></div>
+    <div id="prompt-astra-work" class="code reveal-up d3" style="font-size:12px;line-height:1.55">목적: [해결할 업무]
+입력: [파일·자료]
+결과: [확인 가능한 산출물]
+범위: 사소한 형식 결정은 진행하고, 결과·외부 반영을 바꾸는 결정은 먼저 알려줘.
+검증: [누락·형식·계산·사람 확인 기준]을 확인한 뒤 결과와 미확인 항목을 구분해줘.</div>
   </div>
 </section>
 
@@ -609,7 +669,7 @@
 <section class="slide">
   <div class="wrap">
     <div class="badge reveal-up d1"><span class="num">01</span><span class="lbl">성능 차이</span></div>
-    <h2 class="reveal-up d1">AI 모델 간 성능 차이가 발생하는 이유와 용도별 모델 추천</h2>
+    <h2 class="reveal-up d1">모델 차이는 왜 생기고, 내 업무에는 무엇이 맞을까요?</h2>
     <p class="reveal-up d2" style="color:var(--accent);font-weight:800;margin-top:8px;font-size:16px">▌성능 차이를 만드는 4가지 요소</p>
     <div class="grid g4 reveal-up d2" style="margin-top:8px">
       <div class="card" style="text-align:center"><span class="em">📚</span><h3>학습 데이터</h3><p>양과 질</p></div>
@@ -617,15 +677,9 @@
       <div class="card" style="text-align:center"><span class="em">🎓</span><h3>훈련 방법</h3><p>인간 피드백 기반 강화학습(RLHF) 및 정렬(Alignment) 방식</p></div>
       <div class="card" style="text-align:center"><span class="em">🎯</span><h3>특화 튜닝</h3><p>코드·검색 등</p></div>
     </div>
-    <p class="reveal-up d3" style="color:var(--accent);font-weight:800;margin-top:18px;font-size:16px">▌상황별 모델 추천 — 모든 분야에서 완벽한 1등 모델은 없으므로 목적에 맞게 선택해야 합니다.</p>
-    <div class="card reveal-up d3" style="margin-top:8px">
-      <div class="chat">
-        <div class="b me">🙋 긴 계약서·보고서 통째로 분석하려면?</div>
-        <div class="b ai">🤖 긴 문맥 분석에는 <b style="color:var(--txt)">Claude</b>가 탁월합니다. 📑</div>
-        <div class="b me">🙋 일상 질문·초안은? / 코드 작성은? / 사진 분석+최신 검색은?</div>
-        <div class="b ai">🤖 빠르고 범용적인 작업에는 → <b style="color:var(--txt)">GPT</b> ⚡ / 프로그래밍 코드 작성에는 → <b style="color:var(--txt)">Codex·Claude</b> 💻 / 이미지 분석 및 최신 정보 검색에는 → <b style="color:var(--txt)">Gemini</b> 🖼️</div>
-      </div>
-    </div>
+    <p class="reveal-up d3" style="color:var(--accent);font-weight:800;margin-top:18px;font-size:16px">▌제품명보다 같은 샘플의 결과를 비교합니다.</p>
+    <div class="grid g3 reveal-up d3" style="margin-top:8px"><div class="card"><h3>1. 같은 입력</h3><p>계약서, 보고서, 코드처럼 실제 업무와 비슷한 자료를 준비합니다.</p></div><div class="card"><h3>2. 도구·권한</h3><p>파일, 검색, 브라우저, 연결 서비스가 내 계정에서 가능한지 확인합니다.</p></div><div class="card"><h3>3. 검증 결과</h3><p>정확도·속도·비용·실행 성공률·검토 시간을 비교해 선택합니다.</p></div></div>
+    <div class="note reveal-up d4"><b>Astra 기준 실습.</b> 먼저 Astra와 현재 연결된 도구로 작은 샘플을 끝까지 처리해 봅니다. 다른 모델은 같은 기준으로 비교한 뒤 선택합니다.</div>
   </div>
 </section>
 
@@ -1021,9 +1075,9 @@
 <section class="slide">
   <div class="wrap">
     <div class="badge reveal-up d1"><span class="num">MODEL EVOLUTION</span><span class="lbl">강해진 모델이 보완한 부분</span></div>
-    <h2 class="reveal-up d1">최신 모델은 더 긴 자료를 읽고, 계획을 유지하며, <span class="hl-good">작업을 마무리하는 능력</span>이 좋아졌습니다</h2>
+    <h2 class="reveal-up d1">최근 모델은 자료를 더 오래 붙들고, <span class="hl-good">작업을 마무리하는 능력</span>을 넓혔습니다</h2>
     <div class="grid g2 reveal-up d2" style="margin-top:18px">
-      <div class="card" style="border-color:var(--accent)"><h3>OpenAI · GPT-5.4 → 5.5 → 5.6</h3><p>GPT-5.4·5.5와 GPT-5.6 Sol·Terra·Luna는 최대 약 105만 토큰 컨텍스트와 함수·검색·파일·컴퓨터 도구 사용을 지원합니다.</p><div class="tag">더 긴 자료 + 복잡한 추론 + 다양한 도구 실행</div></div>
+      <div class="card" style="border-color:var(--accent)"><h3>OpenAI · GPT-6 Astra</h3><p>2026-09-09 강의 기준의 모델 참고 사례입니다. 복잡한 자료 이해, 추론, 코딩, 컴퓨터 사용과 문서 작업을 연결해 봅니다.</p><div class="tag">내 계정의 모델·도구·권한을 먼저 확인</div></div>
       <div class="card" style="border-color:var(--good)"><h3>Anthropic · Sonnet 5 · Opus 4.8 · Fable 5</h3><p>Sonnet 5는 계획, 도구 사용, 코딩과 장기 작업 지속성이 강화됐고, 이전에 더 큰 모델이 필요했던 작업을 더 효율적으로 수행하도록 발전했습니다.</p><div class="tag" style="color:var(--good)">더 긴 집중 + 자기검증 + 다단계 작업 완수</div></div>
     </div>
     <div class="grid g4 reveal-up d3" style="margin-top:18px;gap:10px">
@@ -1032,7 +1086,7 @@
       <div class="card"><h3>🧰 도구 사용</h3><p>검색·터미널·파일·API를 연결해 실제 행동</p></div>
       <div class="card"><h3>✅ 자기검증</h3><p>테스트와 결과 확인을 스스로 수행할 가능성 증가</p></div>
     </div>
-    <div class="figcap reveal-up d4">공식 자료: developers.openai.com/api/docs/models · anthropic.com/news/claude-sonnet-5　※ 모델명·사양은 자료 활용 시점에 다시 확인합니다.</div>
+    <div class="figcap reveal-up d4">공식 근거: <a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener">GPT-6 Astra 모델 문서</a> · 모델명·사양·제공 범위는 자료 활용 시점에 다시 확인합니다.</div>
   </div>
 </section>
 
@@ -1042,12 +1096,12 @@
     <div class="badge reveal-up d1"><span class="num">PLATFORM TIMELINE</span><span class="lbl">언제, 무엇을 할 수 있게 됐나</span></div>
     <h2 class="reveal-up d1">AI는 대화창을 넘어 <span class="hl-good">문서·브라우저·앱·전화</span>에서 직접 일하기 시작했습니다</h2>
     <div class="platform-timeline reveal-up d2" style="margin-top:14px;display:grid;gap:9px">
-      <div style="display:grid;grid-template-columns:120px 1fr 24px 1fr 24px 1fr;gap:8px;align-items:stretch"><b style="color:var(--gpt);padding:13px 6px">OpenAI<br>ChatGPT</b><div class="card" style="padding:11px"><b>2025</b><p>Deep research·Apps·Codex<br><span style="color:var(--txt)">조사·연결·코딩으로 확장</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.06</b><p>Memory Dreaming·File Library<br><span style="color:var(--txt)">과거 맥락과 파일을 다시 활용</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.07</b><p>GPT‑5.6·ChatGPT Work<br><span style="color:var(--txt)">긴 업무를 끝까지 실행</span></p></div></div>
+      <div style="display:grid;grid-template-columns:120px 1fr 24px 1fr 24px 1fr;gap:8px;align-items:stretch"><b style="color:var(--gpt);padding:13px 6px">OpenAI<br>ChatGPT</b><div class="card" style="padding:11px"><b>2025</b><p>Deep research·Apps·Codex<br><span style="color:var(--txt)">조사·연결·코딩으로 확장</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.06</b><p>Memory Dreaming·File Library<br><span style="color:var(--txt)">과거 맥락과 파일을 다시 활용</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.07 참고 사례</b><p>GPT‑5.6·ChatGPT Work<br><span style="color:var(--txt)">당시 공개된 긴 업무 실행 기능</span></p></div></div>
       <div style="display:grid;grid-template-columns:120px 1fr 24px 1fr 24px 1fr;gap:8px;align-items:stretch"><b style="color:var(--claude);padding:13px 6px">Anthropic<br>Claude</b><div class="card" style="padding:11px"><b>2024~25</b><p>Artifacts·Claude Code·MCP<br><span style="color:var(--txt)">결과물·코드·외부 도구 연결</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.03</b><p>Cowork·컴퓨터 사용·시각화<br><span style="color:var(--txt)">PC 작업과 차트를 직접 수행</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.06</b><p>Sonnet 5·Claude Tag<br><span style="color:var(--txt)">에이전트 작업과 팀 위임 강화</span></p></div></div>
       <div style="display:grid;grid-template-columns:120px 1fr 24px 1fr 24px 1fr;gap:8px;align-items:stretch"><b style="color:var(--gemini);padding:13px 6px">Google<br>Gemini</b><div class="card" style="padding:11px"><b>2024~25</b><p>NotebookLM·Workspace·Flow<br><span style="color:var(--txt)">자료·업무 앱·미디어 연결</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.03</b><p>Docs·Sheets·Slides 협업<br><span style="color:var(--txt)">메일·파일 맥락으로 결과 제작</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.05~06</b><p>Spark·프로액티브 브리핑<br><span style="color:var(--txt)">컴퓨터 작업과 선제적 도움</span></p></div></div>
       <div style="display:grid;grid-template-columns:120px 1fr 24px 1fr 24px 1fr;gap:8px;align-items:stretch"><b style="color:var(--warn);padding:13px 6px">xAI<br>Grok</b><div class="card" style="padding:11px"><b>2025</b><p>DeepSearch·Agent Tools<br><span style="color:var(--txt)">웹·X·코드 도구 연결</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.04~06</b><p>Voice·Imagine 1.5·Build<br><span style="color:var(--txt)">통화·영상·코딩·문서 제작</span></p></div><div class="ar">▶</div><div class="card" style="padding:11px"><b>2026.07</b><p>Grok 4.5·Automations<br><span style="color:var(--txt)">예약·메일 조건으로 자동 실행</span></p></div></div>
     </div>
-    <div class="note reveal-up d4"><b>2026년 8월 기준.</b> 최신 기능은 요금제·국가·회사 계정 정책에 따라 순차 제공됩니다. 이름보다 내 계정에서 실제로 켜져 있는지 먼저 확인합니다.</div>
+    <div class="note reveal-up d4"><b>2026년 8월 참고 사례.</b> 이 타임라인은 당시 공개 정보를 정리한 자료입니다. 최신 기능으로 단정하지 않으며, 내 계정에서 실제로 켜져 있는지 먼저 확인합니다.</div>
     <div class="src">공식 릴리스: OpenAI · Anthropic · Google · xAI (확인 2026-08-05)</div>
   </div>
 </section>
@@ -1080,10 +1134,10 @@
     <h2 class="reveal-up d1">ChatGPT는 이제 질문 답변보다 <span class="hl">긴 업무를 끝까지 수행</span>하는 쪽으로 확장됐습니다</h2>
     <div class="grid g2 reveal-up d2" style="margin-top:16px">
       <div class="card" style="border-color:var(--gpt)"><h3 style="color:var(--gpt)">ChatGPT Work</h3><div class="checkrow"><b>끝까지 작업</b> — 조사하고, 연결된 앱과 파일을 읽고, 완성된 문서·표·발표·사이트를 만듭니다.</div><div class="checkrow"><b>진행 중 개입</b> — 작업 과정을 보고 질문에 답하거나 방향을 바꿉니다.</div><div class="checkrow"><b>중요 행동 승인</b> — 외부 변경처럼 책임이 따르는 단계는 사용자가 확인합니다.</div><div class="tag">예: 주간 자료 수집 → 분석 → 경영 보고서와 발표자료 완성</div></div>
-      <div class="card" style="border-color:var(--gpt)"><h3 style="color:var(--gpt)">GPT‑5.6 · Codex · Memory</h3><div class="checkrow"><b>Sol·Terra·Luna</b> — 최고 품질·균형·비용 효율에 맞춰 모델 계층을 고릅니다.</div><div class="checkrow"><b>Codex</b> — 코드 저장소를 읽고 구현·테스트·검토하며 여러 작업을 병렬로 진행합니다.</div><div class="checkrow"><b>Memory·File Library</b> — 과거 선호와 업로드 파일을 다음 작업에서 다시 찾습니다.</div><div class="tag">주의: 기억은 원문 전체가 아니므로 프로젝트 규칙과 기준 파일은 별도로 유지</div></div>
+      <div class="card" style="border-color:var(--gpt)"><h3 style="color:var(--gpt)">GPT-6 Astra · Codex · 작업 기록</h3><div class="checkrow"><b>Astra</b> — 복잡한 판단과 구현을 연결하는 강의 기준 모델입니다.</div><div class="checkrow"><b>Codex</b> — 코드 저장소를 읽고 구현·테스트·검토하며 작업을 진행합니다.</div><div class="checkrow"><b>AGENTS.md·CURRENT_TASK.md</b> — 프로젝트 규칙과 현재 상태를 파일로 남깁니다.</div><div class="tag">주의: 실제 제공 모델과 연결 도구는 계정에서 다시 확인</div></div>
     </div>
     <div class="note reveal-up d4"><b>추천 업무.</b> 자료가 여러 앱에 흩어져 있고, 조사부터 최종 파일까지 한 번에 맡기고 싶을 때 적합합니다.</div>
-    <div class="src">출처: OpenAI GPT‑5.6 발표 · ChatGPT Release Notes — 2026-07</div>
+    <div class="src">공식 근거: <a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener">GPT-6 Astra 모델 문서</a> · 과거 릴리스는 당시 참고 사례로만 봅니다.</div>
   </div>
 </section>
 
@@ -1325,7 +1379,7 @@
 <!-- 기업 데이터 2 검증 사례 -->
 <section class="slide">
   <div class="wrap">
-    <div class="badge reveal-up d1"><span class="num">VERIFIED CASES</span><span class="lbl">공개 수치가 있는 기업 사례</span></div>
+    <div class="badge reveal-up d1"><span class="num">REFERENCE CASES</span><span class="lbl">공개 자료에 나온 기업 참고 사례</span></div>
     <h2 class="reveal-up d1">기업들은 이미 <span class="hl">원천 데이터에서 운영 결과까지</span> 연결해 측정하고 있습니다</h2>
     <div class="reveal-up d2" style="margin-top:15px;overflow:hidden;border:1px solid var(--line);border-radius:14px">
       <table style="width:100%;border-collapse:collapse;font-size:11.5px;background:var(--card)">
@@ -1339,7 +1393,7 @@
         </tbody>
       </table>
     </div>
-    <div class="note reveal-up d4"><b>해석 주의.</b> 공급사 고객사례가 공개한 수치이며 독립 실험 결과는 아닙니다. 우리 회사 적용 전에는 같은 지표의 기준선과 계산식을 먼저 고정해야 합니다.</div>
+    <div class="note reveal-up d4"><b>2026-09-09 참고 사례.</b> 공급사 고객사례가 공개한 수치이며 독립 실험 결과는 아닙니다. 우리 회사 적용 전에는 같은 지표의 기준선과 계산식을 먼저 고정해야 합니다.</div>
     <div class="src">출처: Google Cloud Tchibo·Augury·Sift Lab 사례 · OpenAI Gradient Labs · Anthropic Block 사례</div>
   </div>
 </section>
@@ -1525,6 +1579,36 @@
   </div>
 </section>
 
+<!-- NEW · 컨텍스트 명령 1 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">CONTEXT</span><span class="lbl">현재 대화와 계정 사용량은 다른 것입니다</span></div>
+    <h2 class="reveal-up d1"><code>/status</code>로 <span class="hl-good">현재 작업 상태</span>를 먼저 확인합니다</h2>
+    <div class="row reveal-up d2" style="margin-top:20px"><div class="col card" style="border-color:var(--accent)"><h3>컨텍스트</h3><p>지금 답변을 만들 때 펼쳐 둔 대화·파일·지시의 작업 공간입니다. 길어지면 중요한 내용이 묻힐 수 있습니다.</p></div><div class="col card" style="border-color:var(--warn)"><h3>사용량 한도</h3><p>계정에서 사용할 수 있는 양입니다. 압축하거나 새 대화를 열어도 사용량이 충전되지는 않습니다.</p></div></div>
+    <div class="pipe reveal-up d3" style="margin-top:22px"><div class="step"><div class="t">1. 상태 보기</div><div class="s">현재 화면의 <code>/status</code>를 확인합니다.</div></div><div class="ar"><i>▶</i></div><div class="step"><div class="t">2. 핵심 기록</div><div class="s">결정·파일·다음 행동을 먼저 남깁니다.</div></div><div class="ar"><i>▶</i></div><div class="step hot"><div class="t">3. 이어갈 방식</div><div class="s">압축할지, 새 작업을 열지 고릅니다.</div></div></div>
+    <div class="note reveal-up d4"><b>첫날 실습.</b> 입력창에 <code>/</code>를 쳐서 내 환경에서 제공되는 명령부터 확인합니다. 앱·CLI·버전·권한에 따라 목록이 다릅니다. <a href="https://learn.chatgpt.com/docs/reference/slash-commands" target="_blank" rel="noopener">공식 명령어 안내 ↗</a></div>
+  </div>
+</section>
+
+<!-- NEW · 컨텍스트 명령 2 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">CONTINUE OR NEW</span><span class="lbl">대화를 정리하는 세 가지 선택</span></div>
+    <h2 class="reveal-up d1">같은 일을 이어갈 때와 <span class="hl">새로 시작할 때</span>를 구분합니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:20px"><div class="card" style="border-color:var(--good)"><h3><code>/compact</code></h3><p>긴 대화를 핵심 요약으로 접고 같은 업무를 이어갈 때 씁니다. 세부 내용이 빠질 수 있으니 중요한 결정은 파일에도 남깁니다.</p></div><div class="card" style="border-color:var(--accent)"><h3>새 작업 · CLI <code>/new</code></h3><p>다른 업무를 분리하거나 새 관점으로 시작할 때 씁니다. 인계 파일과 결과 파일을 먼저 읽게 합니다.</p></div><div class="card" style="border-color:var(--warn)"><h3>CLI <code>/clear</code></h3><p>새 대화를 시작하면서 터미널 화면도 비우는 CLI 기능입니다. 파일 변경을 되돌리는 명령이 아니며 앱 명령으로 가르치지 않습니다.</p></div></div>
+    <div class="card soft reveal-up d3" style="margin-top:22px"><h3>새 작업 첫 문장</h3><p class="mono" style="font-size:13px;color:var(--txt)">AGENTS.md와 CURRENT_TASK.md를 읽고, 필요한 결과 파일을 확인해 기록과 실제 상태가 일치하는지 점검한 뒤 다음 행동부터 이어가줘.</p></div>
+  </div>
+</section>
+
+<!-- NEW · 컨텍스트 명령 3 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">SLASH MAP</span><span class="lbl">명령을 외우지 말고 상황에 맞게 씁니다</span></div>
+    <h2 class="reveal-up d1">계획·모델·검토는 <span class="hl-good">필요한 순간에만</span> 꺼냅니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:18px"><div class="card"><h3><code>/plan</code></h3><p>범위가 큰 일을 시작하기 전에 순서와 확인할 점을 정합니다.</p></div><div class="card"><h3><code>/model</code> · <code>/reasoning</code></h3><p>내 계정에서 가능한 모델과 생각의 강도를 확인합니다. 복잡한 분석에서만 비교합니다.</p></div><div class="card"><h3><code>/fork</code></h3><p>현재 대화를 바탕으로 다른 접근을 탐색합니다. 같은 파일을 동시에 고치지 않도록 주의합니다.</p></div><div class="card"><h3><code>/review</code></h3><p>수정한 코드의 문제를 찾습니다. 업무 수치나 사실관계 검증을 대신하지는 않습니다.</p></div><div class="card"><h3><code>/status</code></h3><p>현재 상태와 사용량 정보를 확인합니다. 컨텍스트와 사용량을 구분합니다.</p></div><div class="card"><h3>화면의 <code>/</code></h3><p>기능은 환경마다 다릅니다. 목록에 보이는 명령과 설명을 기준으로 실습합니다.</p></div></div>
+  </div>
+</section>
+
 <!-- 컨텍스트 2 압축 전 인수인계 -->
 <section class="slide">
   <div class="wrap">
@@ -1558,6 +1642,61 @@
     </div>
     <div class="mchat reveal-up d3" style="margin-top:20px"><div class="mb me">새 작업을 시작하기 전에 AGENTS.md, DECISIONS.md, CURRENT_TASK.md와 Git 상태를 읽어줘.</div><div class="mb me">바로 수정하지 말고 현재 목표·완료 상태·다음 행동을 먼저 설명해줘.</div><div class="mb good">내 확인을 받은 뒤 남은 작업만 이어서 수행해줘.</div></div>
     <div class="note reveal-up d4"><b>한 문장 정리.</b> 컨텍스트는 임시 기억이고, 저장소 문서는 지속되는 기억입니다.</div>
+  </div>
+</section>
+
+<!-- NEW · 지속 기록 1 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">FIRST MD</span><span class="lbl">작업 전에 읽는 기준을 짧게 만듭니다</span></div>
+    <h2 class="reveal-up d1"><code>AGENTS.md</code>에는 <span class="hl-good">계속 지킬 규칙</span>만 둡니다</h2>
+    <div class="grid g4 reveal-up d2" style="margin-top:20px"><div class="card"><h3>목표</h3><p>어떤 결과를 만들지 적습니다.</p></div><div class="card"><h3>범위</h3><p>고칠 파일과 건드리지 않을 영역을 적습니다.</p></div><div class="card"><h3>검증</h3><p>끝내기 전 확인할 검사와 기준을 적습니다.</p></div><div class="card"><h3>금지·승인</h3><p>외부 반영처럼 먼저 확인할 행동을 적습니다.</p></div></div>
+    <div class="note reveal-up d3"><b>작게 시작합니다.</b> 모든 규칙을 한 번에 쓰지 않습니다. 한 업무를 끝낸 뒤 다음에도 필요한 기준만 보탭니다.</div>
+  </div>
+</section>
+
+<!-- NEW · 지속 기록 2 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">CURRENT TASK</span><span class="lbl">지금 상태를 다음 작업자에게 넘깁니다</span></div>
+    <h2 class="reveal-up d1"><code>CURRENT_TASK.md</code>에는 <span class="hl">오늘의 사실</span>을 짧게 남깁니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:18px"><div class="card"><h3>반드시 남길 것</h3><p>목표 · 확정 결정 · 입력과 결과 파일 · 완료한 일 · 검증 결과 · 미완료 · 다음 행동</p></div><div class="card"><h3>남기지 않을 것</h3><p>비밀번호, 인증 토큰, 개인정보 원문처럼 기록해도 도움이 되지 않는 민감한 내용</p></div></div>
+    <div class="prompt-actions reveal-up d3" style="margin-top:18px"><button class="copybtn" onclick="copySlidePrompt('prompt-current-task',this)">📋 기록 요청 복사</button></div>
+    <div id="prompt-current-task" class="code reveal-up d3" style="font-size:12px;line-height:1.55">현재 작업을 다음에도 이어갈 수 있도록 CURRENT_TASK.md에 정리해줘.
+목표, 확정 결정, 입력·결과 파일, 완료한 작업, 검증 결과,
+미완료와 이유, 다음 행동을 포함하고 실제 파일 상태와 맞는지 확인해줘.</div>
+  </div>
+</section>
+
+<!-- NEW · 지속 기록 3 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">SKILL</span><span class="lbl">반복해서 성공한 절차만 재사용합니다</span></div>
+    <h2 class="reveal-up d1">Skill은 <span class="hl-good">업무 이름으로 다시 부르는 절차</span>입니다</h2>
+    <div class="pipe reveal-up d2" style="margin-top:22px"><div class="step"><div class="t">성공한 작업</div><div class="s">입력·결과·확인 기준이 분명합니다.</div></div><div class="ar"><i>▶</i></div><div class="step"><div class="t">작은 범위</div><div class="s">회의록 정리처럼 한 업무로 제한합니다.</div></div><div class="ar"><i>▶</i></div><div class="step hot"><div class="t">SKILL.md</div><div class="s">name, description, 절차와 검증을 적습니다.</div></div></div>
+    <div class="grid g2 reveal-up d3" style="margin-top:22px"><div class="card"><h3>프로젝트 Skill</h3><p><code>.agents/skills/[업무이름]/SKILL.md</code>에 둡니다. 이름과 description은 언제 쓸지 알아볼 수 있게 씁니다.</p></div><div class="card"><h3>처음부터 만들지 않을 일</h3><p>일회성 조사나 기준이 아직 정해지지 않은 업무는 일반 요청으로 시작해 결과를 먼저 확인합니다.</p></div></div>
+    <div class="figcap reveal-up d4">공식 근거: <a href="https://learn.chatgpt.com/docs/build-skills" target="_blank" rel="noopener">Codex Skills 만들기</a></div>
+  </div>
+</section>
+
+<!-- NEW · 지속 기록 4 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">CONFIG</span><span class="lbl">필요한 설정만 확인하고 바꿉니다</span></div>
+    <h2 class="reveal-up d1">처음에는 앱에서 고르고, 반복될 때만 <span class="hl">config.toml</span>을 봅니다</h2>
+    <div class="row reveal-up d2" style="margin-top:20px"><div class="col card"><h3>처음 쓰는 사람</h3><p>앱의 모델·추론 선택 메뉴에서 현재 가능한 항목을 확인합니다. 앱과 CLI의 선택이 항상 같다고 가정하지 않습니다.</p></div><div class="col card"><h3>계속 쓰는 환경</h3><p>신뢰된 프로젝트에서만 사용자 설정 <code>~/.codex/config.toml</code> 또는 프로젝트 <code>.codex/config.toml</code>을 검토합니다.</p></div></div>
+    <div class="code reveal-up d3" style="margin-top:18px;font-size:13px"># Astra를 선택할 수 있는 환경에서의 최소 예시<br>model = "gpt-6-astra"</div>
+    <div class="note reveal-up d4"><b>주의.</b> 기존 설정 전체를 덮어쓰지 않습니다. 이 한 줄이 모델 권한이나 사용량을 새로 만들지도 않습니다. <a href="https://learn.chatgpt.com/docs/config-file/config-basic" target="_blank" rel="noopener">공식 설정 안내 ↗</a></div>
+  </div>
+</section>
+
+<!-- NEW · 지속 기록 5 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">EFFICIENT WORK</span><span class="lbl">빠른 첫 답변보다 다시 하지 않는 작업</span></div>
+    <h2 class="reveal-up d1">효율은 <span class="hl-good">올바른 결과까지 걸린 전체 시간</span>으로 판단합니다</h2>
+    <div class="grid g2 reveal-up d2" style="margin-top:18px"><div class="card ba bad"><h3>자주 생기는 낭비</h3><p>매번 모든 문서를 읽기 · 작은 변경마다 전체 검사 · 모든 일에 최대 추론 · 준비 없이 여러 작업으로 나누기</p></div><div class="card ba good"><h3>바꾸는 방법</h3><p>현재 상태와 관련 문서부터 읽기 · 변경 범위의 검증 실행 · 복잡한 판단에서만 강도 비교 · 독립 과제만 나누기</p></div></div>
+    <div class="card soft reveal-up d3" style="margin-top:20px"><h3>작게 측정합니다</h3><p>같은 난도의 샘플에서 처리 시간, 반복 설명 횟수, 재작업 횟수, 검증 누락을 함께 기록합니다.</p></div>
   </div>
 </section>
 
@@ -2463,6 +2602,17 @@ PC 슬라이드를 축소하거나 좌우로 자르지 말고,
   </div>
 </section>
 
+<!-- NEW · 실습 마무리 -->
+<section class="slide title-slide">
+  <div class="wrap">
+    <div class="badge reveal-up d1"><span class="num">NEXT STEP</span><span class="lbl">오늘 만든 기준을 다음 작업에도 씁니다</span></div>
+    <h2 class="reveal-up d1">첫 과제는 작게, <span class="hl-good">기록은 다음에도 쓸 수 있게</span> 남깁니다</h2>
+    <div class="grid g3 reveal-up d2" style="margin-top:22px"><div class="card"><span class="em">1</span><h3>업무 한 개</h3><p>반복되는 업무를 5줄로 설명합니다.</p></div><div class="card"><span class="em">2</span><h3>샘플 한 개</h3><p>작은 입력으로 결과와 예외를 확인합니다.</p></div><div class="card"><span class="em">3</span><h3>기록 한 개</h3><p>다음 행동과 기준을 CURRENT_TASK.md에 남깁니다.</p></div></div>
+    <div class="row reveal-up d3" style="margin-top:24px"><a class="col card" href="downloads/codex-first-setup-guideline.md" download style="text-decoration:none"><h3>↓ Codex 시작 가이드</h3><p>첫 MD, Skill, 설정, 효율을 실습 순서로 다시 봅니다.</p></a><a class="col card" href="downloads/astra-lecture-guide.md" download style="text-decoration:none"><h3>↓ Astra 강의 가이드</h3><p>설문, 4주 과정, 명령어와 실습 프롬프트를 확인합니다.</p></a></div>
+    <div class="note reveal-up d4"><b>자료는 보조 도구입니다.</b> 실제 사용 가능 기능과 결과는 내 계정·입력·검증 기준으로 다시 확인합니다.</div>
+  </div>
+</section>
+
 <!-- 31 결론 -->
 <section class="slide title-slide">
   <div class="wrap">
@@ -2509,7 +2659,8 @@ PC 슬라이드를 축소하거나 좌우로 자르지 말고,
 <div id="navzoneR"></div>
 <div id="dots"></div>
 <div id="counter"><b id="cur">1</b> / <span id="tot">30</span></div>
-<div class="navhint" id="hintL">← → 또는 클릭 · F 전체화면 · <a href="#47" onclick="go(46);return false" style="color:var(--good);text-decoration:none;font-weight:800">📊 기업 데이터</a> · <a href="#49" onclick="go(48);return false" style="color:var(--accent);text-decoration:none;font-weight:800">🔎 활용되지 않던 데이터 사례</a> · <a href="index.html" style="color:var(--accent);text-decoration:none">📄 전체 페이지</a></div>
+<div id="brandMark">@MOYI</div>
+<div class="navhint" id="hintL">← → 또는 클릭 · F 전체화면 · <a href="#51" onclick="go(50);return false" style="color:var(--good);text-decoration:none;font-weight:800">📊 기업 데이터</a> · <a href="#52" onclick="go(51);return false" style="color:var(--accent);text-decoration:none;font-weight:800">🔎 활용되지 않던 데이터 사례</a> · <a href="index.html" style="color:var(--accent);text-decoration:none">📄 전체 페이지</a></div>
 
 <script>
   const slides = [...document.querySelectorAll('.slide')];
@@ -2545,6 +2696,7 @@ PC 슬라이드를 축소하거나 좌우로 자르지 말고,
 
   // keyboard
   document.addEventListener('keydown', e=>{
+    if(e.target?.closest?.('button,a,input,textarea,select,[contenteditable="true"]')) return;
     if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){ e.preventDefault(); next(); }
     else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); prev(); }
     else if(e.key==='Home'){ go(0); }
