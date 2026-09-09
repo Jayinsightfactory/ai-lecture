@@ -8,10 +8,11 @@ const esc=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&g
  const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})});
  const page=await browser.newPage({viewport:{width:1920,height:1080}});
  await page.goto('file:///'+path.join(root,'slides.html').replaceAll('\\','/'));
+ await page.emulateMedia({media:'screen'});
  await page.addStyleTag({content:`
  @page{size:1920px 1080px;margin:0} html,body{height:auto!important;overflow:visible!important;background:#0c0e14!important}
  .deck{position:static!important} .slide{position:relative!important;inset:auto!important;width:1920px!important;height:1080px!important;min-height:0!important;padding:75px 130px!important;opacity:1!important;visibility:visible!important;transform:none!important;break-after:page;overflow:hidden!important}
- .wrap{max-width:1184px!important;max-height:none!important;zoom:1.25} #progress,#counter,#dots,#brandMark,.navhint,#navzoneL,#navzoneR,button{display:none!important}
+ .g2{grid-template-columns:repeat(2,1fr)!important}.g3{grid-template-columns:repeat(3,1fr)!important}.g4{grid-template-columns:repeat(4,1fr)!important}.g5{grid-template-columns:repeat(5,1fr)!important}.g6{grid-template-columns:repeat(3,1fr)!important}.wrap{max-width:1184px!important;max-height:none!important;zoom:1.25} #progress,#counter,#dots,#brandMark,.navhint,#navzoneL,#navzoneR,button{display:none!important}
  *,*::before,*::after{animation:none!important;transition:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
  .reveal-up,.reveal,.fade-in{opacity:1!important;transform:none!important} .card p,.card li{font-size:18px!important;line-height:1.55!important}.card h3{font-size:22px!important}.lead{font-size:24px!important;max-width:1300px!important}.note{color:#b0bad0!important;font-size:16px!important}.slide::after{content:'@MOYI · ASTRA / 2026.09';position:absolute;right:90px;bottom:30px;font:16px Consolas;color:#a4b0ca}
  `});
@@ -29,7 +30,7 @@ const esc=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&g
   return {number:i+1,links:Array.from(w.querySelectorAll('a[href]')).map(a=>({text:a.innerText.trim(),href:new URL(a.getAttribute('href'),'https://jayinsightfactory.github.io/ai-lecture/slides.html').href})),title:title?.innerText||'AI 업무자동화',text,units,overflow:Math.max(0,r.bottom-sr.bottom+50),top:r.top-sr.top};
  }));
  const overflow=records.filter(x=>x.overflow>1||x.top<30); if(overflow.length)console.log('PC overflow:',JSON.stringify(overflow.map(({number,overflow,top})=>({number,overflow,top}))));
- await page.pdf({path:path.join(root,'downloads/ai-automation-vibe-coding-moyi.pdf'),printBackground:true,preferCSSPageSize:true});
+ await page.pdf({path:path.join(root,'downloads/ai-automation-vibe-coding-moyi.pdf'),printBackground:true,preferCSSPageSize:true,width:'1920px',height:'1080px'});
  fs.writeFileSync(path.join(root,'downloads/slides-text.md'),'# Astra 기준 AI 업무자동화 강의 · 2026-09-09\n\n'+records.map(x=>`## ${x.number}. ${x.title.replaceAll('\n',' ')}\n\n${x.text}\n`).join('\n'));
  // Reading edition: reflow the same source text into semantic cards, with real pagination.
  const mobile=await browser.newPage({viewport:{width:1080,height:1920}});
