@@ -2868,6 +2868,10 @@ PC 슬라이드를 축소하거나 좌우로 자르지 말고,
   // ===== 시작 (모든 선언 후 실행) =====
   const h = parseInt(location.hash.replace('#',''))||1;
   go(h-1);
+  window.addEventListener('hashchange',()=>{
+    const page = parseInt(location.hash.slice(1),10);
+    if(Number.isInteger(page) && page>=1 && page<=slides.length && page-1!==idx) go(page-1);
+  });
 </script>
 </body>
 </html>
